@@ -19,17 +19,24 @@ except Exception as e:
     print(f'Falta algun modulo {e}')
 
 
-
+# Funcion de envio de correo
+# link para activar el gmail https://myaccount.google.com/security?hl=es
+# ir a la opcion Verificación en 2 pasos
+# ir a la opcion Contraseñas de aplicaciones
+# ir a crear una nueva contraseña de la aplicacion                
 def enviar_correo():
+
+
+    # ------------------------------------------------------------------------
     # Configuración del remitente y destinatario
-    remitente_email = 'kuvasz102@gmail.com'
-    destinatario_email = 'alejpnovillog@gmail.com'
+    remitente_email = 'alejpnovillog@gmail.com'
+    destinatario_email = 'kuvasz102@gmail.com'
 
     # Configuración del servidor SMTP de Gmail
     smtp_server = 'smtp.gmail.com'
     smtp_port = 587
-    smtp_usuario = 'kuvasz102@gmail.com'
-    smtp_contrasena = 'hanna6259'
+    smtp_usuario = 'alejpnovillog@gmail.com'
+    smtp_contrasena = 'ugmz diik xvys qhzt'
 
     # Configuración del mensaje
     asunto = 'Finalizacion del proceso de recepcion de archivos de Sucerp'
@@ -45,6 +52,7 @@ def enviar_correo():
 
     # Inicia la conexión SMTP
     with smtplib.SMTP(smtp_server, smtp_port) as servidor_smtp:
+
         # Establece la conexión segura
         servidor_smtp.starttls()
 
@@ -53,6 +61,7 @@ def enviar_correo():
 
         # Envía el correo electrónico
         servidor_smtp.send_message(mensaje)
+
 
     print('Correo electrónico enviado con éxito.')
 
@@ -280,10 +289,11 @@ async def procesar_archivos():
                         print(f"Error al mover el archivo: {e}")
 
 
-        print('El proceso ha finalizado ...............................')
-        
         # Llama a la función para enviar el correo
         enviar_correo()
+
+        print('El proceso ha finalizado ...............................')
+
 
     except Exception as e:
         print(f'Error en el procesamiento  {e}')
