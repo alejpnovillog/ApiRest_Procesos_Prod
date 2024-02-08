@@ -2,6 +2,7 @@ try:
     import smtplib
     from email.mime.text import MIMEText
     from email.mime.multipart import MIMEMultipart    
+    import html
     import os
     import platform
     from ftplib import FTP
@@ -24,7 +25,14 @@ except Exception as e:
 # ir a la opcion Verificación en 2 pasos
 # ir a la opcion Contraseñas de aplicaciones
 # ir a crear una nueva contraseña de la aplicacion                
-def enviar_correo():
+def enviar_correo(logdict):
+
+    html_content = '<ul>'
+    for key, value in logdict.items():
+        key_html = html.escape(str(key))
+        value_html = html.escape(str(value))
+        html_content += f'<li><strong>{key_html}:</strong> {value_html}</li>'
+    html_content += '</ul>'
 
 
     # ------------------------------------------------------------------------
@@ -40,7 +48,7 @@ def enviar_correo():
 
     # Configuración del mensaje
     asunto = 'Finalizacion del proceso de recepcion de archivos de Sucerp'
-    cuerpo = 'Log de recepcion'
+    cuerpo = html_content
 
     mensaje = MIMEMultipart()
     mensaje['From'] = remitente_email
@@ -173,15 +181,27 @@ async def procesar_archivos():
         # definimos el ambiente de ejecucion
         with ConfigurarAplicacionSubmit() as api:
 
+
+            # definimos la lista del log de transferencia
+            loglist = list()
+
+            # definimos el diccionario de log de la transferencia
+            logdict = dict()
+
+
             # nos ubicamos en el directorio
             os.chdir(api.directorio)            
 
             # Obtenemos los objetos de la carpeta de recepcion
             lista_archivos_directorios = os.listdir()
 
+            # definimos el contador para los ciclos de la transferencia
+            ciclo = 0
+
             # Iterar sobre la lista
             for elemento in lista_archivos_directorios:
-            
+
+
                 # - Obtenemos la ruta completa del objeto
                 ruta_completa = os.path.join(api.directorio, elemento)
 
@@ -219,7 +239,9 @@ async def procesar_archivos():
                             # Subir el archivo al servidor en modo ASCII
                             api.ftp.storlines(f'STOR {api.target}', file)
 
-                        print(f"Archivo {api.fuente} subido con éxito a {api.target}")
+                        ciclo += 1
+                        logdict[f'{elemento}{ciclo}'] = f"Archivo {api.fuente} subido con éxito a {api.target}"
+
 
                     except Exception as e:
                         print(f"Error: {e}")
@@ -239,7 +261,9 @@ async def procesar_archivos():
                     while not retorno:
                         retorno = api.iprod.GetCmdMsg(api.clrpfm)
 
-                    print(f'Se ha eliminado los registros de F000000001 {retorno}')
+                    ciclo += 1
+                    logdict[f'{elemento}{ciclo}'] = f'Se ha eliminado los registros de F000000001 {retorno}'
+
 
                     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                     # Copiamos el archivo de texto en la tabla F000000001
@@ -249,7 +273,8 @@ async def procesar_archivos():
                     while not retorno:
                         retorno = api.iprod.GetCmdMsg(cpyfrmimpf)
 
-                    print(f'Copiamos el archivo de texto en la tabla F000000001 {retorno}')
+                    ciclo += 1
+                    logdict[f'{elemento}{ciclo}'] = f'Copiamos el archivo de texto en la tabla F000000001 {retorno}'
 
                     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                     # Ejecutamos la incorporacion del archivo recibido
@@ -259,7 +284,9 @@ async def procesar_archivos():
                     while not retorno:
                         retorno = api.iprod.GetCmdMsg(execpgm)
 
-                    print(f'Ejecutamos la incorporacion del archivo recibido {retorno}')
+                    ciclo += 1
+                    logdict[f'{elemento}{ciclo}'] = f'Ejecutamos la incorporacion del archivo recibido {retorno}'
+
 
                     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                     # Eliminamos el archvivo del IFS
@@ -269,7 +296,9 @@ async def procesar_archivos():
                     while not retorno:
                         retorno = api.iprod.GetCmdMsg(cmdDelFile)
 
-                    print(f'Eliminamos el archvivo del IFS {retorno}')
+                    ciclo += 1
+                    logdict[f'{elemento}{ciclo}'] = f'Eliminamos el archvivo del IFS {retorno}'
+
 
                     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                     # Rutas de los archivos y carpetas
@@ -278,21 +307,33 @@ async def procesar_archivos():
                     # Mover el archivo a la carpeta de archivos procesados
                     try:
                         os.rename(ruta_origen, os.path.join(api.ruta_destino, api.fuente))
-                        print(f"Archivo movido de {ruta_origen} a {api.ruta_destino}")
+
+                        ciclo += 1
+                        logdict[f'{elemento}{ciclo}'] = f"Archivo movido de {ruta_origen} a {api.ruta_destino}"
 
                     # si no encuentra el archivo    
                     except FileNotFoundError:
-                        print(f"El archivo {ruta_origen} no existe.")
+                        ciclo += 1
+                        logdict[f'{elemento}{ciclo}'] = f"El archivo {ruta_origen} no existe."
 
                     # si hay otro error
                     except Exception as e:
-                        print(f"Error al mover el archivo: {e}")
+                        ciclo += 1
+                        logdict[f'{elemento}{ciclo}'] = f"Error al mover el archivo: {e}"
+
+                    #loglist.append(logdict)
+
 
 
         # Llama a la función para enviar el correo
-        enviar_correo()
+        ciclo += 1
+        logdict[f'{elemento}{ciclo}'] = 'El proceso ha finalizado ...............................'
+
+        #loglist.append(logdict)
 
         print('El proceso ha finalizado ...............................')
+
+        enviar_correo(**logdict)
 
 
     except Exception as e:
