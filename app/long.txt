@@ -1,0 +1,210 @@
+ABEJA00001                557   ABEJAREINADETALLE                 
+ACTIV00001                685   ACTIVE_JOB_INFO                   
+ACTIV00002             11.638   ACTIVE_JOB_INFODETALLE            
+ADHESION                  133   ADHESION                          
+ADHES00001                 94   ADHESIONADHESIONCUOTAS            
+ADHES00002                 12   ADHESIONADHESIONCUOTASCONVENIO    
+ADHOT00001                609   ADHOTRASTASAS                     
+ALCAN00001                 26   ALCANCECUOTAS                     
+ALTAI00001                648   ALTAIMPOSITIVATITULAR             
+ALTAI00002              2.385   ALTAIMPOSITIVA                    
+ANULA00001              1.303   ANULACIONTRAMITESSELLOS           
+ANULA00002                610   ANULACIONTRAMITESSELLOSDETALLE    
+APIAUMOSO                 449   APIAUMOSO                         
+APIESTADOS                182   APIESTADOS                        
+APIES00001                 16   APIESTADOSTAREAS                  
+APILOG                 15.407   APILOG                            
+APIRE00001                190   APIREGISTROS                  
+APITAREAS                 182   APITAREAS                     
+APITOKEN                  559   APITOKEN                      
+APITO00001                556   APITOKENUSER                  
+ATRIBUTOS                 110   ATRIBUTOS                     
+ATRIB00001                 12   ATRIBUTOSPERMISOSACUMULADORES 
+ATRIB00002                 71   ATRIBUTOSACUMULADORES         
+ATRIB00003                  9   ATRIBUTOSPERMISOSVISUALIZAR   
+ATRIB00004                 35   ATRIBUTOSLAYOUT               
+AUTOM00001                486   AUTOMOTORCABECERA             
+AUTOM00002                161   AUTOMOTORDETALLE              
+BAJAI00001                648   BAJAIMPOSITIVATITULAR         
+BAJAI00002              2.037   BAJAIMPOSITIVA                
+CAMBI00001                 18   CAMBIOESTADO                  
+CAMBI00002                652   CAMBIOTITULARIDADTITULAR      
+CAMBI00003              2.187   CAMBIOTITULARIDAD             
+CATEG00001                 46   CATEGORYCLIENTE                  
+CATEG00002                  6   CATEGORYCLIENTERELATION          
+CLIENTE                 1.604   CLIENTE                          
+CODIG00001                 53   CODIGODIARIO                     
+CODIG00002                 55   CODIGODIARIOTIPOENTRADA          
+CONST00001                591   CONSTANCIASPDF                   
+CONST00002                102   CONSTANCIASPDFCONSTANCIAPDFDET   
+CONTR00001                333   CONTROLLOTESBANCO                
+CONTR00002                211   CONTROLLOTESBANCODETALLE         
+CONTR00003                129   CONTROLTCSOP                     
+DEMAN00001              1.183   DEMANDAJUDICIAL                  
+DEPEN00001                140   DEPENDENCIA                      
+DETAL00001                109   DETALLEPAGO                      
+ENCABEZADO                 86   ENCABEZADO                       
+EPAGOSLOG               1.387   EPAGOSLOG                        
+EPAGO00001                 47   EPAGOSEMISIONTIPO                
+EPAGO00002              2.323   EPAGOSFACTCONF             
+EPAGO00003              1.824   EPAGOSFACTCAB              
+EPAGO00004              4.252   EPAGOSFACTJSONLOG          
+EPAGO00005                752   EPAGOSFACTDET              
+EPAGO00006              4.118   EPAGOSFACTJSON             
+ESQUEMAS                  118   ESQUEMAS                   
+ESTADO                    140   ESTADO                     
+ESTAD00001                 85   ESTADOPROCESO              
+FUNCTION                  114   FUNCTION                   
+FUNCT00001                207   FUNCTION_TYPE              
+GESTI00001                112   GESTIONFORMULARIOS         
+GESTI00002              2.096   GESTIONFORMULARIOSREGISTRO 
+GESTI00003                 60   GESTIONFORMULARIOSMAPEO    
+GESTI00004                 69   GESTIONSPOOL               
+GRUPO00001                 87   GRUPOPROCESO               
+GRUPO00002                  8   GRUPOPROCESOPROCESOS       
+GX_IN00001              3.465   GX_INFO_USER                    
+GXA0010                 1.693   GXA0010                         
+IMAGE00001                 72   IMAGENBARRA                     
+IMPRE00001              1.070   IMPRESIONPDF                    
+IMPRE00002                420   IMPRESIONCONVENIOSPAGO          
+IMPUE00001              2.317   IMPUESTOSELLOS                  
+IMPUE00002                897   IMPUESTOSELLOSPARTES            
+IMPUE00003                475   IMPUESTOSELLOSPARTESTIPOTRAMITE 
+IMPUE00004                891   IMPUESTOAUTOMOTOR               
+INCID00001                117   INCIDENCIASECTOR                
+INCID00002                117   INCIDENCIAUSUARIOGRUPO          
+INCID00003                117   INCIDENCIAUSUARIONIVEL          
+INCID00004                177   INCIDENCIATAREA                 
+INCID00005                117   INCIDENCIAESTADO                
+INCID00006                117   INCIDENCIATIPO                  
+INCID00007                  9   INCIDENCIATAREACAMBIOESTADO  
+INCID00008                682   INCIDENCIAUSUARIO                 
+INCID00009              2.065   INCIDENCIAS                       
+INCID00010                  6   INCIDENCIASECTOROFICINA           
+INCID00011                  6   INCIDENCIATIPOSUBTIPO             
+INCID00012              2.126   INCIDENCIASINCIDENCIASLOG         
+INCID00013                  9   INCIDENCIAUSUARIOGRUPOMIEMBROS    
+INCID00014                 12   INCIDENCIAUSUARIOGRUPOMIEMBRO1    
+INCID00015                 12   INCIDENCIAPRIORIDAD               
+INCID00016                177   INCIDENCIASUBTIPO                 
+INFO_USER                 607   INFO_USER                         
+INFOR00001                994   INFORMACIONVEHICULO               
+INFOR00002                652   INFORMACIONVEHICULOTITULAR        
+INFOR00003                700   INFORMACIORADICACION              
+JOB_STATUS                208   JOB_STATUS                        
+JOB_TYPE                   47   JOB_TYPE                          
+JOURNAL                    12   JOURNAL                           
+JOURN00001                 19   JOURNALTABLAS              
+LOGCAJA                 1.105   LOGCAJA                    
+LOGPE00001                252   LOGPETICIONES              
+MENSA00001              1.188   MENSAJESERROR              
+MENSA00002                 12   MENSAJESERRORMSGDINAMICOS  
+MENUITEM                  482   MENUITEM                   
+METODO                  2.106   METODO                     
+MOTIV00001                137   MOTIVOSESTADO              
+MSGNI00001                107   MSGNIVELGRAVEDAD           
+OFICINA                   120   OFICINA                    
+ORDEN00001                  9   ORDENSINCRONIZACION        
+PIE                        72   PIE                        
+PROCE00001                397   PROCESOSDAEMON             
+PROCE00002                104   PROCESOPROGRAMADO          
+PROCE00003                 56   PROCESOSDAEMONLAYOUTPARM   
+PROCE00004                186   PROCESOSDAEMONLANZADOS     
+PROCE00005                221   PROCESOIMPORTACIONEXPORTACION 
+PROVINCIAS                 60   PROVINCIAS                    
+PRUEBAWS                   26   PRUEBAWS                      
+PRUEB00001                 38   PRUEBADAEMON                  
+RECEI00001              2.275   RECEIVEJOURNAL                
+RECEP00001                543   RECEPTORIAEXPEDIENTE          
+RELAC00001                250   RELACIONARBASUCERPMARCA       
+SECFU00001                419   SECFUNCTIONALITY              
+SECFU00002                  9   SECFUNCTIONALITYROLE          
+SECOBJECT                 242   SECOBJECT                     
+SECOB00001                248   SECOBJECTFUNCTIONALITIES      
+SECROLE                   327   SECROLE                       
+SECUSER                   407   SECUSER                       
+SECUS00001                  6   SECUSERROLE                   
+SINCR00001              1.047   SINCRONIZATABLACAMPOS         
+SINCR00002                140   SINCRONIZACION                
+SINCR00003                691   SINCRONIZATABLE                 
+SINCR00004                691   SINCRONIZAESQUEMA               
+SINCR00005                691   SINCRONIZAJRN                   
+SINCR00006              5.169   SINCRONIZAJRNATRIBUTOS          
+SINCR00007              1.995   SINCRONIZAUSER                  
+SINCR00008                 36   SINCRONIZACIONCOMANDOS          
+TABLA00001                221   TABLASATRIBUTOS                 
+TAREA00001                 85   TAREASPROCESOS                  
+TAREA00002                 10   TAREASPROCESOSESTADOS           
+TIPOCUERPO                 60   TIPOCUERPO                      
+TIPOCUOTA                  60   TIPOCUOTA                       
+TIPOC00001                 69   TIPOCONTROL                     
+TIPOD00001                 60   TIPODOCUMENTO                   
+TIPOESTADO                 59   TIPOESTADO                      
+TIPOMONEDA                 60   TIPOMONEDA                      
+TIPOM00001                 60   TIPOMOVIMIENTO                  
+TIPOORIGEN                 59   TIPOORIGEN                   
+TIPOPAGO                   60   TIPOPAGO                     
+TIPOR00001                 60   TIPOREGISTRO                 
+TIPOSALIDA                140   TIPOSALIDA                   
+TIPOS00001                140   TIPOSECUESTRO                
+TIPOS00002                 59   TIPOSUBREGISTRO              
+TIPOT00001                 59   TIPOTITULAR                  
+TRAMI00001                652   TRAMITESGENERALESTITULARES   
+TRAMI00002                887   TRAMITESGENERALES            
+ULTTC00001                116   ULTTCSOPPROCESADO            
+USERNULL                   10   USERNULL                     
+USERP00001              1.611   USERPATHFILE                 
+USUARIOS                   69   USUARIOS                     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
