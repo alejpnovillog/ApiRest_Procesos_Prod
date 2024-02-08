@@ -1,5 +1,7 @@
 try:
-    import gc
+    import smtplib
+    from email.mime.text import MIMEText
+    from email.mime.multipart import MIMEMultipart    
     import os
     import platform
     from ftplib import FTP
@@ -15,6 +17,44 @@ try:
 
 except Exception as e:
     print(f'Falta algun modulo {e}')
+
+
+
+def enviar_correo():
+    # Configuración del remitente y destinatario
+    remitente_email = 'kuvasz102@gmail.com'
+    destinatario_email = 'alejpnovillog@gmail.com'
+
+    # Configuración del servidor SMTP de Gmail
+    smtp_server = 'smtp.gmail.com'
+    smtp_port = 587
+    smtp_usuario = 'kuvasz102@gmail.com'
+    smtp_contrasena = 'hanna6259'
+
+    # Configuración del mensaje
+    asunto = 'Finalizacion del proceso de recepcion de archivos de Sucerp'
+    cuerpo = 'Log de recepcion'
+
+    mensaje = MIMEMultipart()
+    mensaje['From'] = remitente_email
+    mensaje['To'] = destinatario_email
+    mensaje['Subject'] = asunto
+
+    # Agrega el cuerpo del mensaje
+    mensaje.attach(MIMEText(cuerpo, 'plain'))
+
+    # Inicia la conexión SMTP
+    with smtplib.SMTP(smtp_server, smtp_port) as servidor_smtp:
+        # Establece la conexión segura
+        servidor_smtp.starttls()
+
+        # Inicia sesión en la cuenta de Gmail
+        servidor_smtp.login(smtp_usuario, smtp_contrasena)
+
+        # Envía el correo electrónico
+        servidor_smtp.send_message(mensaje)
+
+    print('Correo electrónico enviado con éxito.')
 
 
 
@@ -241,6 +281,9 @@ async def procesar_archivos():
 
 
         print('El proceso ha finalizado ...............................')
+        
+        # Llama a la función para enviar el correo
+        enviar_correo()
 
     except Exception as e:
         print(f'Error en el procesamiento  {e}')
