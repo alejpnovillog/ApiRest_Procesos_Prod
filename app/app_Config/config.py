@@ -600,5 +600,5 @@ class ConfigurarAplicacion(object):
     TESTER_RMT = 'RMT'
 
     # Directorio del Proyecto
-    DIR_PROYECTO = 'ApiSucerp_Procesos/app'
+    DIR_PROYECTO = '/home/anovillo/Escritorio/ApiRest_Procesos_Prod/ApiRest_Procesos_Prod/app'
 

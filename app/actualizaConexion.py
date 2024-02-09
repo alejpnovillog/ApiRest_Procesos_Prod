@@ -18,7 +18,7 @@ con.add_host()
 
 
 con.host = 'Pub400'
-con.serverhost = 'iseries'
+con.serverhost = 'iseriesLinux'
 con.iphost = 'PUB400.COM'
 con.usuariohost = 'anovillo'
 con.passhost = 'macs6259'
@@ -57,6 +57,18 @@ con.del_host()
 
 
 """
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

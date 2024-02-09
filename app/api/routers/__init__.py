@@ -34,7 +34,7 @@ for module_name in modules:
     
     # se include el modulo al router con el prefijo definido y asignandole un 
     # tags en el nombre del modulo
-    router.include_router(module.router, prefix=f"/kuvasz", tags=[module_name])
+    router.include_router(module.router, prefix=f"/dgtic", tags=[module_name])
 
 
 

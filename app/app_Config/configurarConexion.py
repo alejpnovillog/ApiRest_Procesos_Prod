@@ -288,6 +288,23 @@ class ConfigHost(object):
             return f'db2:pyodbc://driver={drive}; system={host}; uid={uid}; pwd={pwd}; dbq={dbq}'
 
         #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        # para el caso de Iseries
+        if self.serverhost == 'iseriesLinux':
+
+            self.__habilitado = (
+            self.serverhost != None and  self.usuariohost != None and self.passhost !=None and self.schemahost != None
+            )
+            if self.__habilitado == False: return ''
+
+            drive = 'DB2'
+            host = self.iphost
+            uid  = self.usuariohost
+            pwd  = self.passhost
+            dbq  = self.schemahost
+            return f'db2:pyodbc://DSN=QDNS_db2; system={host}; uid={uid}; pwd={pwd}; dbq={dbq}'
+
+            
+        #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         # para el caso de db2
         if self.serverhost == 'db2':
             self.__habilitado = (

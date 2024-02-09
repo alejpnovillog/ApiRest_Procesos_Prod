@@ -11,7 +11,9 @@ try:
     from app_Config.config import ConfigurarAplicacion
     # ------------------LIBRERIA PARA OBTENER LOS DATOS DE CONEXION
     from app_Config.configurarConexion import ConfigHost
+
     from app_Abstract.allAbstractDB import GxAbstractDb as Gx, SqliteAbstractDb as Sq, ToolsAbatract as Tl, MatanzaAbstractDb as Mtz
+
 
 except Exception as e:
     print(f'Falta algun modulo {e}')
@@ -46,6 +48,8 @@ class GestionRegistros(Gx, Sq, Tl, Mtz):
 
         # Generamos la instancia de conexion al Host(server)
         self.get_db()
+
+        #if self.dbI != None:
 
         # Ejecuto el constructor de la clase heredada ToolsAbstract
         Tl.__init__(self)
@@ -165,7 +169,10 @@ class GestionRegistros(Gx, Sq, Tl, Mtz):
             self.instancia_Host_Input_Dict = self.instancia_Host_Input.__datos__()
 
             # Asigna instancia de conexion a un Handle
-            self.dbI = DAL(self.instancia_Host_Input_Dict['strcon'], pool_size=0, db_codec='UTF-8')
+            if self.instancia_Host_Input_Dict['server'] != 'iseriesLinux':
+                self.dbI = DAL(self.instancia_Host_Input_Dict['strcon'], pool_size=0, db_codec='UTF-8')
+            else:
+                self.dbi = None    
 
         except Exception as e:
             self.ultimoerrorcapturado = e

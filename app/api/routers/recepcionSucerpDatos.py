@@ -1,4 +1,8 @@
 try:
+    # altaImpositivaTitular_Dal
+    # altaImpositiva_Dal
+    # db2:pyodbc://driver=DB2;hostname=host;database=database;uid=user;pwd=password;
+    import psutil
     import smtplib
     from email.mime.text import MIMEText
     from email.mime.multipart import MIMEMultipart    
@@ -20,61 +24,6 @@ except Exception as e:
     print(f'Falta algun modulo {e}')
 
 
-# Funcion de envio de correo
-# link para activar el gmail https://myaccount.google.com/security?hl=es
-# ir a la opcion Verificación en 2 pasos
-# ir a la opcion Contraseñas de aplicaciones
-# ir a crear una nueva contraseña de la aplicacion                
-def enviar_correo(logdict):
-
-    html_content = '<ul>'
-    for key, value in logdict.items():
-        key_html = html.escape(str(key))
-        value_html = html.escape(str(value))
-        html_content += f'<li><strong>{key_html}:</strong> {value_html}</li>'
-    html_content += '</ul>'
-
-
-    # ------------------------------------------------------------------------
-    # Configuración del remitente y destinatario
-    remitente_email = 'alejpnovillog@gmail.com'
-    destinatario_email = 'kuvasz102@gmail.com'
-
-    # Configuración del servidor SMTP de Gmail
-    smtp_server = 'smtp.gmail.com'
-    smtp_port = 587
-    smtp_usuario = 'alejpnovillog@gmail.com'
-    smtp_contrasena = 'ugmz diik xvys qhzt'
-
-    # Configuración del mensaje
-    asunto = 'Finalizacion del proceso de recepcion de archivos de Sucerp'
-    cuerpo = html_content
-
-    mensaje = MIMEMultipart()
-    mensaje['From'] = remitente_email
-    mensaje['To'] = destinatario_email
-    mensaje['Subject'] = asunto
-
-    # Agrega el cuerpo del mensaje
-    mensaje.attach(MIMEText(cuerpo, 'plain'))
-
-    # Inicia la conexión SMTP
-    with smtplib.SMTP(smtp_server, smtp_port) as servidor_smtp:
-
-        # Establece la conexión segura
-        servidor_smtp.starttls()
-
-        # Inicia sesión en la cuenta de Gmail
-        servidor_smtp.login(smtp_usuario, smtp_contrasena)
-
-        # Envía el correo electrónico
-        servidor_smtp.send_message(mensaje)
-
-
-    print('Correo electrónico enviado con éxito.')
-
-
-
 # Definimos la clase para manejar los recursos del contexto del proceso
 class ConfigurarAplicacionSubmit:
 
@@ -88,26 +37,12 @@ class ConfigurarAplicacionSubmit:
 
             # asignamos una instancia de ConfigurarAplicacion
             self.api = ConfigurarAplicacion()
-            
+
+            # nos ubicamos en el directorio del proyecto para usar la gestion db
+            os.chdir(self.api.DIR_PROYECTO)            
+
             # asignamos una instancia de GestionRegistros
             self.db = GestionRegistros(ambiente = self.api.ENV_GX)        
-
-            # -- Recuperamos la lista de a procesar en Windows
-            if platform.system() == "Windows":
-
-                # - Obtenemos la carpeta de recepcion en Linux    
-                self.directorio = self.api.RECEPCIONPATH_WINDOWS
-                self.ruta_destino = f'{self.api.PROCESADOPATH_WINDOWS}'
-
-
-            # -- Recuperamos la lista de a procesar en Linux
-            if platform.system() == "Linux":
-
-                # - Obtenemos la carpeta de recepcion en Linux    
-                self.directorio = self.api.RECEPCIONPATH_LINUX
-                self.ruta_destino = f'{self.api.PROCESADOPATH_LINUX}'
-
-
 
             # --------------- Recuperamos el schema del ambiente -----------------------
             self.schema = self.db.__getattribute__('instancia_Host_Input_Dict')['schema']
@@ -123,15 +58,32 @@ class ConfigurarAplicacionSubmit:
 
             self.iprod = JT400Helper(self.server, self.username, self.pwd)        
 
+            # -- Recuperamos la lista de a procesar en Windows
+            if platform.system() == "Windows":
+
+                # - Obtenemos la carpeta de recepcion en Linux    
+                self.directorio = self.api.RECEPCIONPATH_WINDOWS
+                self.ruta_destino = f'{self.api.PROCESADOPATH_WINDOWS}'
+
+            # -- Recuperamos la lista de a procesar en Linux
+            if platform.system() == "Linux":
+
+                # - Obtenemos la carpeta de recepcion en Linux    
+                self.directorio = self.api.RECEPCIONPATH_LINUX
+                self.ruta_destino = f'{self.api.PROCESADOPATH_LINUX}'
+
+            # definimos el nombre del archivo target
             self.target = ''
 
+            # definimos el nombre del archivo fuente
             self.fuente = ''
 
             # --------------- Comando de CLRPFM 
-            self.file = 'F000000001'    
+            self.file = 'F000000001'
+            self.pgm  = self.file    
             self.clrpfm = f'CLRPFM FILE({self.schema}/{self.file})'    
 
-
+            self.logdict = dict()
 
             print("Inicializando recursos de ConfigurarAplicacionSubmit")
 
@@ -143,6 +95,7 @@ class ConfigurarAplicacionSubmit:
     # definimos la funcion de la finalizacion de la clase
     def __exit__(self, exc_type, exc_value, traceback):
       
+        del self.db
         print("Liberando recursos de ConfigurarAplicacionSubmit")
 
         if exc_type is not None:
@@ -176,18 +129,13 @@ async def procesar_archivos():
     # Procesamiento General
     try:
 
+
         print(f"Proceso iniciado..........")
 
-        # definimos el ambiente de ejecucion
+        #if not is_jvm_running():
+
+        # Iniciar la aplicación
         with ConfigurarAplicacionSubmit() as api:
-
-
-            # definimos la lista del log de transferencia
-            loglist = list()
-
-            # definimos el diccionario de log de la transferencia
-            logdict = dict()
-
 
             # nos ubicamos en el directorio
             os.chdir(api.directorio)            
@@ -198,10 +146,17 @@ async def procesar_archivos():
             # definimos el contador para los ciclos de la transferencia
             ciclo = 0
 
+            elemento = 'Recepcion SUCERP'
+
+
+            ciclo += 1
+            api.logdict[f'{elemento} - paso({ciclo})'] = f"Proceso iniciado.........."
+
+
             # Iterar sobre la lista
             for elemento in lista_archivos_directorios:
-
-
+            
+            
                 # - Obtenemos la ruta completa del objeto
                 ruta_completa = os.path.join(api.directorio, elemento)
 
@@ -211,10 +166,10 @@ async def procesar_archivos():
 
                 # Verificar si es un archivo
                 elif os.path.isfile(ruta_completa):
-                    
+
                     # definimos el destino dentro de la iseries    
                     api.target = f'{api.api.FTPDIR}{elemento}'
-                    
+
                     # definimos el nombre del archivo de la carpeta local
                     api.fuente = elemento
 
@@ -224,7 +179,7 @@ async def procesar_archivos():
                     try:
                         # Conectar al servidor FTP
                         api.ftp.connect(api.server)
-                        
+
                         # realizamos el login
                         api.ftp.login(api.username, api.pwd)
 
@@ -240,7 +195,7 @@ async def procesar_archivos():
                             api.ftp.storlines(f'STOR {api.target}', file)
 
                         ciclo += 1
-                        logdict[f'{elemento}{ciclo}'] = f"Archivo {api.fuente} subido con éxito a {api.target}"
+                        api.logdict[f'{elemento} - paso({ciclo})'] = f"Archivo {api.fuente} subido con éxito a {api.target}"
 
 
                     except Exception as e:
@@ -262,7 +217,7 @@ async def procesar_archivos():
                         retorno = api.iprod.GetCmdMsg(api.clrpfm)
 
                     ciclo += 1
-                    logdict[f'{elemento}{ciclo}'] = f'Se ha eliminado los registros de F000000001 {retorno}'
+                    api.logdict[f'{elemento} - paso({ciclo})'] = f'Se ha eliminado los registros de F000000001 {retorno}'
 
 
                     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -274,7 +229,7 @@ async def procesar_archivos():
                         retorno = api.iprod.GetCmdMsg(cpyfrmimpf)
 
                     ciclo += 1
-                    logdict[f'{elemento}{ciclo}'] = f'Copiamos el archivo de texto en la tabla F000000001 {retorno}'
+                    api.logdict[f'{elemento} - paso({ciclo})'] = f'Copiamos el archivo de texto en la tabla F000000001 {retorno}'
 
                     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                     # Ejecutamos la incorporacion del archivo recibido
@@ -285,7 +240,7 @@ async def procesar_archivos():
                         retorno = api.iprod.GetCmdMsg(execpgm)
 
                     ciclo += 1
-                    logdict[f'{elemento}{ciclo}'] = f'Ejecutamos la incorporacion del archivo recibido {retorno}'
+                    api.logdict[f'{elemento} - paso({ciclo})'] = f'Ejecutamos la incorporacion del archivo recibido {retorno}'
 
 
                     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -297,7 +252,7 @@ async def procesar_archivos():
                         retorno = api.iprod.GetCmdMsg(cmdDelFile)
 
                     ciclo += 1
-                    logdict[f'{elemento}{ciclo}'] = f'Eliminamos el archvivo del IFS {retorno}'
+                    api.logdict[f'{elemento} - paso({ciclo})'] = f'Eliminamos el archvivo del IFS {retorno}'
 
 
                     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -309,31 +264,86 @@ async def procesar_archivos():
                         os.rename(ruta_origen, os.path.join(api.ruta_destino, api.fuente))
 
                         ciclo += 1
-                        logdict[f'{elemento}{ciclo}'] = f"Archivo movido de {ruta_origen} a {api.ruta_destino}"
+                        api.logdict[f'{elemento} - paso({ciclo})'] = f"Archivo movido de {ruta_origen} a {api.ruta_destino}"
 
                     # si no encuentra el archivo    
                     except FileNotFoundError:
                         ciclo += 1
-                        logdict[f'{elemento}{ciclo}'] = f"El archivo {ruta_origen} no existe."
+                        api.logdict[f'{elemento} - paso({ciclo})'] = f"El archivo {ruta_origen} no existe."
 
                     # si hay otro error
                     except Exception as e:
                         ciclo += 1
-                        logdict[f'{elemento}{ciclo}'] = f"Error al mover el archivo: {e}"
+                        api.logdict[f'{elemento} - paso({ciclo})'] = f"Error al mover el archivo: {e}"
 
                     #loglist.append(logdict)
 
 
 
         # Llama a la función para enviar el correo
+        elemento = 'Recepcion SUCERP'                
         ciclo += 1
-        logdict[f'{elemento}{ciclo}'] = 'El proceso ha finalizado ...............................'
+        api.logdict[f'{elemento} - paso({ciclo})'] = 'El proceso ha finalizado ...............................'
 
         #loglist.append(logdict)
 
         print('El proceso ha finalizado ...............................')
 
-        enviar_correo(**logdict)
+        # Funcion de envio de correo
+        # link para activar el gmail https://myaccount.google.com/security?hl=es
+        # ir a la opcion Verificación en 2 pasos
+        # ir a la opcion Contraseñas de aplicaciones
+        # ir a crear una nueva contraseña de la aplicacion                
+
+        html_content = '<html><head><!-- Puedes agregar meta información aquí si es necesario -->'
+        html_content += 'INFORME LOG DEL PROCESO DE RECEPCION DE ARCHIVOS DE SUCERP</head><body>'
+        html_content += '<ul>'
+        for key, value in api.logdict.items():
+            key_html = html.escape(str(key))
+            value_html = html.escape(str(value))
+            html_content += f'<li><strong>{key_html}:</strong> {value_html}</li>'
+        html_content += '</ul></body></html>'
+
+
+        # ------------------------------------------------------------------------
+        # Configuración del remitente y destinatario
+        remitente_email = 'alejpnovillog@gmail.com'
+        destinatario_email = 'kuvasz102@gmail.com'
+
+        # Configuración del servidor SMTP de Gmail
+        smtp_server = 'smtp.gmail.com'
+        smtp_port = 587
+        smtp_usuario = 'alejpnovillog@gmail.com'
+        smtp_contrasena = 'ugmz diik xvys qhzt'
+
+        # Configuración del mensaje
+        asunto = 'Finalizacion del proceso de recepcion de archivos de Sucerp'
+        cuerpo = html_content
+
+        mensaje = MIMEMultipart()
+        mensaje['From'] = remitente_email
+        mensaje['To'] = destinatario_email
+        mensaje['Subject'] = asunto
+
+        # Agrega el cuerpo del mensaje
+        #mensaje.attach(MIMEText(cuerpo, 'plain'))
+        # Adjuntar el archivo HTML al mensaje
+        mensaje.attach(MIMEText(html_content, "html"))
+
+        # Inicia la conexión SMTP
+        with smtplib.SMTP(smtp_server, smtp_port) as servidor_smtp:
+        
+            # Establece la conexión segura
+            servidor_smtp.starttls()
+
+            # Inicia sesión en la cuenta de Gmail
+            servidor_smtp.login(smtp_usuario, smtp_contrasena)
+
+            # Envía el correo electrónico
+            servidor_smtp.send_message(mensaje)
+
+        print('Correo electrónico enviado con éxito.')
+
 
 
     except Exception as e:
@@ -343,6 +353,7 @@ async def procesar_archivos():
 # enlace para realizar el procesamiento de archivos
 @router.post("/procesar_archivos")
 async def endpoint_procesar_archivos(ubicacion_carpeta: str, background_tasks: BackgroundTasks):
+    
     # Agrega la tarea al fondo para ser ejecutada asincrónicamente
     background_tasks.add_task(procesar_archivos)
 

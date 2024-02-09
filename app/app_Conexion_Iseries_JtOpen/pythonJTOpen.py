@@ -52,8 +52,12 @@ class JT400Helper(object):
         # definimos donde se encuentra jt400
         jvmArg = f'-Djava.class.path={jarpath}'
 
-        jpype.startJVM(jvmpath, jvmArg)
+        try:
 
+            jpype.startJVM(jvmpath, jvmArg)
+
+        except Exception as e:
+            print(f"Error al iniciar la JVM: {e}")
 
 
         # definimos el objeto CommandCall

@@ -1171,17 +1171,6 @@ class AtributosSucerp():
              print(f'Error - tablaRelArbaSucerpMarca {e}')
 
 
-
-
-
-
-
-
-
-
-
-
-
      # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
      # Tabla de Alta Impositiva Titular de la ultima version de la Recepción de Datos de Sucerp
      def tablaAltaImpositivaTitular(self):
