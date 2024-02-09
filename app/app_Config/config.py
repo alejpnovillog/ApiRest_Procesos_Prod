@@ -41,17 +41,17 @@ class ConfigurarAplicacion(object):
     SERVER_HTTP_DEVELOPMENT = 'http://localhost:5000'
     SERVER_HTTP_PRODUCTION  = 'http://MLMSRV:5000'
 
-    JVMPATH_WINDOWS = 'C:\\Program Files\\Java\\jre1.8.0_331\\bin\\server\\jvm.dll'
+    JVMPATH_WINDOWS = 'C:\\Program Files\\Java\\jre-1.8\\bin\\server\\jvm.dll'
     JVMPATH_LINUX = '/usr/lib/jvm/java-11-openjdk-amd64/lib/server/libjvm.so'
 
     ADDCLASSPATH_WINDOWS  = 'C:\Software\JtOpen\lib\*'
     ADDCLASSPATH_LINUX  = '/home/anovillo/Escritorio/Jtopen/JtOpen/lib/*'
 
-    JARPATH_WINDOWS = 'C:\\Users\\anovillo\\Desktop\\Software\\JtOpen\\lib\\jt400.jar'
+    JARPATH_WINDOWS = 'C:\\Users\\anovillo\\Desktop\\Software\\JtOpen\\lib\jt400.jar'
     JARPATH_LINUX = '/home/anovillo/Escritorio/Jtopen/JtOpen/lib/jt400.jar'
 
-    RECEPCIONPATH_WINDOWS = ''
-    PROCESADOPATH_WINDOWS = ''
+    RECEPCIONPATH_WINDOWS = 'C:\\Users\\anovillo\\Desktop\\Rendiciones'
+    PROCESADOPATH_WINDOWS = 'C:\\Users\\anovillo\\Desktop\\Rendiciones_Procesadas'
 
     RECEPCIONPATH_LINUX = '/home/anovillo/Escritorio/Rendiciones'
     PROCESADOPATH_LINUX = '/home/anovillo/Escritorio/Rendiciones_Procesadas'
@@ -600,5 +600,5 @@ class ConfigurarAplicacion(object):
     TESTER_RMT = 'RMT'
 
     # Directorio del Proyecto
-    DIR_PROYECTO = '/home/anovillo/Escritorio/ApiRest_Procesos_Prod/ApiRest_Procesos_Prod/app'
-
+    DIR_PROYECTO_LINUX = '/home/anovillo/Escritorio/ApiRest_Procesos_Prod/ApiRest_Procesos_Prod/app'
+    DIR_PROYECTO_WINDOWS = 'C:\\Users\\anovillo\\Desktop\\ApiRest_Procesos_Prod\\ApiRest_Procesos_Prod\\app'

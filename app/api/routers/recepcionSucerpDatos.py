@@ -43,8 +43,15 @@ class ConfigurarAplicacionSubmit:
             # asignamos una instancia de ConfigurarAplicacion
             self.api = ConfigurarAplicacion()
 
-            # nos ubicamos en el directorio del proyecto para usar la gestion db
-            os.chdir(self.api.DIR_PROYECTO)            
+            # -- Recuperamos la lista de a procesar en Windows
+            if platform.system() == "Windows":
+                # nos ubicamos en el directorio del proyecto para usar la gestion db
+                os.chdir(self.api.DIR_PROYECTO_WINDOWS)            
+
+            # -- Recuperamos la lista de a procesar en Linux
+            if platform.system() == "Linux":
+                # nos ubicamos en el directorio del proyecto para usar la gestion db
+                os.chdir(self.api.DIR_PROYECTO_LINUX)            
 
             # asignamos una instancia de GestionRegistros
             self.db = GestionRegistros(ambiente = self.api.ENV_GX)        
