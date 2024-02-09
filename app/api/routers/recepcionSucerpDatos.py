@@ -9,6 +9,8 @@ try:
     import html
     import os
     import platform
+    import jpype
+
     from ftplib import FTP
     from app_Conexion_Iseries_JtOpen.pythonJTOpen import JT400Helper    
 
@@ -19,6 +21,9 @@ try:
     from app_Abstract.gestionRegistros import GestionRegistros
 
     from fastapi import BackgroundTasks, APIRouter
+    from fastapi.responses import HTMLResponse
+
+
 
 except Exception as e:
     print(f'Falta algun modulo {e}')
@@ -56,6 +61,7 @@ class ConfigurarAplicacionSubmit:
             # --------------- Recuperar la password del ambiente -----------------------
             self.pwd = self.db.__getattribute__('instancia_Host_Input_Dict')['password']
 
+
             self.iprod = JT400Helper(self.server, self.username, self.pwd)        
 
             # -- Recuperamos la lista de a procesar en Windows
@@ -85,7 +91,7 @@ class ConfigurarAplicacionSubmit:
 
             self.logdict = dict()
 
-            print("Inicializando recursos de ConfigurarAplicacionSubmit")
+            #print("Inicializando recursos de ConfigurarAplicacionSubmit")
 
         except Exception as e:
             print(f"Error al inicializar recursos en ConfigurarAplicacionSubmit: {e}")
@@ -96,7 +102,7 @@ class ConfigurarAplicacionSubmit:
     def __exit__(self, exc_type, exc_value, traceback):
       
         del self.db
-        print("Liberando recursos de ConfigurarAplicacionSubmit")
+        #print("Liberando recursos de ConfigurarAplicacionSubmit")
 
         if exc_type is not None:
             # Se produjo una excepción dentro del bloque with
@@ -351,11 +357,30 @@ async def procesar_archivos():
 
 
 # enlace para realizar el procesamiento de archivos
-@router.post("/procesar_archivos")
-async def endpoint_procesar_archivos(ubicacion_carpeta: str, background_tasks: BackgroundTasks):
+@router.get("/procesarSucerp")
+async def endpoint_procesar_archivos(background_tasks: BackgroundTasks):
     
     # Agrega la tarea al fondo para ser ejecutada asincrónicamente
     background_tasks.add_task(procesar_archivos)
 
-    # Responde inmediatamente sin esperar a que termine el proceso
-    return {"mensaje": "Proceso de archivos iniciado en segundo plano"}
+    html_content = """
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Formulario POST</title>
+    </head>
+    <body>
+        <form action="https://www.google.com/" method="GET">
+            <label>El proceso de recepcion de archivos de SUCERP se ha iniciado en segundo plano</label>
+            <input type="submit" value="Continuar">
+        </form>
+    </body>
+    </html>
+        """
+    return HTMLResponse(content=html_content)
+
+
+
+

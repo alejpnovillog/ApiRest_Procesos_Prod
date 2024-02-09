@@ -54,8 +54,10 @@ class JT400Helper(object):
 
         try:
 
-            jpype.startJVM(jvmpath, jvmArg)
-
+            if not jpype.isJVMStarted():
+                #jpype.shutdownJVM()
+                jpype.startJVM(jvmpath, jvmArg)
+            
         except Exception as e:
             print(f"Error al iniciar la JVM: {e}")
 
