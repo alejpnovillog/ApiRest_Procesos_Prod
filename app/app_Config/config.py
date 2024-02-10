@@ -38,8 +38,8 @@ class ConfigurarAplicacion(object):
     # Cantidad de registros para un trabajar con
     WRK_RECORDS = 100
 
-    SERVER_HTTP_DEVELOPMENT = 'http://localhost:5000'
-    SERVER_HTTP_PRODUCTION  = 'http://MLMSRV:5000'
+    SERVER_HTTP_DEVELOPMENT = 'http://localhost:8000'
+    SERVER_HTTP_PRODUCTION  = 'http://MLMSRV:8000'
 
     JVMPATH_WINDOWS = 'C:\\Program Files\\Java\\jre-1.8\\bin\\server\\jvm.dll'
     JVMPATH_LINUX = '/usr/lib/jvm/java-11-openjdk-amd64/lib/server/libjvm.so'
@@ -97,10 +97,10 @@ class ConfigurarAplicacion(object):
     TABLA_PIE                             = 41
     TABLA_TMPINFORMACIONVEHICULO          = 45
     TABLA_TMPINFORMACIONVEHICULOTITULAR   = 46
-    TABLA_RELACION_ARBA_SUCERP_MARCA   = 47
-    TABLA_PROCESOIMPORTACIONEXPORTACION = 48
-    TABLA_API_LOG = 49
-    TABLA_RECEPCION_TEXTO = 50
+    TABLA_RELACION_ARBA_SUCERP_MARCA      = 47
+    TABLA_PROCESOIMPORTACIONEXPORTACION   = 48
+    TABLA_API_LOG                         = 49
+    TABLA_RECEPCION_TEXTO                 = 50
 
     # Lista de Tablas
     LISTA_TABLAS = {
@@ -602,3 +602,18 @@ class ConfigurarAplicacion(object):
     # Directorio del Proyecto
     DIR_PROYECTO_LINUX = '/home/anovillo/Escritorio/ApiRest_Procesos_Prod/ApiRest_Procesos_Prod/app'
     DIR_PROYECTO_WINDOWS = 'C:\\Users\\anovillo\\Desktop\\ApiRest_Procesos_Prod\\ApiRest_Procesos_Prod\\app'
+
+    DIR_PATH_IMAGENES_WINDOWS = f'{DIR_PROYECTO_WINDOWS}\\archivos_Estaticos\\Imagenes\\'
+    DIR_PATH_ERRORES_WINDOWS = f'{DIR_PROYECTO_WINDOWS}\\archivos_Estaticos\\Errores\\'
+    DIR_PATH_HOST_WINDOWS = f'{DIR_PROYECTO_WINDOWS}\\archivos_Estaticos\\Host\\'
+    DIR_PATH_METODOS_WINDOWS = f'{DIR_PROYECTO_WINDOWS}\\archivos_Estaticos\\Metodos\\'
+    DIR_PATH_TEMPLATES_WINDOWS = f'{DIR_PROYECTO_WINDOWS}\\templates\\'
+
+    DIR_PATH_IMAGENES_LINUX = f'{DIR_PROYECTO_LINUX}/archivos_Estaticos/Imagenes/'
+    DIR_PATH_ERRORES_LINUX = f'{DIR_PROYECTO_LINUX}/archivos_Estaticos/Errores/'
+    DIR_PATH_HOST_LINUX = f'{DIR_PROYECTO_LINUX}/archivos_Estaticos/Host/'
+    DIR_PATH_METODOS_LINUX = f'{DIR_PROYECTO_LINUX}/archivos_Estaticos/Metodos/'
+    DIR_PATH_TEMPLATES_LINUX = f'{DIR_PROYECTO_LINUX}/templates/'
+
+
+

@@ -4,6 +4,7 @@ try:
     import platform
     import pickle
     from app_Config import constantes
+    from app_Config.config import ConfigurarAplicacion
 
 except Exception as e:
     print(f'Falta algun modulo {e}')
@@ -40,6 +41,8 @@ class ConfigHost(object):
         self.SERVER = {'IBM': True}
         self.ERROR = {}
 
+        # Variables de configuracion
+        self.constantes = ConfigurarAplicacion()
 
         # Atributos Encapsulados
         self.__serverhost = None
@@ -74,26 +77,36 @@ class ConfigHost(object):
         ]
 
 
-        # Valores por default
+        # Valores por default de los carcteres de separacion de las carpetas
         if platform.system() == 'Linux':
             charSplit = '/'
         else:
             charSplit = '\\'
         
-        pepe  = os.getcwd().split(charSplit)[-1]
-        if os.getcwd().split(charSplit)[-1] == constantes.DIR_PROYECTO:         #'ProyectoRegistrosAutomotor':
-            if platform.system() == 'Linux':
-                self.__pathHost = os.getcwd() + '/archivos_Estaticos/Host/'
-            else:
-                self.__pathHost = os.getcwd() + '\\archivos_Estaticos\\Host\\'
+        # verificamos si estamos en el directorio del proyecto
+        if os.getcwd().split(charSplit)[-1] == self.constantes.DIR_PROYECTO:
 
+            # obtenemos el host para las plataforma linux    
+            if platform.system() == 'Linux':
+                #self.__pathHost = os.getcwd() + '/archivos_Estaticos/Host/'
+                self.__pathHost = self.constantes.DIR_PATH_HOST_LINUX
+
+            # obtenemos el host para las plataforma windows
+            else:
+                #self.__pathHost = os.getcwd() + '\\archivos_Estaticos\\Host\\'
+                self.__pathHost = self.constantes.DIR_PATH_HOST_WINDOWS
+
+        # si no estamos en el directorio del proyecto
         else:
-            #os.chdir('..')
 
-            # determinamos en que plataforma estamos ejeutando el script
+            # obtenemos el host para las plataforma linux    
             if platform.system() == 'Linux':
+
                 self.__pathHost = os.getcwd() + '/archivos_Estaticos/Host/'
+
+            # obtenemos el host para las plataforma windows
             else:
+
                 self.__pathHost = os.getcwd() + '\\archivos_Estaticos\\Host\\'
 
         self.__default_file = self.__pathHost + 'host.pck'
