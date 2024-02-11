@@ -461,7 +461,7 @@ class ConfigurarAplicacion(object):
         'TABLA_API_TAREAS': {'numero': 16, 'objeto': 'apiTareas_Dal', 'migrate' : False},
         'TABLA_API_ESTADOS_TAREAS': {'numero': 17, 'objeto': 'apiEstadosTareas_Dal', 'migrate' : False},
         'TABLA_API_TOKEN': {'numero': 18, 'objeto': 'apiToken_Dal', 'migrate' : False},
-        'TABLA_API_AUMOSO': {'numero': 19, 'objeto': 'apiAumoso_Dal', 'migrate' : False},
+        'TABLA_API_AUMOSO': {'numero': 19, 'objeto': 'apiAumoso_Dal', 'migrate' : True},
         'TABLA_API_REGISTROS': {'numero': 20, 'objeto': 'apiRegistros_Dal', 'migrate' : False},
         'TABLA_ALTAIMPOSITIVA': {'numero': 21, 'objeto': 'altaImpositiva_Dal', 'migrate' : True},
         'TABLA_ALTAIMPOSITIVATITULAR': {'numero': 22, 'objeto': 'altaImpositivaTitular_Dal', 'migrate' : True},

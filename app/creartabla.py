@@ -10,22 +10,22 @@ except Exception as e:
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # Lista de tablas a crear
 lista_tablas = [
-    'TABLA_ESTADO',                             # True Tabla de referencia
-    'TABLA_PROVINCIA',                          # True Tabla de referencia
-    'TABLA_TIPO_CUERPO',                        # True Tabla de referencia
-    'TABLA_TIPO_CUOTA',                         # True Tabla de referencia
-    'TABLA_TIPO_DOCUMENTO',                     # True Tabla de referencia
-    'TABLA_TIPO_MONEDA',                        # True Tabla de referencia
-    'TABLA_TIPO_MOVIMIENTO',                    # True Tabla de referencia
-    'TABLA_TIPO_ORIGEN',                        # True Tabla de referencia
-    'TABLA_TIPO_PAGO',                          # True Tabla de referencia
-    'TABLA_TIPO_REGISTRO',                      # True Tabla de referencia
-    'TABLA_TIPO_SUB_REGISTRO',                  # True Tabla de referencia
-    'TABLA_TIPO_TITULAR',                       # True Tabla de referencia
+    #'TABLA_ESTADO',                             # True Tabla de referencia
+    #'TABLA_PROVINCIA',                          # True Tabla de referencia
+    #'TABLA_TIPO_CUERPO',                        # True Tabla de referencia
+    #'TABLA_TIPO_CUOTA',                         # True Tabla de referencia
+    #'TABLA_TIPO_DOCUMENTO',                     # True Tabla de referencia
+    #'TABLA_TIPO_MONEDA',                        # True Tabla de referencia
+    #'TABLA_TIPO_MOVIMIENTO',                    # True Tabla de referencia
+    #'TABLA_TIPO_ORIGEN',                        # True Tabla de referencia
+    #'TABLA_TIPO_PAGO',                          # True Tabla de referencia
+    #'TABLA_TIPO_REGISTRO',                      # True Tabla de referencia
+    #'TABLA_TIPO_SUB_REGISTRO',                  # True Tabla de referencia
+    #'TABLA_TIPO_TITULAR',                       # True Tabla de referencia
     #'TABLA_API_ESTADOS',                        # False Tabla de referencia
     #'TABLA_API_TAREAS',                         # False Tabla de referencia
     #'TABLA_API_LOG',                            # False Tabla de referencia
-    'TABLA_PROCESOIMPORTACIONEXPORTACION',      # True Tabla de referencia
+    #'TABLA_PROCESOIMPORTACIONEXPORTACION',      # True Tabla de referencia
 
     #'TABLA_TIPO_VEHICULO',                      # False Tabla de referencia
     #'TABLA_TIPO_TRAMITE',                       # False Tabla de referencia
@@ -37,27 +37,27 @@ lista_tablas = [
     #'TABLA_API_TOKEN_USER',                     # False
     #'TABLA_API_TOKEN',                          # False
 
-    'TABLA_ALTAIMPOSITIVATITULAR',              # True
-    'TABLA_ALTAIMPOSITIVA',                     # True
-    #'TABLA_API_AUMOSO',                         # False
-    'TABLA_ANULACIONTRAMITESSELLOS',            # True
-    'TABLA_ANULACIONTRAMITESSELLOSDETALLE',     # True
-    'TABLA_BAJAIMPOSITIVATITULAR',              # True
-    'TABLA_BAJAIMPOSITIVA',                     # True
-    'TABLA_CAMBIOTITULARIDADTITULAR',           # True
-    'TABLA_CAMBIOTITULARIDAD',                  # True
-    'TABLA_ENCABEZADO',                         # True
-    'TABLA_IMPUESTOAUTOMOTOR',                  # True
-    'TABLA_IMPUESTOSELLOS',                     # True
-    'TABLA_IMPUESTOSELLOSPARTES',               # True
-    'TABLA_IMPUESTOSELLOSPARTESTIPOTRAMITE',    # True
-    'TABLA_INFORMACIORADICACION',               # True
-    'TABLA_INFORMACIONVEHICULO',                # True
-    'TABLA_INFORMACIONVEHICULOTITULAR',         # True
-    'TABLA_PIE',                                # True
+    #'TABLA_ALTAIMPOSITIVATITULAR',              # True
+    #'TABLA_ALTAIMPOSITIVA',                     # True
+    'TABLA_API_AUMOSO',                         # False
+    #'TABLA_ANULACIONTRAMITESSELLOS',            # True
+    #'TABLA_ANULACIONTRAMITESSELLOSDETALLE',     # True
+    #'TABLA_BAJAIMPOSITIVATITULAR',              # True
+    #'TABLA_BAJAIMPOSITIVA',                     # True
+    #'TABLA_CAMBIOTITULARIDADTITULAR',           # True
+    #'TABLA_CAMBIOTITULARIDAD',                  # True
+    #'TABLA_ENCABEZADO',                         # True
+    #'TABLA_IMPUESTOAUTOMOTOR',                  # True
+    #'TABLA_IMPUESTOSELLOS',                     # True
+    #'TABLA_IMPUESTOSELLOSPARTES',               # True
+    #'TABLA_IMPUESTOSELLOSPARTESTIPOTRAMITE',    # True
+    #'TABLA_INFORMACIORADICACION',               # True
+    #'TABLA_INFORMACIONVEHICULO',                # True
+    #'TABLA_INFORMACIONVEHICULOTITULAR',         # True
+    #'TABLA_PIE',                                # True
     #'TABLA_RELACION_ARBA_SUCERP_MARCA',         # False
-    'TABLA_TRAMITESGENERALES',                  # True
-    'TABLA_TRAMITESGENERALESTITULARES',         # True
+    #'TABLA_TRAMITESGENERALES',                  # True
+    #'TABLA_TRAMITESGENERALESTITULARES',         # True
 ]
 
 

@@ -3,7 +3,7 @@ try:
     import os
     import platform
     import pickle
-    from app_Config import constantes
+    #from app_Config import constantes
     from app_Config.config import ConfigurarAplicacion
 
 except Exception as e:
@@ -84,30 +84,30 @@ class ConfigHost(object):
             charSplit = '\\'
         
         # verificamos si estamos en el directorio del proyecto
-        if os.getcwd().split(charSplit)[-1] == self.constantes.DIR_PROYECTO:
+        #if os.getcwd().split(charSplit)[-1] == self.constantes.DIR_PROYECTO:
 
-            # obtenemos el host para las plataforma linux    
-            if platform.system() == 'Linux':
-                #self.__pathHost = os.getcwd() + '/archivos_Estaticos/Host/'
-                self.__pathHost = self.constantes.DIR_PATH_HOST_LINUX
+        # obtenemos el host para las plataforma linux    
+        if platform.system() == 'Linux':
+            #self.__pathHost = os.getcwd() + '/archivos_Estaticos/Host/'
+            self.__pathHost = self.constantes.DIR_PATH_HOST_LINUX
 
-            # obtenemos el host para las plataforma windows
-            else:
-                #self.__pathHost = os.getcwd() + '\\archivos_Estaticos\\Host\\'
-                self.__pathHost = self.constantes.DIR_PATH_HOST_WINDOWS
+        # obtenemos el host para las plataforma windows
+        else:
+            #self.__pathHost = os.getcwd() + '\\archivos_Estaticos\\Host\\'
+            self.__pathHost = self.constantes.DIR_PATH_HOST_WINDOWS
 
         # si no estamos en el directorio del proyecto
-        else:
+        #else:
 
             # obtenemos el host para las plataforma linux    
-            if platform.system() == 'Linux':
+        #    if platform.system() == 'Linux':
 
-                self.__pathHost = os.getcwd() + '/archivos_Estaticos/Host/'
+        #        self.__pathHost = os.getcwd() + '/archivos_Estaticos/Host/'
 
             # obtenemos el host para las plataforma windows
-            else:
+        #    else:
 
-                self.__pathHost = os.getcwd() + '\\archivos_Estaticos\\Host\\'
+        #        self.__pathHost = os.getcwd() + '\\archivos_Estaticos\\Host\\'
 
         self.__default_file = self.__pathHost + 'host.pck'
         self.__host_dict = {}
@@ -314,9 +314,12 @@ class ConfigHost(object):
             uid  = self.usuariohost
             pwd  = self.passhost
             dbq  = self.schemahost
-            return f'db2:pyodbc://DSN=QDNS_db2; system={host}; uid={uid}; pwd={pwd}; dbq={dbq}'
-
-            
+            Db   = self.databasehost
+            port = 446
+            return f'db2:pyodbc://driver={drive};hostname={host};database={Db};uid={uid};pwd={pwd};port={port}'
+            # f'db2:ibm_db_dbi://DSN={drive};UID={uid};PWD={pwd}'
+            # 'db2:pyodbc://driver=DB2;hostname=host;database=database;uid=user;pwd=password;port=port'
+            # 'db2:ibm_db_dbi://DSN=dsn;UID=user;PWD=pass'
         #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         # para el caso de db2
         if self.serverhost == 'db2':

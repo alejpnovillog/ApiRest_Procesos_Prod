@@ -39,6 +39,17 @@ Database      = ANOVILLO1
 
 ```
 
+## DESINSTALAR DEL DRIVER ODBC EN UN SISTEMA OPERATIVO LINUX
+
+```
+sudo apt-get remove unixodbc unixodbc-dev
+
+sudo rm /etc/odbcinst.ini /etc/odbc.ini
+
+```
+
+
+
 ## INSTALACION DEL STRING DE CONEXION
 
 1. Parámetros de la configuración del string de conexión

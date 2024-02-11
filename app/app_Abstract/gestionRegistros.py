@@ -169,10 +169,11 @@ class GestionRegistros(Gx, Sq, Tl, Mtz):
             self.instancia_Host_Input_Dict = self.instancia_Host_Input.__datos__()
 
             # Asigna instancia de conexion a un Handle
-            if self.instancia_Host_Input_Dict['server'] != 'iseriesLinux':
-                self.dbI = DAL(self.instancia_Host_Input_Dict['strcon'], pool_size=0, db_codec='UTF-8')
-            else:
-                self.dbi = None    
+            #if self.instancia_Host_Input_Dict['server'] != 'iseriesLinux':
+            self.dbI = DAL(self.instancia_Host_Input_Dict['strcon'], pool_size=0, db_codec='UTF-8')
+            #print(self.dbI)
+            #else:
+            #    self.dbi = None    
 
         except Exception as e:
             self.ultimoerrorcapturado = e

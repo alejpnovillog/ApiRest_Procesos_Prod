@@ -1,6 +1,11 @@
 # ------------------LIBRERIA PARA OBTENER LOS DATOS DE CONEXION
 from app_Config.configurarConexion import ConfigHost
 
+from app_Config.config import ConfigurarAplicacion
+
+from app_Abstract.gestionRegistros import GestionRegistros
+
+
 #con = ConfigHost(host='Automotor_Prod',  accion='add', serverhost='sqlite3', databasehost='Automotor')
 con = ConfigHost()
 
@@ -60,6 +65,29 @@ con.del_host()
 
 
 
+api = ConfigurarAplicacion()
+
+
+db = GestionRegistros(ambiente = api.ENV_GX)        
+
+print(db)
+
+
+#con.host = 'Pub400'
+#con.accion = 'del'
+#con.del_host()
+#
+#
+#
+#con.host = 'Pub400'
+#con.serverhost = 'iseriesLinux'
+#con.iphost = 'PUB400.COM'
+#con.usuariohost = 'anovillo'
+#con.passhost = 'macs6259'
+#con.schemahost = 'anovillo1'
+#con.databasehost = 'PUB400'
+#con.accion = 'add'
+#con.add_host()
 
 
 
@@ -73,9 +101,38 @@ con.del_host()
 
 
 
-con.host = '*all'
-con.accion = 'list'
-con.list_host()
+
+
+
+
+#con.host = '*all'
+#con.accion = 'list'
+#con.list_host()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
