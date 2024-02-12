@@ -309,14 +309,15 @@ class ConfigHost(object):
             )
             if self.__habilitado == False: return ''
 
-            drive = 'DB2'
+            drive = 'IBM i Access ODBC Driver'
             host = self.iphost
             uid  = self.usuariohost
             pwd  = self.passhost
             dbq  = self.schemahost
             Db   = self.databasehost
-            port = 446
-            return f'db2:pyodbc://driver={drive};hostname={host};database={Db};uid={uid};pwd={pwd};port={port}'
+            dbq  = self.schemahost
+            port = 8471
+            return f'db2:pyodbc://driver={drive};System={host};Database={Db};uid={uid};pwd={pwd};dbq={dbq}'
             # f'db2:ibm_db_dbi://DSN={drive};UID={uid};PWD={pwd}'
             # 'db2:pyodbc://driver=DB2;hostname=host;database=database;uid=user;pwd=password;port=port'
             # 'db2:ibm_db_dbi://DSN=dsn;UID=user;PWD=pass'

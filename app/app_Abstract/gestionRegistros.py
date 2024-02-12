@@ -171,7 +171,7 @@ class GestionRegistros(Gx, Sq, Tl, Mtz):
             # Asigna instancia de conexion a un Handle
             #if self.instancia_Host_Input_Dict['server'] != 'iseriesLinux':
             self.dbI = DAL(self.instancia_Host_Input_Dict['strcon'], pool_size=0, db_codec='UTF-8')
-            #print(self.dbI)
+            print(self.dbI)
             #else:
             #    self.dbi = None    
 

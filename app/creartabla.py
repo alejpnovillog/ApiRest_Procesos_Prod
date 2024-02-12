@@ -10,7 +10,7 @@ except Exception as e:
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # Lista de tablas a crear
 lista_tablas = [
-    #'TABLA_ESTADO',                             # True Tabla de referencia
+    'TABLA_ESTADO',                             # True Tabla de referencia
     #'TABLA_PROVINCIA',                          # True Tabla de referencia
     #'TABLA_TIPO_CUERPO',                        # True Tabla de referencia
     #'TABLA_TIPO_CUOTA',                         # True Tabla de referencia
@@ -39,7 +39,7 @@ lista_tablas = [
 
     #'TABLA_ALTAIMPOSITIVATITULAR',              # True
     #'TABLA_ALTAIMPOSITIVA',                     # True
-    'TABLA_API_AUMOSO',                         # False
+    #'TABLA_API_AUMOSO',                         # False
     #'TABLA_ANULACIONTRAMITESSELLOS',            # True
     #'TABLA_ANULACIONTRAMITESSELLOSDETALLE',     # True
     #'TABLA_BAJAIMPOSITIVATITULAR',              # True

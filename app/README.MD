@@ -3,35 +3,78 @@
 
 ## INSTALACION DEL DRIVER ODBC EN UN SISTEMA OPERATIVO LINUX
 
-1. Actualización del instalador de paquetes de Linux
+1. Documentación del paquete iaccess
+
+```
+https://github.com/IBM/ibmi-oss-docs
+
+
+```
+
+2. Actualización del instalador de paquetes de Linux
 
 ```
 sudo apt-get update
 
 ```
 
-2. Instalación de los paquetes de Odbc
+3. Instalación de los paquetes de Odbc
 
 ```
 sudo apt-get install unixodbc unixodbc-dev
 
 ```
 
-3. Configura el archivo odbcinst.ini
+4. Instalación del paquete IBM i Access ODBC Installation
+
+```
+sudo curl https://public.dhe.ibm.com/software/ibmi/products/odbc/debs/dists/1.1.0/ibmi-acs-1.1.0.list
+
+sudo tee /etc/apt/sources.list.d/ibmi-acs-1.1.0.list
+
+```
+
+5. Verificación de la ubicación de los archivos odbc
+
+```
+odbcinst -j
+
+```
+
+6. Configura el archivo /etc/odbcinst.ini
 
 ```
 [iSeries Access ODBC Driver]
-Description = iSeries Access ODBC Driver
-Driver      = /usr/lib/x86_64-linux-gnu/libodbc.so
+Description=iSeries Access ODBC Driver
+Driver=/usr/lib/x86_64-linux-gnu/libodbc.so
+
+[IBM i Access ODBC Driver]
+Description=IBM i Access for Linux ODBC Driver
+Driver=/opt/ibm/iaccess/lib/libcwbodbc.so
+Setup=/opt/ibm/iaccess/lib/libcwbodbcs.so
+Driver64=/opt/ibm/iaccess/lib64/libcwbodbc.so
+Setup64=/opt/ibm/iaccess/lib64/libcwbodbcs.so
+Threading=0
+DontDLClose=1
+UsageCount=1
+
+[IBM i Access ODBC Driver 64-bit]
+Description=IBM i Access for Linux 64-bit ODBC Driver
+Driver=/opt/ibm/iaccess/lib64/libcwbodbc.so
+Setup=/opt/ibm/iaccess/lib64/libcwbodbcs.so
+Threading=0
+DontDLClose=1
+UsageCount=1
+
 
 ```
 
-4. Configura el archivo odbc.ini
+7. Configura el archivo /home/anovillo/.odbc.ini
 
 ```
 [QDNS_db2]
 Description   = My AS400 Connection
-Driver        = iSeries Access ODBC Driver
+Driver        = IBM i Access ODBC Driver
 System        = PUB400.COM
 UID           = anovillo
 PWD           = macs6259
@@ -47,8 +90,6 @@ sudo apt-get remove unixodbc unixodbc-dev
 sudo rm /etc/odbcinst.ini /etc/odbc.ini
 
 ```
-
-
 
 ## INSTALACION DEL STRING DE CONEXION
 
@@ -70,7 +111,7 @@ con.add_host()
 2. El valor generado por el script actualizaConexion.py
 
 ```
-Pub400 = {'server': 'db2', 'ip': 'PUB400.COM', 'usuario': 'anovillo', 'password': 'macs6259', 'database': 'PUB400', 'schema': 'anovillo1', 'strcon': 'db2:pyodbc://DSN=QDSN_db2;UID=anovillo;PWD=macs6259;'} 
+Pub400 = {'server': 'iseriesLinux', 'ip': 'PUB400.COM', 'usuario': 'anovillo', 'password': 'macs6259', 'database': 'PUB400', 'schema': 'anovillo1', 'strcon': 'db2:pyodbc://driver={drive};System={host};Database={Db};uid={uid};pwd={pwd};dbq={dbq}'} 
 
 ```
 
@@ -330,7 +371,6 @@ conda --version
 44. **DIR_PATH_TEMPLATES_LINUX** Es la ruta donde se encuentra los templates en el ambiente Linux
 
 45. **LISTA_TABLAS** Es el diccionario donde se encuentran las definiciones de configuracion de las tablas
-
 
 
 
