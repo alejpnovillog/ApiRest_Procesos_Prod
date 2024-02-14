@@ -14,7 +14,6 @@ try:
 
     from app_Abstract.allAbstractDB import GxAbstractDb as Gx, SqliteAbstractDb as Sq, ToolsAbatract as Tl, MatanzaAbstractDb as Mtz
 
-
 except Exception as e:
     print(f'Falta algun modulo {e}')
 
@@ -49,8 +48,6 @@ class GestionRegistros(Gx, Sq, Tl, Mtz):
         # Generamos la instancia de conexion al Host(server)
         self.get_db()
 
-        #if self.dbI != None:
-
         # Ejecuto el constructor de la clase heredada ToolsAbstract
         Tl.__init__(self)
 
@@ -63,21 +60,26 @@ class GestionRegistros(Gx, Sq, Tl, Mtz):
         # En el caso de que el ambiente no sea Validator inicializa la clase del Validator
         # Y la clase segun el ambiente
         else:
+
+            # Inicializamos el ambiente validador
             self.dbValidator = self.constantes.ENV_SQ
             Sq.__init__(self, self.dbValidator)
+
+            # Verificamos el ambiente ENV_GX
             if self.constantes.ENV_GX !=None:
                 Gx.__init__(self, self.dbI)
+
+            # Verificamos el ambiente ENV_MATANZA     
             if self.constantes.ENV_MATANZA != None:
                 Mtz.__init__(self, self.dbI)
 
-
+    # Obtenemos el atributo pedido en el item
     def __getattr__(self, item):
         return
 
-
-    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     # Encapsulacion de los atributos
-    # ---------ULTIMO ID DESPUES DE UN INSERT----------------------------------------
+    # ---------ULTIMO ID DESPUES DE UN INSERT-------------------------------------------------------
     @property
     def ultimoid(self):
         return self.__ultimoid
@@ -86,10 +88,9 @@ class GestionRegistros(Gx, Sq, Tl, Mtz):
     def ultimoid(self, valor):
         self.__ultimoid = valor
 
-
-    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     # Encapsulacion de los atributos
-    # ---------ULTIMO ERROR CAPTURADO----------------------------------------
+    # ---------ULTIMO ERROR CAPTURADO---------------------------------------------------------------
     @property
     def ultimoerrorcapturado(self):
         return self.__ultimoerrorcapturado
@@ -98,9 +99,7 @@ class GestionRegistros(Gx, Sq, Tl, Mtz):
     def ultimoerrorcapturado(self, valor):
         self.__ultimoerrorcapturado = valor
 
-
-
-    # ---------AMBIENTE DE LA INSTANCIA DEL HOST INPUT----------------------------------------
+    # ---------AMBIENTE DE LA INSTANCIA DEL HOST INPUT----------------------------------------------
     @property
     def ambiente(self):
         return self.__ambiente
@@ -109,7 +108,7 @@ class GestionRegistros(Gx, Sq, Tl, Mtz):
     def ambiente(self, valor):
         self.__ambiente = valor
 
-    # ---------INSTANCIA DEL HOST INPUT----------------------------------------
+    # ---------INSTANCIA DEL HOST INPUT-------------------------------------------------------------
     @property
     def instancia_Host_Input(self):
         return self.__instancia_Host_Input
@@ -118,7 +117,7 @@ class GestionRegistros(Gx, Sq, Tl, Mtz):
     def instancia_Host_Input(self, valor):
         self.__instancia_Host_Input = ConfigHost(host=valor)
 
-    # ---------DICCIONARIO DE LA INSTANCIA DEL HOST INPUT----------------------------------------
+    # ---------DICCIONARIO DE LA INSTANCIA DEL HOST INPUT-------------------------------------------
     @property
     def instancia_Host_Input_Dict(self):
         return self.__instancia_Host_Input_Dict
@@ -127,7 +126,7 @@ class GestionRegistros(Gx, Sq, Tl, Mtz):
     def instancia_Host_Input_Dict(self, valor):
         self.__instancia_Host_Input_Dict = valor
 
-    # ---------INSTANCIA DE LA CONEXION A LA INSTANCIA DEL HOST----------------------------------------
+    # ---------INSTANCIA DE LA CONEXION A LA INSTANCIA DEL HOST-------------------------------------
     @property
     def dbI(self):
         return self.__dbI
@@ -136,7 +135,7 @@ class GestionRegistros(Gx, Sq, Tl, Mtz):
     def dbI(self, valor):
         self.__dbI = valor
 
-    # ---------INSTANCIA DE LA CONEXION A LA INSTANCIA DEL HOSTVALIDATOR--------------------------------
+    # ---------INSTANCIA DE LA CONEXION A LA INSTANCIA DEL HOSTVALIDATOR----------------------------
     @property
     def dbValidator(self):
         return self.__dbI
@@ -145,14 +144,8 @@ class GestionRegistros(Gx, Sq, Tl, Mtz):
     def dbValidator(self, valor):
         self.__dbValidator = valor
 
-
-
-
-
-
-
-    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    # ---------- OBTENER LA INSTACIA DE CONEXION -------------------------------------------------
+    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # ---------- OBTENER LA INSTACIA DE CONEXION ---------------------------------------------------
     def get_db(self):
         """
         Este metodo tiene el objetivo de obtener los datos de conexion del host\n
@@ -171,15 +164,14 @@ class GestionRegistros(Gx, Sq, Tl, Mtz):
             # Asigna instancia de conexion a un Handle
             #if self.instancia_Host_Input_Dict['server'] != 'iseriesLinux':
             self.dbI = DAL(self.instancia_Host_Input_Dict['strcon'], pool_size=0, db_codec='UTF-8')
-            print(self.dbI)
-            #else:
-            #    self.dbi = None    
+            #print(self.dbI)
+
+
 
         except Exception as e:
             self.ultimoerrorcapturado = e
 
-
-    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     # ---------- OBTENER LOS REGISTROS DE UNA TABLA-------------------------------------------------
     def __get_RowsRef(self, tabla, key):
         """
@@ -207,8 +199,8 @@ class GestionRegistros(Gx, Sq, Tl, Mtz):
             self.ultimoerrorcapturado = e
             return rows_dict, respuesta
 
-    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    # ---------- OBTENER LOS CAMPOS DE LOS FOREING KEY DE LA TABLA-------------------------------------------------
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # ---------- OBTENER LOS CAMPOS DE LOS FOREING KEY DE LA TABLA----------------------------------
     def tablasRef(self, tabla, registro):
 
         # Averiguamos si la tabla tiene  tablas de referencias para
@@ -248,7 +240,7 @@ class GestionRegistros(Gx, Sq, Tl, Mtz):
 
         return registro
 
-    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     # ---------- OBTENER LOS REGISTROS DE UNA TABLA-------------------------------------------------
     def get_Rows(self, tabla, key):
         """
@@ -279,10 +271,8 @@ class GestionRegistros(Gx, Sq, Tl, Mtz):
             self.ultimoerrorcapturado = e
             return rows_dict, respuesta
 
-
-
-    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    # ---------- OBTENER LOS REGISTROS DE UNA TABLA  CON ALGUNA CONDICION------------------------------
+    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # ---------- OBTENER LOS REGISTROS DE UNA TABLA  CON ALGUNA CONDICION---------------------------
     def get_RowsCondiction(self, tabla, **condicion):
         """
         Realiza la consulta de la tabla por una condicion que debe ser unica\n
@@ -334,8 +324,7 @@ class GestionRegistros(Gx, Sq, Tl, Mtz):
             self.ultimoerrorcapturado = e
             return rows_dict, respuesta
 
-
-    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     # ---------- OBTENER LOS REGISTROS DE UNA TABLA-------------------------------------------------
     def get_RowsWhere(self, tabla, **data):
         """
@@ -438,8 +427,8 @@ class GestionRegistros(Gx, Sq, Tl, Mtz):
             self.ultimoerrorcapturado = e
             return rows_dict, respuesta
 
-
-    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # ---------- OBTENEMOS UNA LISTA DE LAS HOJAS DEL WRK PEDIDO -----------------------------------       
     def __createPageParameter(self, **data):
 
         # determinamos cuantos registros seleccionados por la seleccion
@@ -474,7 +463,8 @@ class GestionRegistros(Gx, Sq, Tl, Mtz):
 
         return data
 
-    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # ---------- OBTENEMOS EL DICCINARIO DEL QUERY PEDIDO ------------------------------------------
     def __createQuery(self, tabla, **data):
 
         try:
@@ -490,8 +480,6 @@ class GestionRegistros(Gx, Sq, Tl, Mtz):
 
                 # obtenemos el valor de la lista
                 valor = data['field'][index]
-
-
 
                 # determina si agrega el operador &
                 if data['struct_query'][index] == '&':
@@ -533,9 +521,8 @@ class GestionRegistros(Gx, Sq, Tl, Mtz):
             respuesta = {'error': e}
             return respuesta
 
-
-
-    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # ---------- OBTENEMOS EL DICCINARIO DEL QUERY PEDIDO ------------------------------------------
     def get_rowsWhereWrk(self, tabla, **data):
 
         try:
@@ -586,11 +573,10 @@ class GestionRegistros(Gx, Sq, Tl, Mtz):
         except Exception as e:
             respuesta = {'error': e}
             self.ultimoerrorcapturado = e
-            return rows_dict, respuesta
+            return lista_rows_dict, respuesta
 
-
-    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    # ---------- OBTENER LOS REGISTROS DE LA CABECERA CON SUS DETALLES---------------------------------
+    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # ---------- OBTENER LOS REGISTROS DE LA CABECERA CON SUS DETALLES------------------------------
     def get_Rows_Cabecera_Detalle(self, tablaDet, tablaCab, key):
         """
         Realiza la consulta de la tabla Automotor Detalle\n
@@ -613,9 +599,8 @@ class GestionRegistros(Gx, Sq, Tl, Mtz):
             self.ultimoerrorcapturado = e
             return rows_dict, respuesta
 
-
-    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    # ---------- GENERAR UN NUEVO REGISTRO DE LA CABECERA--------------------------
+    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # ---------- GENERAR UN NUEVO REGISTRO DE LA CABECERA-------------------------------------------
     def add_Dal(self, tabla, **campos):
         """
         Realiza el insert de una tabla \n
@@ -642,9 +627,8 @@ class GestionRegistros(Gx, Sq, Tl, Mtz):
             self.dbI.rollback()
             return respuesta
 
-
-    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    # ---------- ACTUALIZAR UN REGISTRO DE CABECERA--------------------------
+    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # ---------- ACTUALIZAR UN REGISTRO DE CABECERA-------------------------------------------------
     def upd_Dal(self, tabla, key, **campos):
         """
         Realiza el insert de una tabla \n
@@ -666,8 +650,8 @@ class GestionRegistros(Gx, Sq, Tl, Mtz):
             self.dbI.rollback()
             return respuesta
 
-    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    # ---------- ACTUALIZAR UN REGISTRO DE CABECERA--------------------------
+    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # ---------- ACTUALIZAR UN REGISTRO DE CABECERA-------------------------------------------------
     def upd_Lote_Dal(self, tabla, **lote):
         """
         Realiza el update de una tabla \n
@@ -699,8 +683,8 @@ class GestionRegistros(Gx, Sq, Tl, Mtz):
         self.dbI.commit()
         return True
 
-    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    # ---------- EJECUCION DE UN COMANDO--------------------------
+    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # ---------- EJECUCION DE UN COMANDO------------------------------------------------------------
     def run_comando(self, sql, *parametros):
         """
         Realiza el update de una tabla \n
@@ -727,10 +711,8 @@ class GestionRegistros(Gx, Sq, Tl, Mtz):
 
         return retorno
 
-
-
-    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    # ---------- OBTIENE LA ESTRUCTURA DE LA TABLA --------------------------
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # ---------- OBTIENE LA ESTRUCTURA DE LA TABLA -------------------------------------------------
     def get_Struct_Tabla(self, tabla):
 
         """
@@ -762,8 +744,8 @@ class GestionRegistros(Gx, Sq, Tl, Mtz):
         except Exception as e:
             self.ultimoerrorcapturado = e
 
-    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    # ---------- INCORPORA AL REGISTRO LOS DATOS DE LAS TABLA DE REFERENCIA DE LA TABLA ----------------
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # ---------- INCORPORA AL REGISTRO LOS DATOS DE LAS TABLA DE REFERENCIA DE LA TABLA ------------
     def get_Registros_Ref_Tabla(self, tabla, *registro):
 
         try:

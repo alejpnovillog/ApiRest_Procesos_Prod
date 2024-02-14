@@ -513,10 +513,6 @@ conda env create -f environment.yml
 
 
 
-
-
-
-
 1. INFOR00001 Tabla INFORMACIONVEHICULO tabla temporal
 
 >- Longitud registro 952

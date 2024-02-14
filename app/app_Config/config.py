@@ -95,18 +95,25 @@ class ConfigurarAplicacion(object):
     TABLA_INFORMACIONVEHICULOTITULAR      = 39
     TABLA_INFORMACIORADICACION            = 40
     TABLA_PIE                             = 41
+    TABLA_RECEPCIONARCHIVOS               = 44  
     TABLA_TMPINFORMACIONVEHICULO          = 45
     TABLA_TMPINFORMACIONVEHICULOTITULAR   = 46
     TABLA_RELACION_ARBA_SUCERP_MARCA      = 47
     TABLA_PROCESOIMPORTACIONEXPORTACION   = 48
     TABLA_API_LOG                         = 49
     TABLA_RECEPCION_TEXTO                 = 50
+    TABLA_RECEPLOG                        = 51
+    TABLA_MENSAJESERROR                   = 52  
+    TABLA_MSGNIVELGRAVEDAD                = 53
+    TABLA_MENSAJESERRORMSGDINAMICOS       = 54
+    TABLA_IMPRESIONPDF                    = 55
+
 
     # Lista de Tablas
     LISTA_TABLAS = {
         # Tabla de Estados
         'TABLA_ESTADO': {
-            'numero': 1, 'objeto': 'estado_Dal', 'migrate' : True,
+            'numero': 1, 'objeto': 'estado_Dal', 'migrate' : False, 'shortname': 'TIPOESTADO',
             'html_wrk': 'estadowrk.html',
             'query_list': ['_all', '_description', '_estado', '_estado_R'],
             'default_query': '_all',
@@ -161,7 +168,7 @@ class ConfigurarAplicacion(object):
         },
         # TABLA_PROVINCIA
         'TABLA_PROVINCIA' : {
-            'numero': 2, 'objeto': 'provincias_Dal', 'migrate' : True,
+            'numero': 2, 'objeto': 'provincias_Dal', 'migrate' : False, 'shortname': 'PROVINCIAS',
             'html_wrk': 'provinciawrk.html',
             # query todos los registros
             'query_all': {
@@ -190,7 +197,7 @@ class ConfigurarAplicacion(object):
         },
         # TABLA_TIPO_CUERPO
         'TABLA_TIPO_CUERPO': {
-            'numero': 3, 'objeto': 'tipoCuerpo_Dal', 'migrate' : True,
+            'numero': 3, 'objeto': 'tipoCuerpo_Dal', 'migrate' : False, 'shortname': 'TIPOCUERPO',
             'html_wrk': 'tipocuerpowrk.html',
             # query todos los registros
             'query_all': {
@@ -231,7 +238,7 @@ class ConfigurarAplicacion(object):
         },
         # TABLA_TIPO_CUOTA
         'TABLA_TIPO_CUOTA': {
-            'numero': 4, 'objeto': 'tipoCuota_Dal', 'migrate' : True,
+            'numero': 4, 'objeto': 'tipoCuota_Dal', 'migrate' : False, 'shortname': 'TIPOCUOTA',
             'html_wrk': 'tipocuotawrk.html',
             # query todos los registros
             'query_all': {
@@ -271,7 +278,7 @@ class ConfigurarAplicacion(object):
             },
         },
         'TABLA_TIPO_DOCUMENTO': {
-            'numero': 5, 'objeto': 'tipoDocumento_Dal', 'migrate' : True,
+            'numero': 5, 'objeto': 'tipoDocumento_Dal', 'migrate' : False, 'shortname': 'TIPOD00001',
             'html_wrk': 'tipodocumentowrk.html',
             'query_list': ['_all', '_description', '_code'],
             'default_query': '_all',
@@ -318,7 +325,7 @@ class ConfigurarAplicacion(object):
             },
         },
         'TABLA_TIPO_MONEDA': {
-            'numero': 6, 'objeto': 'tipoMoneda_Dal', 'migrate' : True,
+            'numero': 6, 'objeto': 'tipoMoneda_Dal', 'migrate' : False, 'shortname': 'TIPOMONEDA',
             'html_wrk': 'tipomonedawrk.html',
             'query_list': ['_all', '_description', '_code'],
             'default_query': '_all',
@@ -363,7 +370,7 @@ class ConfigurarAplicacion(object):
             },
         },
         'TABLA_TIPO_MOVIMIENTO': {
-            'numero': 7, 'objeto': 'tipoMovimiento_Dal', 'migrate' : True,
+            'numero': 7, 'objeto': 'tipoMovimiento_Dal', 'migrate' : False, 'shortname': 'TIPOM00001',
             'html_wrk': 'tipomovimientowrk.html',
             'query_list': ['_all', '_description', '_code'],
             'default_query': '_all',
@@ -408,7 +415,7 @@ class ConfigurarAplicacion(object):
             },
         },
         'TABLA_TIPO_ORIGEN': {
-            'numero': 8, 'objeto': 'tipoOrigen_Dal', 'migrate' : True,
+            'numero': 8, 'objeto': 'tipoOrigen_Dal', 'migrate' : False, 'shortname': 'TIPOORIGEN',
             'html_wrk': 'tipoorigenwrk.html',
             'query_list': ['_all', '_description', '_code'],
             'default_query': '_all',
@@ -452,33 +459,32 @@ class ConfigurarAplicacion(object):
                 'wrkrecords': None
             },
         },
-        'TABLA_TIPO_PAGO': {'numero': 9, 'objeto': 'tipoPago_Dal', 'migrate' : True},
-        'TABLA_TIPO_REGISTRO': {'numero': 10, 'objeto': 'tipoRegistro_Dal', 'migrate' : True},
-        'TABLA_TIPO_SUB_REGISTRO': {'numero': 11, 'objeto': 'tipoSubRegistro_Dal', 'migrate' : True},
-        'TABLA_TIPO_TITULAR': {'numero': 12, 'objeto': 'tipoTitular_Dal', 'migrate' : True},
-        'TABLA_API_TOKEN_USER': {'numero': 14, 'objeto': 'apiTokenUser_Dal', 'migrate' : False},
-        'TABLA_API_ESTADOS': {'numero': 15, 'objeto': 'apiEstados_Dal', 'migrate' : False},
-        'TABLA_API_TAREAS': {'numero': 16, 'objeto': 'apiTareas_Dal', 'migrate' : False},
-        'TABLA_API_ESTADOS_TAREAS': {'numero': 17, 'objeto': 'apiEstadosTareas_Dal', 'migrate' : False},
-        'TABLA_API_TOKEN': {'numero': 18, 'objeto': 'apiToken_Dal', 'migrate' : False},
-        'TABLA_API_AUMOSO': {'numero': 19, 'objeto': 'apiAumoso_Dal', 'migrate' : True},
-        'TABLA_API_REGISTROS': {'numero': 20, 'objeto': 'apiRegistros_Dal', 'migrate' : False},
-        'TABLA_ALTAIMPOSITIVA': {'numero': 21, 'objeto': 'altaImpositiva_Dal', 'migrate' : True},
-        'TABLA_ALTAIMPOSITIVATITULAR': {'numero': 22, 'objeto': 'altaImpositivaTitular_Dal', 'migrate' : True},
-        'TABLA_ANULACIONTRAMITESSELLOS': {'numero': 23, 'objeto': 'anulacionTramitesSellos_Dal', 'migrate' : True},
-        'TABLA_ANULACIONTRAMITESSELLOSDETALLE': {'numero': 24, 'objeto': 'anulacionTramitesSellosDetalle_Dal', 'migrate' : True},
-        'TABLA_BAJAIMPOSITIVA': {'numero': 25, 'objeto': 'bajaImpositiva_Dal', 'migrate' : True},
-        'TABLA_BAJAIMPOSITIVATITULAR': {'numero': 26, 'objeto': 'bajaImpositivaTitular_Dal', 'migrate' : True},
-        'TABLA_CAMBIOTITULARIDAD': {'numero': 27, 'objeto': 'cambioTitularidad_Dal', 'migrate' : True},
-        'TABLA_CAMBIOTITULARIDADTITULAR': {'numero': 28, 'objeto': 'cambioTitularidadTitular_Dal', 'migrate' : True},
-        'TABLA_ENCABEZADO': {'numero': 29, 'objeto': 'registroEncabezado_Dal', 'migrate' : True},
-        'TABLA_IMPORTEBANCOPERIODODASH': {'numero': 30, 'objeto': 'encabezado_Dal', 'migrate' : False},
-        'TABLA_IMPUESTOAUTOMOTOR': {'numero': 34, 'objeto': 'impuestoAutomotor_Dal', 'migrate' : True},
-        'TABLA_IMPUESTOSELLOS': {'numero': 35, 'objeto': 'impuestoSellos_Dal', 'migrate' : True},
-        'TABLA_IMPUESTOSELLOSPARTES': {'numero': 36, 'objeto': 'impuestoSellosPartes_Dal', 'migrate' : True},
-        'TABLA_IMPUESTOSELLOSPARTESTIPOTRAMITE': {'numero': 37, 'objeto': 'impuestoSellosPartesTipoTramite_Dal', 'migrate' : True},
+        'TABLA_TIPO_PAGO': {'numero': 9, 'objeto': 'tipoPago_Dal', 'migrate' : False, 'shortname': None},
+        'TABLA_TIPO_REGISTRO': {'numero': 10, 'objeto': 'tipoRegistro_Dal', 'migrate' : False, 'shortname': 'TIPOR00001',},
+        'TABLA_TIPO_SUB_REGISTRO': {'numero': 11, 'objeto': 'tipoSubRegistro_Dal', 'migrate' : False, 'shortname': 'TIPOS00001',},
+        'TABLA_TIPO_TITULAR': {'numero': 12, 'objeto': 'tipoTitular_Dal', 'migrate' : False, 'shortname': 'TIPOT00001',},
+        'TABLA_API_TOKEN_USER': {'numero': 14, 'objeto': 'apiTokenUser_Dal', 'migrate' : False, 'shortname': 'APITO00001',},
+        'TABLA_API_ESTADOS': {'numero': 15, 'objeto': 'apiEstados_Dal', 'migrate' : False, 'shortname': None,},
+        'TABLA_API_TAREAS': {'numero': 16, 'objeto': 'apiTareas_Dal', 'migrate' : False, 'shortname': None,},
+        'TABLA_API_ESTADOS_TAREAS': {'numero': 17, 'objeto': 'apiEstadosTareas_Dal', 'migrate' : False, 'shortname': 'APIES00001',},
+        'TABLA_API_TOKEN': {'numero': 18, 'objeto': 'apiToken_Dal', 'migrate' : False, 'shortname': None,},
+        'TABLA_API_AUMOSO': {'numero': 19, 'objeto': 'apiAumoso_Dal', 'migrate' : False, 'shortname': None,},
+        'TABLA_API_REGISTROS': {'numero': 20, 'objeto': 'apiRegistros_Dal', 'migrate' : False, 'shortname': 'APIRE00001',},
+        'TABLA_ALTAIMPOSITIVA': {'numero': 21, 'objeto': 'altaImpositiva_Dal', 'migrate' : False, 'shortname': 'ALTAI00002',},
+        'TABLA_ALTAIMPOSITIVATITULAR': {'numero': 22, 'objeto': 'altaImpositivaTitular_Dal', 'migrate' : False, 'shortname': 'ALTAI00001',},
+        'TABLA_ANULACIONTRAMITESSELLOS': {'numero': 23, 'objeto': 'anulacionTramitesSellos_Dal', 'migrate' : False, 'shortname': 'ANULA00001',},
+        'TABLA_ANULACIONTRAMITESSELLOSDETALLE': {'numero': 24, 'objeto': 'anulacionTramitesSellosDetalle_Dal', 'migrate' : False, 'shortname': 'ANULA00002',},
+        'TABLA_BAJAIMPOSITIVA': {'numero': 25, 'objeto': 'bajaImpositiva_Dal', 'migrate' : False, 'shortname': 'BAJAI00002',},
+        'TABLA_BAJAIMPOSITIVATITULAR': {'numero': 26, 'objeto': 'bajaImpositivaTitular_Dal', 'migrate' : False, 'shortname': 'BAJAI00001',},
+        'TABLA_CAMBIOTITULARIDAD': {'numero': 27, 'objeto': 'cambioTitularidad_Dal', 'migrate' : False, 'shortname': 'CAMBI00002',},
+        'TABLA_CAMBIOTITULARIDADTITULAR': {'numero': 28, 'objeto': 'cambioTitularidadTitular_Dal', 'migrate' : False, 'shortname': 'CAMBI00001',},
+        'TABLA_ENCABEZADO': {'numero': 29, 'objeto': 'encabezado_Dal', 'migrate' : False, 'shortname': None,},
+        'TABLA_IMPUESTOAUTOMOTOR': {'numero': 34, 'objeto': 'impuestoAutomotor_Dal', 'migrate' : False, 'shortname': 'IMPUE00001',},
+        'TABLA_IMPUESTOSELLOS': {'numero': 35, 'objeto': 'impuestoSellos_Dal', 'migrate' : False, 'shortname': 'IMPUE00002',},
+        'TABLA_IMPUESTOSELLOSPARTES': {'numero': 36, 'objeto': 'impuestoSellosPartes_Dal', 'migrate' : False, 'shortname': 'IMPUE00003',},
+        'TABLA_IMPUESTOSELLOSPARTESTIPOTRAMITE': {'numero': 37, 'objeto': 'impuestoSellosPartesTipoTramite_Dal', 'migrate' : False, 'shortname': 'IMPUE00004',},
         'TABLA_INFORMACIONVEHICULO': {
-            'numero': 38, 'objeto': 'informacionVehiculo_Dal', 'migrate' : True,
+            'numero': 38, 'objeto': 'informacionVehiculo_Dal', 'migrate' : False, 'shortname': 'INFOR00001',
             'html_wrk':'informacionvehiculo.html',
             'query_list': ['_query', ],
             'default_query': '_query',
@@ -493,26 +499,28 @@ class ConfigurarAplicacion(object):
                 'wrkrecords': None
             }
         },
-        'TABLA_INFORMACIONVEHICULOTITULAR': {'numero': 39, 'objeto': 'informacionVehiculoTitular_Dal', 'migrate' : True},
-        'TABLA_INFORMACIORADICACION': {'numero': 40, 'objeto': 'informacionRadicacion_Dal', 'migrate' : True},
-        'TABLA_PIE': {'numero': 41, 'objeto': 'pie_Dal', 'migrate' : True},
-        'TABLA_TRAMITESGENERALES': {'numero': 42, 'objeto': 'tramitesGenerales_Dal', 'migrate' : True},
-        'TABLA_TRAMITESGENERALESTITULARES': {'numero': 43, 'objeto': 'tramitesGeneralesTitular_Dal', 'migrate' : True},
-        'TABLA_RECEPCIONARCHIVOS': {'numero': 44, 'objeto': 'recepcionArchivos_Dal', 'migrate': False},
-        'TABLA_TMPINFORMACIONVEHICULO': {'numero': 45, 'objeto': 'tmpInformacionVehiculo_Dal', 'migrate': False},
-        'TABLA_TMPINFORMACIONVEHICULOTITULAR': {'numero': 46, 'objeto': 'tmpInformacionVehiculoTitular_Dal', 'migrate': False},
-        'TABLA_RELACION_ARBA_SUCERP_MARCA': {'numero': 47, 'objeto': 'relArbaSucerpMarca_Dal', 'migrate': False},
-        'TABLA_PROCESOIMPORTACIONEXPORTACION': {'numero': 48, 'objeto': 'procesoImportacionExportacion_Dal', 'migrate': True},
-        'TABLA_API_LOG': {'numero': 49, 'objeto': 'apiLog_Dal', 'migrate': False},
-        'TABLA_RECEPCION_TEXTO': {'numero': 50, 'objeto': 'recepcionTexto_Dal', 'migrate': False},
+        'TABLA_INFORMACIONVEHICULOTITULAR': {'numero': 39, 'objeto': 'informacionVehiculoTitular_Dal', 'migrate' : False, 'shortname': 'INFOR00002',},
+        'TABLA_INFORMACIORADICACION': {'numero': 40, 'objeto': 'informacionRadicacion_Dal', 'migrate' : False, 'shortname': 'INFOR00003',},
+        'TABLA_PIE': {'numero': 41, 'objeto': 'pie_Dal', 'migrate' : False, 'shortname': None,},
+        'TABLA_TRAMITESGENERALES': {'numero': 42, 'objeto': 'tramitesGenerales_Dal', 'migrate' : False, 'shortname': 'TRAMI00002',},
+        'TABLA_TRAMITESGENERALESTITULARES': {'numero': 43, 'objeto': 'tramitesGeneralesTitular_Dal', 'migrate' : False, 'shortname': 'TRAMI00001',},
+        'TABLA_RECEPCIONARCHIVOS': {'numero': 44, 'objeto': 'recepcionArchivos_Dal', 'migrate': False, 'shortname': None,},
+        'TABLA_TMPINFORMACIONVEHICULO': {'numero': 45, 'objeto': 'tmpInformacionVehiculo_Dal', 'migrate': False, 'shortname': None,},
+        'TABLA_TMPINFORMACIONVEHICULOTITULAR': {'numero': 46, 'objeto': 'tmpInformacionVehiculoTitular_Dal', 'migrate': False, 'shortname': None,},
+        'TABLA_RELACION_ARBA_SUCERP_MARCA': {'numero': 47, 'objeto': 'relArbaSucerpMarca_Dal', 'migrate': False, 'shortname': 'RELAC00001',},
+        'TABLA_PROCESOIMPORTACIONEXPORTACION': {'numero': 48, 'objeto': 'procesoImportacionExportacion_Dal', 'migrate': True, 'shortname': 'PROCE00001',},
+        'TABLA_API_LOG': {'numero': 49, 'objeto': 'apiLog_Dal', 'migrate': False, 'shortname': None,},
+        'TABLA_RECEPCION_TEXTO': {'numero': 50, 'objeto': 'recepcionTexto_Dal', 'migrate': False, 'shortname': 'RECEP00001',},
+        'TABLA_RECEPLOG': {'numero': 51, 'objeto': 'recepLog_Dal', 'migrate': False, 'shortname': None,},
+        'TABLA_MENSAJESERROR': {'numero': 52, 'objeto': 'mensajeError_Dal', 'migrate': False, 'shortname': None,},
+        'TABLA_MSGNIVELGRAVEDAD': {'numero': 53, 'objeto': 'msgNivelGravedad_Dal', 'migrate': False, 'shortname': None,},
+        'TABLA_MENSAJESERRORMSGDINAMICOS': {'numero': 54, 'objeto': 'mensajesErrorMsgdDinamicos_Dal', 'migrate': False, 'shortname': None,},
+        'TABLA_IMPRESIONPDF': {'numero': 55, 'objeto': 'impresionPdf_Dal', 'migrate': False, 'shortname': None,},
+
     }
-
-
 
     # Tablas Objeto Nombre
     APITOKENUSER                = 'apiTokenUser'
-
-
 
     # Switch Render Template
     SWITCH_RENDER_TEMPLATE = True

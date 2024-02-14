@@ -10,13 +10,15 @@ except Exception as e:
 # Atributos del Esquema Matanza
 class AtributosMatanza():
 
-    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    # Constructor
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    #   tablaMaut(self)
+
+
     def __init__(self):
         pass
 
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    # Tabla Maut
+    # TABLA MATANZA.TMAUT
     def tablaMaut(self):
         """
              WE RETURN: \n
@@ -121,12 +123,18 @@ class AtributosMatanza():
         except Exception as e:
             print(f'Error - AtributosMatanza tablaMaut {e}')
 
-# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 class AtributosGx():
+
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    #   tablaImpresionPdf(self)
+    #   tablaMensajesErrorMsgDinamicos(self)
+    #   tablaMensajesError(self)
+    #   tablaNivelGravedad(self)
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
     def __init__(self):
         pass
-
 
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     # Tabla de Impresion Pdf
@@ -238,7 +246,6 @@ class AtributosGx():
         except Exception as e:
             print(f'Error - tablaMensajesError {e}')
 
-
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     # Tabla de Nivel de Gravedad
     def tablaNivelGravedad(self):
@@ -268,12 +275,67 @@ class AtributosGx():
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 class AtributosSucerp():
 
+
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    #   tablaApiLog(self)
+    #   tablaRecepcionTexto(self)
+    #   tablaTipoRegistro(self)
+    #   tablaTipoSubRegistro(self)
+    #   tablaTipoCuerpo(self)
+    #   tablaTipoTitular(self)
+    #   tablaTipoOrigen(self)
+    #   tablaTipoMovimiento(self) 
+    #   tablaTipoPago(self)
+    #   tablaTipoMoneda(self)
+    #   tablaTipoDocumento(self)
+    #   tablaProvincias(self)
+    #   tablaEstado(self)
+    #   tablaTipoCuota(self) 
+    #   tablaEncabezado(self)
+    #   tablaAltaImpositiva(self)
+    #   tablaAltaImpositivaTitular(self)
+    #   tablaRelArbaSucerpMarca(self)
+    #   tablaProcesoImportacionExportacion(self)
+    #   tablaRecepLog(self)
+    #   tablaMensajeError(self)
+    #   tablaMensajeNivelGravedad(self)
+    #   tablaMensajesErrorMsgdDinamicos(self)     
+    #   tablaImpresionPdf(self)
+    #   tablaBajaImpositiva(self)
+    #   tablaBajaImpositivaTitular(self)
+    #   tablaImpuestosSellos(self)
+    #   tablaImpuestosSellosPartes(self)
+    #   tablaImpuestosSellosPartesTipoTramite(self)
+    #   tablaImpuestoAutomotor(self)
+    #   tablaInformacionVehiculo(self)
+    #   tablaInformacionVehiculoTitular(self)
+    #   tablaTmpInformacionVehiculo(self)
+    #   tablaTmpInformacionVehiculoTitular(self)
+    #   tablaCambioTitularidad(self)
+    #   tablaCambioTitularidadTitular(self)     
+    #   tablaInformacionRadicacion(self)
+    #   tablaAnulacionTramitesSellos(self)
+    #   tablaAnulacionTramitesSellosDetalle(self)
+    #   tablaTramitesGenerales(self)
+    #   tablaTramitesGeneralesTitulares(self)
+    #   tablaPie(self)     
+    #   tablaApiAumoso(self)
+    #   tablaApiEstados(self)
+    #   tablaRecepcionArchivos(self)
+    #   tablaRecepcionTexto(self) 
+    #   tablaRecepLog(self) 
+    #   tablaApiTareas(self)
+    #   tablaApiEstadosTareas(self)
+    #   tablaApiRegistros(self)
+    #   tablaApiTokenUser(self)     
+    #   tablaApiToken(self)
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
      def __init__(self):
          pass
 
-
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Log de Errores del Apí
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA APILOG
      def tablaApiLog(self):
 
          """
@@ -312,9 +374,8 @@ class AtributosSucerp():
          except Exception as e:
              print(f'Error - tablaApiLog {e}')
 
-
      # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Recepcion de los archivos de Texto
+     # TABLA RECEPCIONTEXTO
      def tablaRecepcionTexto(self):
 
          """
@@ -353,12 +414,8 @@ class AtributosSucerp():
          except Exception as e:
              print(f'Error - tablaRecepcionTexto {e}')
 
-
-
-
-
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla Tipo de Registro para la ultima version de Recepcion de Datos
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA TIPOREGISTRO
      def tablaTipoRegistro(self):
 
         """
@@ -395,9 +452,8 @@ class AtributosSucerp():
         except Exception as e:
             print(f'Error - tablaTipoRegistro {e}')
 
-
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla Tipo de Sub Registro
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA TIPORSUBEGISTRO
      def tablaTipoSubRegistro(self):
          """
          DEFINITION OF THE SUBREGISTRY TYPE TABLE \n
@@ -434,9 +490,8 @@ class AtributosSucerp():
          except Exception as e:
                 print(f'Error - tablaTipoSubRegistro {e}')
 
-
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla Tipo de Cuerpo
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA TIPOCUERPO
      def tablaTipoCuerpo(self):
          """
          BODY TYPE TABLE DEFINITION\n
@@ -474,8 +529,8 @@ class AtributosSucerp():
          except Exception as e:
                 print(f'Error - tablaTipoCuerpo {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla Tipo de Titular
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA TIPOTITULAR
      def tablaTipoTitular(self):
          """
          DEFINITION OF THE HOLDER TYPE TABLE \n
@@ -513,9 +568,8 @@ class AtributosSucerp():
          except Exception as e:
                 print(f'Error - tablaTipoTitular {e}')
 
-
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla Tipo de Origen
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA TIPOORIGEN
      def tablaTipoOrigen(self):
          """
          DEFINITION OF THE TYPE OF ORIGIN TABLE \n
@@ -553,8 +607,8 @@ class AtributosSucerp():
          except Exception as e:
                 print(f'Error - tablaTipoOrigen {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla Tipo de Movimiento
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA TIPOMOVIMIENTO
      def tablaTipoMovimiento(self):
          """
          DEFINITION OF THE MOVEMENT TYPE TABLE \n
@@ -591,8 +645,8 @@ class AtributosSucerp():
          except Exception as e:
                 print(f'Error - tablaTipoMovimiento {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla Forma de Pago
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA TIPOPAGO
      def tablaTipoPago(self):
          """
          DEFINITION OF THE PAYMENT TYPE TABLE \n
@@ -631,8 +685,8 @@ class AtributosSucerp():
          except Exception as e:
                 print(f'Error - tablaTipoPago {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla Tipo de Moneda
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA TIPOMONEDA
      def tablaTipoMoneda(self):
 
          """
@@ -671,8 +725,8 @@ class AtributosSucerp():
          except Exception as e:
                 print(f'Error - tablaTipoMoneda {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla Tipo de Documento
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA TIPODOCUMENTO
      def tablaTipoDocumento(self):
 
          """
@@ -710,8 +764,8 @@ class AtributosSucerp():
          except Exception as e:
                 print(f'Error - tablaTipoDocumento {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Provincias
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA PROVINCIAS
      def tablaProvincias(self):
 
          """
@@ -749,9 +803,8 @@ class AtributosSucerp():
          except Exception as e:
                 print(f'Error - tablaProvincias {e}')
 
-
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Estado
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA ESTADO
      def tablaEstado(self):
 
          """
@@ -789,9 +842,8 @@ class AtributosSucerp():
          except Exception as e:
                 print(f'Error - tablaEstado {e}')
 
-
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Tipo de Cuota
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA TIPOPAGO
      def tablaTipoCuota(self):
 
          """
@@ -829,8 +881,8 @@ class AtributosSucerp():
          except Exception as e:
                 print(f'Error - tablaTipoCuota {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Encabezado de la ultima version de la Recepción de Datos de Sucerp
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA ENCABEZADO
      def tablaEncabezado(self):
 
          """
@@ -877,7 +929,7 @@ class AtributosSucerp():
              # We get the migrate parameter
              migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_ENCABEZADO']['migrate']
 
-             # table construction parameters
+             # table construction parameters Nombre en el sistema ENCABEZADO
              parm = {
                  'name': 'ENCABEZADO',
                  'fields': tuple(lista),
@@ -890,9 +942,8 @@ class AtributosSucerp():
          except Exception as e:
                 print(f'Error - tablaEncabezado {e}')
 
-
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Alta Impositiva de la ultima  version de Recepción de Datos de Sucerp
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA ALTAIMPOSITIVA
      def tablaAltaImpositiva(self):
 
          """
@@ -1068,7 +1119,7 @@ class AtributosSucerp():
              # We get the migrate parameter
              migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_ALTAIMPOSITIVA']['migrate']
 
-             # table construction parameters
+             # table construction parameters Nombre en el sistems ALTAI00002
              parm = {
                 'name': 'ALTAIMPOSITIVA',
                  'fields': tuple(lista),
@@ -1081,9 +1132,8 @@ class AtributosSucerp():
          except Exception as e:
              print(f'Error - tablaAltaImpositiva {e}')
 
-
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Arba and Sucerp Brand Relationship Table
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA RELACIONARBASUCERPMARCA
      def tablaRelArbaSucerpMarca(self):
 
          """
@@ -1126,10 +1176,8 @@ class AtributosSucerp():
          except Exception as e:
              print(f'Error - tablaRelArbaSucerpMarca {e}')
 
-
-
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Procesos de Importacion y Exportacion
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA PROCESOIMPORTACIONEXPORTACION
      def tablaProcesoImportacionExportacion(self):
 
          """
@@ -1159,6 +1207,7 @@ class AtributosSucerp():
              # We get the migrate parameter
              migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_PROCESOIMPORTACIONEXPORTACION']['migrate']
 
+            # table construction parameters Nombre en el sistema PROCE00005
              parm = {
                 'name': 'PROCESOIMPORTACIONEXPORTACION',
                  'fields': tuple(lista),
@@ -1170,9 +1219,255 @@ class AtributosSucerp():
          except Exception as e:
              print(f'Error - tablaRelArbaSucerpMarca {e}')
 
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA RECEPLOG
+     def tablaRecepLog(self):
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Alta Impositiva Titular de la ultima version de la Recepción de Datos de Sucerp
+         """
+         DEFINITION OF IMPORTEXPORT PROCESS TABLE\n
+         WE RETURN: \n
+            TABLE NAME \n
+            STRUCTURE FIELDS \n
+            CONSTRUCTION ARGUMENTS \n
+
+         """
+         try:
+
+             lista, primary, parm = list(), list(), dict()
+
+             # field list
+             lista = [
+                 #
+                 # Id de identificación del registro
+                 Field('receplogid', type='id', comment='Id'),
+                 #
+                 # Nombre del archivo recibido
+                 Field('archivorecibido', type='string', length=120, required=True, comment='Archivo recibido de Sucerp'),
+                 #
+                 # Nombre del formato procesado
+                 Field('fromatoprocesado', type='string', length=4, required=True, comment='Formato procesado'),
+                 #
+                 # Numero de orden dentro del formato con error
+                 Field('numerocampoformato', type='integer', required=True, comment='Numero de campo en el formato'),
+                 #
+                 # Fecha de incorporación del registro
+                 Field('ktimestamp', type='datetime', required=True, comment='Timestamp')
+             ]
+
+             # We get the migrate parameter
+             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_RECEPLOG']['migrate']
+
+            # table construction parameters Nombre en el sistema PROCE00005
+             parm = {
+                'name': 'RECEPLOG',
+                 'fields': tuple(lista),
+                 'arg': {'migrate': migrate},
+                 'sqlfldtexto': True
+             }
+             return parm
+
+         except Exception as e:
+             print(f'Error - tablaRecepLog {e}')
+
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA GXPROD.MENSAJESERROR
+     def tablaMensajeError(self):
+
+         """
+         DEFINITION OF MENSAJESERROR TABLE\n
+         WE RETURN: \n
+            TABLE NAME \n
+            STRUCTURE FIELDS \n
+            CONSTRUCTION ARGUMENTS \n
+
+         """
+         try:
+
+            lista, primary, parm = list(), list(), dict()
+
+            # field list
+            lista = [
+                #
+                # Codigo del Mensaje
+                Field('MSGCODE', type='string', length=7, required=True, label='Mensaje Codigo'),
+                #
+                # Descripcion del Mensaje
+                Field('MSGDESCRIPCION', type='string', length=150, required=True, label='Descripcion'),
+                #
+                # Ayuda del Mensaje
+                Field('MSGHELP', type='string', length=1024, required=True, label='Ayuda Mensaje'),
+                #
+                # Nivel de Gravedad del Mensaje
+                Field('NIVELGRAVEDADID', 'reference MSGNIVELGRAVEDAD', label='Id', ondelete='CASCADE')
+
+            ]
+
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_MENSAJESERROR']['migrate']
+
+            # Primary Key list
+            primary = ['MSGCODE']
+
+        # table construction parameters Nombre en el sistema MENSA00001
+            parm = {
+            'name': 'MENSAJESERROR',
+                'fields': tuple(lista),
+                'arg': {'primarykey': primary, 'migrate': migrate},                
+                'sqlfldtexto': True
+            }
+            return parm
+
+         except Exception as e:
+             print(f'Error - tablaMensajeError {e}')
+
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA GXPROD.MSGNIVELGRAVEDAD
+     def tablaMensajeNivelGravedad(self):
+
+         """
+         DEFINITION OF MSGNIVELGRAVEDAD TABLE\n
+         WE RETURN: \n
+            TABLE NAME \n
+            STRUCTURE FIELDS \n
+            CONSTRUCTION ARGUMENTS \n
+
+         """
+         try:
+
+            lista, primary, parm = list(), list(), dict()
+
+            # field list
+            lista = [
+                #
+                # Id de Nivel de Greabedad  del Mensaje
+                Field('NIVELGRAVEDADID', type='id', label='Id'),
+                #
+                # Descripcion del Mensaje
+                Field('NIVELGRAVEDADDESCRIPCION', type='string', length=50, required=True, label='Descripcion'),
+                #
+                # Ayuda del Mensaje
+                Field('MSGNIVELGRAVEDADALERTA', type='string', length=50, required=True, label='Ayuda Mensaje'),
+
+            ]
+
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_MSGNIVELGRAVEDAD']['migrate']
+
+
+        # table construction parameters Nombre en el sistema MSGNI00001
+            parm = {
+            'name': 'MSGNIVELGRAVEDAD',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},                
+                'sqlfldtexto': True
+            }
+            return parm
+
+         except Exception as e:
+             print(f'Error - tablaMensajeNivelGravedad {e}')
+
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA GXPROD.MENSAJESERRORMSGDINAMICOS
+     def tablaMensajesErrorMsgdDinamicos(self):
+
+         """
+         DEFINITION OF MENSAJESERROR TABLE\n
+         WE RETURN: \n
+            TABLE NAME \n
+            STRUCTURE FIELDS \n
+            CONSTRUCTION ARGUMENTS \n
+
+         """
+         try:
+
+            lista, primary, parm = list(), list(), dict()
+
+            # field list
+            lista = [
+                #
+                # Codigo del Mensaje
+                Field('MSGCODE', type='integer', required=True, label='Codigo del Mensaje'),
+                #
+                # Mensaje Dinamoco Id
+                Field('MSGDINAMICOID', type='integer', required=True, label='Mensaje Dinamico Id'),
+                #
+                # Longitud del Mensaje dinamico
+                Field('MSGDINAMICOLEN', type='integer', required=True, label='Longitud Mensaje Dinamico'),
+
+            ]
+
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_MENSAJESERROR']['migrate']
+
+            # Primary Key list
+            primarykey=['MSGCODE', 'MSGDINAMICOID']
+
+        # table construction parameters Nombre en el sistema MENSA00002
+            parm = {
+            'name': 'MENSAJESERRORMSGDINAMICOS',
+                'fields': tuple(lista),
+                'arg': {'primarykey': primary, 'migrate': migrate},                
+                'sqlfldtexto': True
+            }
+            return parm
+
+         except Exception as e:
+             print(f'Error - tablaMensajeError {e}')
+
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA GXPROD.IMPRESIONPDF
+     def tablaImpresionPdf(self):
+
+        """
+        DEFINITION OF IMPRESIONPDF TABLE\n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
+
+        """
+        try:
+
+            lista, primary, parm = list(), list(), dict()
+
+            # field list
+            lista = [
+                #
+                # Id de Impresion PDF
+                Field('IMPRESIONID', type='id', label='Inmpresion Id'),
+                #
+                # Parametro Uno
+                Field('IMPRESIONPRMUNO', type='string', length=512, required=True, label='Parametro Uno'),
+                #
+                # Parametro Dos
+                Field('IMPRESIONPRMDOS', type='string', length=512, required=True, label='Parametro Dos'),
+                #
+                # Usuario
+                Field('IMPRESIONUSUARIO', type='string', length=10, required=True, label='Usuario'),
+                #
+                # Fecha
+                Field('IMPRESIONFECHA', type='datetime', required=True, label='Fecha'),
+
+            ]
+
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_IMPRESIONPDF']['migrate']
+
+
+            # table construction parameters Nombre en el sistema IMPRE00001
+            parm = {
+            'name': 'IMPRESIONPDF',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},                
+                'sqlfldtexto': True
+            }
+            return parm
+
+        except Exception as e:
+            print(f'Error - tablaImpresionPdf {e}')
+
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA ALTAIMPOSITIVATITULAR
      def tablaAltaImpositivaTitular(self):
 
          """
@@ -1248,7 +1543,7 @@ class AtributosSucerp():
              # We get the migrate parameter
              migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_ALTAIMPOSITIVATITULAR']['migrate']
 
-            # table construction parameters
+            # table construction parameters Nombre en el sistema ALTAI00001
              parm = {
                  'name': 'ALTAIMPOSITIVATITULAR',
                  'fields': tuple(lista),
@@ -1261,8 +1556,8 @@ class AtributosSucerp():
          except Exception as e:
              print(f'Error - tablaAltaImpositivaTitular {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Baja Impositiva de la ultima version de la Recepción de Datos de Sucerp
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA BAJAIMPOSITIVA
      def tablaBajaImpositiva(self):
 
          """
@@ -1403,7 +1698,7 @@ class AtributosSucerp():
              # We get the migrate parameter
              migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_BAJAIMPOSITIVA']['migrate']
 
-             # table construction parameters
+             # table construction parameters Nombre en el sistema BAJAI00002
              parm = {
                  'name': 'BAJAIMPOSITIVA',
                  'fields': tuple(lista),
@@ -1416,9 +1711,8 @@ class AtributosSucerp():
          except Exception as e:
              print(f'Error - tablaBajaImpositiva {e}')
 
-
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Alta Impositiva Titular de la ultima version de la Recepción de Datos de Sucerp
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA BAJAIMPOSITIVATITULAR
      def tablaBajaImpositivaTitular(self):
 
          """
@@ -1494,7 +1788,7 @@ class AtributosSucerp():
              # We get the migrate parameter
              migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_BAJAIMPOSITIVATITULAR']['migrate']
 
-             # table construction parameters
+             # table construction parameters Nombre en el sistema BAJAI00001
              parm = {
                  'name': 'BAJAIMPOSITIVATITULAR',
                  'fields': tuple(lista),
@@ -1507,8 +1801,8 @@ class AtributosSucerp():
          except Exception as e:
              print(f'Error - tablaBajaImpositivaTitular {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Impuestos  de Sellos de la ultima version de la Recepción de Datos de Sucerp
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA IMPUESTOSELLOS
      def tablaImpuestosSellos(self):
 
          """
@@ -1672,7 +1966,7 @@ class AtributosSucerp():
              # We get the migrate parameter
              migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_IMPUESTOSELLOS']['migrate']
 
-             # table construction parameters
+             # table construction parameters Nombre en el sistema IMPUE00001
              parm = {
                  'name': 'IMPUESTOSELLOS',
                  'fields': tuple(lista),
@@ -1685,8 +1979,8 @@ class AtributosSucerp():
          except Exception as e:
              print(f'Error - tablaImpuestosSellos {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Impuestos  de Sellos Partes de la ultima version de la Recepción de Datos de Sucerp
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA IMPUESTOSELLOSPARTES
      def tablaImpuestosSellosPartes(self):
 
          """
@@ -1783,7 +2077,7 @@ class AtributosSucerp():
              # We get the migrate parameter
              migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_IMPUESTOSELLOSPARTES']['migrate']
 
-             # table construction parameters
+             # table construction parameters Nombre en el sistema IMPUE00002
              parm = {
                  'name': 'IMPUESTOSELLOSPARTES',
                  'fields': tuple(lista),
@@ -1796,8 +2090,8 @@ class AtributosSucerp():
          except Exception as e:
              print(f'Error - tablaImpuestosSellosPartes {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Impuestos  de Sellos Partes Tipo Tramite de la ultima version de la Recepción de Datos de Sucerp
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA IMPUESTOSELLOSPARTESTIPOTRAMITE
      def tablaImpuestosSellosPartesTipoTramite(self):
 
          """
@@ -1882,7 +2176,7 @@ class AtributosSucerp():
              # We get the migrate parameter
              migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_IMPUESTOSELLOSPARTESTIPOTRAMITE']['migrate']
 
-             # table construction parameters
+             # table construction parameters Nombre en el sistema IMPUE00003
              parm = {
                  'name': 'IMPUESTOSELLOSPARTESTIPOTRAMITE',
                  'fields': tuple(lista),
@@ -1895,8 +2189,8 @@ class AtributosSucerp():
          except Exception as e:
              print(f'Error - tablaImpuestosSellosPartesTipoTramite {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Impuesto  Automotor de la ultima version de la Recepción de Datos de Sucerp
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA IMPUESTOAUTOMOTOR
      def tablaImpuestoAutomotor(self):
 
          """
@@ -2010,7 +2304,7 @@ class AtributosSucerp():
              # We get the migrate parameter
              migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_IMPUESTOAUTOMOTOR']['migrate']
 
-             # table construction parameters
+             # table construction parameters Nombre en el sistema IMPUE00004
              parm = {
                  'name': 'IMPUESTOAUTOMOTOR',
                  'fields': tuple(lista),
@@ -2022,8 +2316,8 @@ class AtributosSucerp():
          except Exception as e:
              print(f'Error - tablaImpuestoAutomotor {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Informacion de Vehiculo de la ultima version de la Recepción de Datos de Sucerp
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA INFORMACIONVEHICULO
      def tablaInformacionVehiculo(self):
 
          """
@@ -2166,7 +2460,7 @@ class AtributosSucerp():
              # We get the migrate parameter
              migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_INFORMACIONVEHICULO']['migrate']
 
-             # table construction parameters
+             # table construction parameters Nombre en el sistema INFOR00001
              parm = {
                  'name': 'INFORMACIONVEHICULO',
                  'fields': tuple(lista),
@@ -2179,8 +2473,8 @@ class AtributosSucerp():
          except Exception as e:
              print(f'Error - tablaInformacionVehiculo {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Informacion de Vehiculo del Titular de la ultima version de la Recepción de Datos de Sucerp
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA INFORMACIONVEHICULOTITULAR
      def tablaInformacionVehiculoTitular(self):
 
          """
@@ -2271,9 +2565,8 @@ class AtributosSucerp():
          except Exception as e:
              print(f'Error - tablaInformacionVehiculoTitular {e}')
 
-
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Temporal Informacion de Vehiculo No tiene Id porque no va ser una tabla definida con DDS
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA TMPINFORMACIONVEHICULO
      def tablaTmpInformacionVehiculo(self):
 
          """
@@ -2432,8 +2725,8 @@ class AtributosSucerp():
          except Exception as e:
              print(f'Error - tablaTmpInformacionVehiculo {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Temporal Informacion de Vehiculo Titular No tiene Id porque no va ser una tabla definida con DDS
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA TMPINFORMACIONVEHICULOTITULAR
      def tablaTmpInformacionVehiculoTitular(self):
 
          """
@@ -2543,9 +2836,8 @@ class AtributosSucerp():
          except Exception as e:
              print(f'Error - tablaTmpInformacionVehiculoTitular {e}')
 
-
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Cambio de Titularidad de la ultima version de la Recepción de Datos de Sucerp
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA CAMBIOTITULARIDAD
      def tablaCambioTitularidad(self):
          """
           DEFINITION OF THE CHANGE OF OWNERSHIP TABLE \n
@@ -2710,7 +3002,7 @@ class AtributosSucerp():
              # We get the migrate parameter
              migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_CAMBIOTITULARIDAD']['migrate']
 
-             # table construction parameters
+             # table construction parameters Nombre en el sistema CAMBI00003
              parm = {
                  'name': 'CAMBIOTITULARIDAD',
                  'fields': tuple(lista),
@@ -2723,9 +3015,8 @@ class AtributosSucerp():
          except Exception as e:
              print(f'Error - tablaCambioTitularidad {e}')
 
-
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Cambio de Titularidad Titular de la ultima version de la Recepción de Datos de Sucerp
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA CAMBIOTITULARIDADTITULAR
      def tablaCambioTitularidadTitular(self):
 
          """
@@ -2804,7 +3095,7 @@ class AtributosSucerp():
              # We get the migrate parameter
              migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_CAMBIOTITULARIDADTITULAR']['migrate']
 
-             # table construction parameters
+             # table construction parameters Nombre en el sistema CAMBI00002
              parm = {
                  'name': 'CAMBIOTITULARIDADTITULAR',
                  'fields': tuple(lista),
@@ -2817,9 +3108,8 @@ class AtributosSucerp():
          except Exception as e:
              print(f'Error - tablaCambioTitularidadTitular {e}')
 
-
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Informacion de Radicacion de la ultima version de la Recepción de Datos de Sucerp
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA INFORMACIORADICACION
      def tablaInformacionRadicacion(self):
 
          """
@@ -2885,7 +3175,7 @@ class AtributosSucerp():
              # We get the migrate parameter
              migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_INFORMACIORADICACION']['migrate']
 
-             # table construction parameters
+             # table construction parameters Nombre en el sistema INFOR00003
              parm = {
                  'name': 'INFORMACIORADICACION',
                  'fields': tuple(lista),
@@ -2898,8 +3188,8 @@ class AtributosSucerp():
          except Exception as e:
              print(f'Error - tablaInformacionRadicacion {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Anulacion de Tramites de Sellos de la ultima version de la Recepción de Datos de Sucerp
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA ANULACIONTRAMITESSELLOS
      def tablaAnulacionTramitesSellos(self):
 
          """
@@ -3052,7 +3342,7 @@ class AtributosSucerp():
              # We get the migrate parameter
              migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_ANULACIONTRAMITESSELLOS']['migrate']
 
-             # table construction parameters
+             # table construction parameters Nombre en el sistema ANULA00001
              parm = {
                  'name': 'ANULACIONTRAMITESSELLOS',
                  'fields': tuple(lista),
@@ -3065,9 +3355,8 @@ class AtributosSucerp():
          except Exception as e:
              print(f'Error - tablaAnulacionTramitesSellos {e}')
 
-
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Anulacion de Tramites de Sellos Detalle de la ultima version de la Recepción de Datos de Sucerp
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA ANULACIONTRAMITESSELLOSDETALLE
      def tablaAnulacionTramitesSellosDetalle(self):
 
          """
@@ -3133,7 +3422,7 @@ class AtributosSucerp():
              # We get the migrate parameter
              migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_ANULACIONTRAMITESSELLOSDETALLE']['migrate']
 
-             # table construction parameters
+             # table construction parameters Nombre en el sistema ANULA00002
              parm = {
                  'name': 'ANULACIONTRAMITESSELLOSDETALLE',
                  'fields': tuple(lista),
@@ -3146,8 +3435,8 @@ class AtributosSucerp():
          except Exception as e:
              print(f'Error - tablaAnulacionTramitesSellosDetalle {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Tramites Generales de la ultima version de la Recepción de Datos de Sucerp
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA TRAMITESGENERALES
      def tablaTramitesGenerales(self):
 
          """
@@ -3284,7 +3573,7 @@ class AtributosSucerp():
              # We get the migrate parameter
              migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TRAMITESGENERALES']['migrate']
 
-             # table construction parameters
+             # table construction parameters Nombre en el sistema TRAMI00002
              parm = {
                  'name': 'TRAMITESGENERALES',
                  'fields': tuple(lista),
@@ -3297,9 +3586,8 @@ class AtributosSucerp():
          except Exception as e:
              print(f'Error - tablaTramitesGenerales {e}')
 
-
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Tramites Generales Titulares de la ultima version de la Recepción de Datos de Sucerp
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA TRAMITESGENERALESTITULARES
      def tablaTramitesGeneralesTitulares(self):
 
          """
@@ -3378,7 +3666,7 @@ class AtributosSucerp():
              # We get the migrate parameter
              migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TRAMITESGENERALESTITULARES']['migrate']
 
-             # table construction parameters
+             # table construction parameters Nombre en el sistema TRAMI00001
              parm = {
                  'name': 'TRAMITESGENERALESTITULARES',
                  'fields': tuple(lista),
@@ -3391,9 +3679,8 @@ class AtributosSucerp():
          except Exception as e:
              print(f'Error - tablaTramitesGeneralesTitulares {e}')
 
-
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Pie de la ultima version de la Recepción de Datos de Sucerp
+     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     # TABLA PIE
      def tablaPie(self):
 
          """
@@ -3434,7 +3721,7 @@ class AtributosSucerp():
              # We get the migrate parameter
              migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_PIE']['migrate']
 
-             # table construction parameters
+             # table construction parameters Nombre en el sistema PIE
              parm = {
                  'name': 'PIE',
                  'fields': tuple(lista),
@@ -3447,9 +3734,8 @@ class AtributosSucerp():
          except Exception as e:
              print(f'Error - tablaPie {e}')
 
-
      # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla para Responder al Api
+     # TABLA APIAUMOSO
      def tablaApiAumoso(self):
 
          """
@@ -3511,9 +3797,8 @@ class AtributosSucerp():
          except Exception as e:
              print(f'Error - tablaApiAumoso {e}')
 
-
      # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Control de Estados para Responder al Api
+     # TABLA APIESTADOS
      def tablaApiEstados(self):
 
          """
@@ -3530,11 +3815,11 @@ class AtributosSucerp():
 
              # fields list
              lista = [
-                Field('apiestadosid', type='id', required=True, comment='Id'),
-                Field('apiestadodescripcion', unique=True, type='string', length=100, required=True, comment='Descr Token Api Estado'),
-                Field('apiusercrt',               type='string', length=10,   required=True, comment='Token Api User Create'),
+                Field('apiestadosid',          type='id', required=True, comment='Id'),
+                Field('apiestadodescripcion',  unique=True, type='string', length=100, required=True, comment='Descr Token Api Estado'),
+                Field('apiusercrt',            type='string', length=10,   required=True, comment='Token Api User Create'),
                 Field('tokenusercrttimestamp', type='datetime', required=True, comment='Token Api User Crt Time Stamp'),
-                Field('apiuserdlt',               type='string', length=10,   required=True, comment='Token Api User Delete'),
+                Field('apiuserdlt',            type='string', length=10,   required=True, comment='Token Api User Delete'),
                 Field('tokenuserdlttimestamp', type='datetime', required=True, comment='Token Api User Dlt Time Stamp'),
              ]
 
@@ -3555,9 +3840,8 @@ class AtributosSucerp():
              print(f'Error - tablaApiEstados {e}')
 
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Log de Errores del Apí
-     def tablaApiLog(self):
+
+
 
          """
           API LOG TABLE DEFINITION \n
@@ -3594,7 +3878,6 @@ class AtributosSucerp():
 
          except Exception as e:
              print(f'Error - tablaApiLog {e}')
-
 
      # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
      # Tabla de Control de Archivos Recibidos de Sucerp
@@ -3636,10 +3919,8 @@ class AtributosSucerp():
          except Exception as e:
              print(f'Error - tablaApiEstados {e}')
 
-
-
      # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Control de Tareas para Responder al Api
+     # TABLA APITAREAS
      def tablaApiTareas(self):
 
          """
@@ -3681,7 +3962,7 @@ class AtributosSucerp():
              print(f'Error - tablaApiTareas {e}')
 
      # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Control de Estados Tareas para Responder al Api
+     # TABLA APIESTADOSTAREAS
      def tablaApiEstadosTareas(self):
 
          """
@@ -3721,7 +4002,7 @@ class AtributosSucerp():
              print(f'Error - tablaApiEstadosTareas {e}')
 
      # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Control de Token Registros para Responder al Api
+     # TABLA APIREGISTROS
      def tablaApiRegistros(self):
 
          """
@@ -3765,7 +4046,7 @@ class AtributosSucerp():
              print(f'Error - tablaApiRegistros {e}')
 
      # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Control de Token Usuario para Responder al Api
+     # TABLA APITOKENUSER
      def tablaApiTokenUser(self):
 
          """
@@ -3816,7 +4097,7 @@ class AtributosSucerp():
              print(f'Error - tablaApiTokenUser {e}')
 
      # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Control de Token para Responder al Api
+     # TABLA APITOKEN
      def tablaApiToken(self):
 
          """
