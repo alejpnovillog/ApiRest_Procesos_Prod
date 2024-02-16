@@ -10,51 +10,7 @@ except Exception as e:
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # Lista de tablas a crear
-lista_tablas = [
-    'TABLA_ESTADO',                             # Tabla de referencia
-    'TABLA_PROVINCIA',                          # Tabla de referencia
-    'TABLA_TIPO_CUERPO',                        # Tabla de referencia
-    'TABLA_TIPO_CUOTA',                         # Tabla de referencia
-    'TABLA_TIPO_DOCUMENTO',                     # Tabla de referencia
-    'TABLA_TIPO_MONEDA',                        # Tabla de referencia
-    'TABLA_TIPO_MOVIMIENTO',                    # Tabla de referencia
-    'TABLA_TIPO_ORIGEN',                        # Tabla de referencia
-    'TABLA_TIPO_PAGO',                          # Tabla de referencia
-    'TABLA_TIPO_REGISTRO',                      # Tabla de referencia
-    'TABLA_TIPO_SUB_REGISTRO',                  # Tabla de referencia
-    'TABLA_TIPO_TITULAR',                       # Tabla de referencia
-    'TABLA_API_ESTADOS',                        # Tabla de referencia
-    'TABLA_API_TAREAS',                         # Tabla de referencia
-    'TABLA_API_LOG',                            # Tabla de referencia
-    'TABLA_PROCESOIMPORTACIONEXPORTACION',      # --------------------
-    'TABLA_RECEPCION_TEXTO',                    # ---------------------
-    'TABLA_RECEPLOG',                           # ---------------------
-    'TABLA_API_ESTADOS_TAREAS',                 # --------------------- 
-    'TABLA_API_REGISTROS',                      # --------------------- 
-    'TABLA_API_TOKEN_USER',                     # --------------------- 
-    'TABLA_API_TOKEN',                          # --------------------- 
-    'TABLA_ENCABEZADO',                         # --------------------- 
-    'TABLA_PIE',                                # ---------------------
-    'TABLA_ALTAIMPOSITIVATITULAR',              # ---------------------
-    'TABLA_ALTAIMPOSITIVA',                     # ---------------------
-    'TABLA_BAJAIMPOSITIVATITULAR',              # --------------------- 
-    'TABLA_BAJAIMPOSITIVA',                     # --------------------- 
-    'TABLA_ANULACIONTRAMITESSELLOS',            # --------------------- 
-    'TABLA_ANULACIONTRAMITESSELLOSDETALLE',     # --------------------- 
-    'TABLA_CAMBIOTITULARIDADTITULAR',           # --------------------- 
-    'TABLA_CAMBIOTITULARIDAD',                  # --------------------- 
-    'TABLA_INFORMACIONVEHICULO',                # --------------------- 
-    'TABLA_INFORMACIONVEHICULOTITULAR',         # --------------------- 
-    'TABLA_IMPUESTOAUTOMOTOR',                  # --------------------- 
-    'TABLA_INFORMACIORADICACION',               # --------------------- 
-    'TABLA_IMPUESTOSELLOS',                     # --------------------- 
-    'TABLA_IMPUESTOSELLOSPARTES',               # --------------------- 
-    'TABLA_IMPUESTOSELLOSPARTESTIPOTRAMITE',    # --------------------- 
-    'TABLA_TRAMITESGENERALESTITULARES',         # --------------------- 
-    'TABLA_TRAMITESGENERALES',                  # --------------------- 
-    'TABLA_API_AUMOSO',                         # --------------------- 
-    'TABLA_RELACION_ARBA_SUCERP_MARCA',         # --------------------- 
-]
+lista_tablas = ConfigurarAplicacion.TABLAS_CREACION
 
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -63,6 +19,8 @@ def eliminarTablas():
 
     try:
 
+        global lib
+
         for elemento in reversed(lista_tablas):
 
             # generamos la estructura de la tabla en la base de datos
@@ -70,6 +28,12 @@ def eliminarTablas():
 
             # obtenemos el nombre de la tabla
             file = valor._dalname
+            
+            # obtenemos el nombre del objeto tabla para journalizar
+            parm = list()
+            strsql = f"SELECT SYSTEM_TABLE_NAME FROM QSYS2.SYSTABLES WHERE TABLE_SCHEMA = '{lib.upper()}' AND TABLE_NAME = '{file}'"
+            ConfigurarAplicacion.LISTA_TABLAS[elemento]['shortname'] = data_Input.run_comando(strsql, *parm)[0][0]
+
 
             # averiguamos si tiene shortname
             if not ConfigurarAplicacion.LISTA_TABLAS[elemento]['shortname'] == None:
@@ -134,11 +98,18 @@ def creacionTablas():
 
             # eliminamos el archivo que indica la creacion de la tabla
             os.remove(valor._dbt)
+
+            # obtenemos el nombre del objeto tabla para journalizar
+            file = valor._dalname
+            parm = list()
+            strsql = f"SELECT SYSTEM_TABLE_NAME FROM QSYS2.SYSTABLES WHERE TABLE_SCHEMA = '{lib.upper()}' AND TABLE_NAME = '{file}'"
+            ConfigurarAplicacion.LISTA_TABLAS[elemento]['shortname'] = data_Input.run_comando(strsql, *parm)[0][0]
+            #file = file[0][0]
+
             print('-------------------------------------------------------------------- ')
             print(f'Nombre de la Tabla ({valor})')
 
-            # obtenemos el nombre de la tabla
-            file = valor._dalname
+
 
             # averiguamos si tiene shortname
             if not ConfigurarAplicacion.LISTA_TABLAS[elemento]['shortname'] == None:
@@ -200,7 +171,7 @@ iprod = JT400Helper(con['ip'], con['usuario'], con['password'])
 lib = con['schema']
 
 # realizamos la creacion de las tablas
-creacionTablas()
+#creacionTablas()
 
 # realizamos la eliminacion de las tablas
 eliminarTablas()

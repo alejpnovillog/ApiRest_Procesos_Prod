@@ -109,6 +109,53 @@ class ConfigurarAplicacion(object):
     TABLA_IMPRESIONPDF                    = 55
 
 
+    TABLAS_CREACION = [
+    'TABLA_ESTADO',                             # Tabla de referencia
+    'TABLA_PROVINCIA',                          # Tabla de referencia
+    'TABLA_TIPO_CUERPO',                        # Tabla de referencia
+    'TABLA_TIPO_CUOTA',                         # Tabla de referencia
+    'TABLA_TIPO_DOCUMENTO',                     # Tabla de referencia
+    'TABLA_TIPO_MONEDA',                        # Tabla de referencia
+    'TABLA_TIPO_MOVIMIENTO',                    # Tabla de referencia
+    'TABLA_TIPO_ORIGEN',                        # Tabla de referencia
+    'TABLA_TIPO_PAGO',                          # Tabla de referencia
+    'TABLA_TIPO_REGISTRO',                      # Tabla de referencia
+    'TABLA_TIPO_SUB_REGISTRO',                  # Tabla de referencia
+    'TABLA_TIPO_TITULAR',                       # Tabla de referencia
+    'TABLA_API_ESTADOS',                        # Tabla de referencia
+    'TABLA_API_TAREAS',                         # Tabla de referencia
+    'TABLA_API_LOG',                            # Tabla de referencia
+    'TABLA_PROCESOIMPORTACIONEXPORTACION',      # --------------------
+    'TABLA_RECEPCIONARCHIVOS',                  # ---------------------
+    'TABLA_RECEPLOG',                           # ---------------------
+    'TABLA_API_ESTADOS_TAREAS',                 # --------------------- 
+    'TABLA_API_REGISTROS',                      # --------------------- 
+    'TABLA_API_TOKEN_USER',                     # --------------------- 
+    'TABLA_API_TOKEN',                          # --------------------- 
+    'TABLA_ENCABEZADO',                         # --------------------- 
+    'TABLA_PIE',                                # ---------------------
+    'TABLA_ALTAIMPOSITIVATITULAR',              # ---------------------
+    'TABLA_ALTAIMPOSITIVA',                     # ---------------------
+    'TABLA_BAJAIMPOSITIVATITULAR',              # --------------------- 
+    'TABLA_BAJAIMPOSITIVA',                     # --------------------- 
+    'TABLA_ANULACIONTRAMITESSELLOS',            # --------------------- 
+    'TABLA_ANULACIONTRAMITESSELLOSDETALLE',     # --------------------- 
+    'TABLA_CAMBIOTITULARIDADTITULAR',           # --------------------- 
+    'TABLA_CAMBIOTITULARIDAD',                  # --------------------- 
+    'TABLA_INFORMACIONVEHICULO',                # --------------------- 
+    'TABLA_INFORMACIONVEHICULOTITULAR',         # --------------------- 
+    'TABLA_IMPUESTOAUTOMOTOR',                  # --------------------- 
+    'TABLA_INFORMACIORADICACION',               # --------------------- 
+    'TABLA_IMPUESTOSELLOS',                     # --------------------- 
+    'TABLA_IMPUESTOSELLOSPARTES',               # --------------------- 
+    'TABLA_IMPUESTOSELLOSPARTESTIPOTRAMITE',    # --------------------- 
+    'TABLA_TRAMITESGENERALESTITULARES',         # --------------------- 
+    'TABLA_TRAMITESGENERALES',                  # --------------------- 
+    'TABLA_API_AUMOSO',                         # --------------------- 
+    'TABLA_RELACION_ARBA_SUCERP_MARCA',         # --------------------- 
+    ]
+
+
     # Lista de Tablas
     LISTA_TABLAS = {
         # Tabla de Estados
@@ -508,7 +555,7 @@ class ConfigurarAplicacion(object):
         'TABLA_TMPINFORMACIONVEHICULO': {'numero': 45, 'objeto': 'tmpInformacionVehiculo_Dal', 'migrate': False, 'shortname': None,},
         'TABLA_TMPINFORMACIONVEHICULOTITULAR': {'numero': 46, 'objeto': 'tmpInformacionVehiculoTitular_Dal', 'migrate': False, 'shortname': None,},
         'TABLA_RELACION_ARBA_SUCERP_MARCA': {'numero': 47, 'objeto': 'relArbaSucerpMarca_Dal', 'migrate': False, 'shortname': 'RELAC00001',},
-        'TABLA_PROCESOIMPORTACIONEXPORTACION': {'numero': 48, 'objeto': 'procesoImportacionExportacion_Dal', 'migrate': True, 'shortname': 'PROCE00001',},
+        'TABLA_PROCESOIMPORTACIONEXPORTACION': {'numero': 48, 'objeto': 'procesoImportacionExportacion_Dal', 'migrate': False, 'shortname': 'PROCE00001',},
         'TABLA_API_LOG': {'numero': 49, 'objeto': 'apiLog_Dal', 'migrate': False, 'shortname': None,},
         'TABLA_RECEPCION_TEXTO': {'numero': 50, 'objeto': 'recepcionTexto_Dal', 'migrate': False, 'shortname': 'RECEP00001',},
         'TABLA_RECEPLOG': {'numero': 51, 'objeto': 'recepLog_Dal', 'migrate': False, 'shortname': None,},
@@ -623,5 +670,5 @@ class ConfigurarAplicacion(object):
     DIR_PATH_METODOS_LINUX = f'{DIR_PROYECTO_LINUX}/archivos_Estaticos/Metodos/'
     DIR_PATH_TEMPLATES_LINUX = f'{DIR_PROYECTO_LINUX}/templates/'
 
-
+    URL_REDIRIGIR = 'https://www.google.com'
 

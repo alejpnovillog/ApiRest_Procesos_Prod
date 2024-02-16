@@ -1,7 +1,9 @@
+# http://localhost:8000/dgtic/procesarSucerp
+# CALL PGM(ANOVILLO1/F000000001) PARM(('2023-06-08_1698427125.txt' (*CHAR 120)) (2 (*INT 4)))
+# CALL PGM(ANOVILLO1/F000000001) PARM(('2023-06-08_1698427125.txt') (2))
+                                                               
 try:
-    # altaImpositivaTitular_Dal
-    # altaImpositiva_Dal
-    # db2:pyodbc://driver=DB2;hostname=host;database=database;uid=user;pwd=password;
+
     import psutil
     import smtplib
     from email.mime.text import MIMEText
@@ -10,6 +12,7 @@ try:
     import os
     import platform
     import jpype
+    import datetime
 
     from ftplib import FTP
     from app_Conexion_Iseries_JtOpen.pythonJTOpen import JT400Helper    
@@ -68,7 +71,11 @@ class ConfigurarAplicacionSubmit:
             # --------------- Recuperar la password del ambiente -----------------------
             self.pwd = self.db.__getattribute__('instancia_Host_Input_Dict')['password']
 
+            # --------------- Tablas de control de los archivos recibidos desde sucerp
+            self.objetoRecepcionArchivos = self.db.__getattribute__(ConfigurarAplicacion.LISTA_TABLAS['TABLA_RECEPCIONARCHIVOS']['objeto'])            
+            self.objetoProcesoImportacionExportacion = self.db.__getattribute__(ConfigurarAplicacion.LISTA_TABLAS['TABLA_PROCESOIMPORTACIONEXPORTACION']['objeto'])            
 
+            # --------------- asignamos una instancia de la clase JT400Helper para usar el Os400
             self.iprod = JT400Helper(self.server, self.username, self.pwd)        
 
             # -- Recuperamos la lista de a procesar en Windows
@@ -142,10 +149,7 @@ async def procesar_archivos():
     # Procesamiento General
     try:
 
-
         print(f"Proceso iniciado..........")
-
-        #if not is_jvm_running():
 
         # Iniciar la aplicación
         with ConfigurarAplicacionSubmit() as api:
@@ -161,10 +165,8 @@ async def procesar_archivos():
 
             elemento = 'Recepcion SUCERP'
 
-
             ciclo += 1
             api.logdict[f'{elemento} - paso({ciclo})'] = f"Proceso iniciado.........."
-
 
             # Iterar sobre la lista
             for elemento in lista_archivos_directorios:
@@ -222,6 +224,18 @@ async def procesar_archivos():
                         # Cerrar la conexión FTP
                         api.ftp.quit()
 
+                    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                    # Generamos el registro para RECEPCIONARCHIVOS
+                    registro = {}
+                    registro['archivonombre']    = api.fuente
+                    registro['archivousercrt']   = api.username
+                    registro['archivoprocesado'] = datetime.datetime.now()
+                    retorno = False
+
+                    while not retorno:
+                        api.db.campos.clear()
+                        retorno = api.db.add_Dal(api.objetoRecepcionArchivos, **registro)
+
                     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                     # Eliminamos los registros de F000000001
                     retorno = False;
@@ -231,7 +245,6 @@ async def procesar_archivos():
 
                     ciclo += 1
                     api.logdict[f'{elemento} - paso({ciclo})'] = f'Se ha eliminado los registros de F000000001 {retorno}'
-
 
                     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                     # Copiamos el archivo de texto en la tabla F000000001
@@ -244,17 +257,32 @@ async def procesar_archivos():
                     ciclo += 1
                     api.logdict[f'{elemento} - paso({ciclo})'] = f'Copiamos el archivo de texto en la tabla F000000001 {retorno}'
 
+                    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                    # Generamos el registro para PROCESOIMPORTACIONEXPORTACION
+                    registro = {}
+                    registro['procesocodigotabla']        = 1
+                    registro['procesonombretabla']        = api.fuente
+                    registro['procesotransferencia']      = 'S'
+                    registro['procesofechatransferencia'] = datetime.datetime.now()
+                    registro['procesobasedatos']          = 'S'
+                    registro['procesofechabasedatos']     = datetime.datetime.now()
+                    registro['procesoaccion']             = None
+                    retorno = False
+
+                    while not retorno:
+                        api.db.campos.clear()
+                        retorno = api.db.add_Dal(api.objetoProcesoImportacionExportacion, **registro)
+
                     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                     # Ejecutamos la incorporacion del archivo recibido
                     retorno = False;
-                    execpgm = f"CALL PGM({api.schema}/{api.pgm}) PARM(('{api.fuente}')) "    
+                    execpgm = f"CALL PGM({api.schema}/{api.pgm}) PARM(('{api.fuente}' (*CHAR 120)) ('{api.db.ultimoid}'))"    
 
                     while not retorno:
                         retorno = api.iprod.GetCmdMsg(execpgm)
 
                     ciclo += 1
                     api.logdict[f'{elemento} - paso({ciclo})'] = f'Ejecutamos la incorporacion del archivo recibido {retorno}'
-
 
                     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                     # Eliminamos el archvivo del IFS
@@ -266,7 +294,6 @@ async def procesar_archivos():
 
                     ciclo += 1
                     api.logdict[f'{elemento} - paso({ciclo})'] = f'Eliminamos el archvivo del IFS {retorno}'
-
 
                     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                     # Rutas de los archivos y carpetas
@@ -289,16 +316,11 @@ async def procesar_archivos():
                         ciclo += 1
                         api.logdict[f'{elemento} - paso({ciclo})'] = f"Error al mover el archivo: {e}"
 
-                    #loglist.append(logdict)
-
-
 
         # Llama a la función para enviar el correo
         elemento = 'Recepcion SUCERP'                
         ciclo += 1
         api.logdict[f'{elemento} - paso({ciclo})'] = 'El proceso ha finalizado ...............................'
-
-        #loglist.append(logdict)
 
         print('El proceso ha finalizado ...............................')
 
@@ -357,8 +379,6 @@ async def procesar_archivos():
 
         print('Correo electrónico enviado con éxito.')
 
-
-
     except Exception as e:
         print(f'Error en el procesamiento  {e}')
 
@@ -367,10 +387,13 @@ async def procesar_archivos():
 @router.get("/procesarSucerp")
 async def endpoint_procesar_archivos(background_tasks: BackgroundTasks):
     
+    # Obtengo la Url para redirigir
+    urlRedirigir = ConfigurarAplicacion.URL_REDIRIGIR
+
     # Agrega la tarea al fondo para ser ejecutada asincrónicamente
     background_tasks.add_task(procesar_archivos)
 
-    html_content = """
+    html_content = f"""
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -379,7 +402,7 @@ async def endpoint_procesar_archivos(background_tasks: BackgroundTasks):
         <title>Formulario POST</title>
     </head>
     <body>
-        <form action="https://www.google.com/" method="GET">
+        <form action="{urlRedirigir}" method="GET">
             <label>El proceso de recepcion de archivos de SUCERP se ha iniciado en segundo plano</label>
             <input type="submit" value="Continuar">
         </form>
@@ -387,7 +410,4 @@ async def endpoint_procesar_archivos(background_tasks: BackgroundTasks):
     </html>
         """
     return HTMLResponse(content=html_content)
-
-
-
 

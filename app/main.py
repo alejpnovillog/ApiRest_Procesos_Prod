@@ -1,6 +1,9 @@
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # controlamos las librerias que importamos
 # DOCUMENTACION LINK https://fastapi.tiangolo.com/tutorial/bigger-applications/
+# lsof -i :8000
+# kill PID
+
 try:
 
     #  Uvicorn es un servidor web ASGI (interfaz de puerta de enlace de servidor asíncrono)

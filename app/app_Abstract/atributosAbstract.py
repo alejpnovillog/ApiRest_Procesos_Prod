@@ -323,7 +323,6 @@ class AtributosSucerp():
     #   tablaApiEstados(self)
     #   tablaRecepcionArchivos(self)
     #   tablaRecepcionTexto(self) 
-    #   tablaRecepLog(self) 
     #   tablaApiTareas(self)
     #   tablaApiEstadosTareas(self)
     #   tablaApiRegistros(self)
@@ -431,7 +430,7 @@ class AtributosSucerp():
 
              # fields list
              lista = [
-                 Field('tiporegistroid', type='id', required=True, comment='Id'),
+                 Field('tiporegistroid', type='id', comment='Id'),
                  Field('tiporegistro', unique=True, type='string', length=2, required=True, comment='Tipo Registro'),
                  Field('desctiporegistro', unique=True, type='string', length=50, required=True, comment='Desc Tipo Registro')
             ]
@@ -469,7 +468,7 @@ class AtributosSucerp():
 
              # fields list
              lista = [
-                 Field('tiposubregistroid', type='id', required=True, comment='Id'),
+                 Field('tiposubregistroid', type='id', comment='Id'),
                  Field('tiposubregistro', unique=True, type='string', length=1, required=True, comment='Tipo Sub Registro'),
                  Field('desctiposubregistro', unique=True, type='string', length=50, required=True, comment='Descr Tipo Sub Registro')
              ]
@@ -508,7 +507,7 @@ class AtributosSucerp():
 
              # fields list
              lista = [
-                 Field('tipocuerpoid', type='id', required=True, comment='Id'),
+                 Field('tipocuerpoid', type='id', comment='Id'),
                  Field('tipocuerpo', unique=True,  type='string', length=2,    required=True, comment='Tipo Cuerpo'),
                  Field('desctipocuerpo', unique=True, type='string', length=50, required=True, comment='Desc Cuerpo')
              ]
@@ -547,7 +546,7 @@ class AtributosSucerp():
 
              # fields list
              lista = [
-                 Field('tipotitularid', type='id', required=True, comment='Id'),
+                 Field('tipotitularid', type='id', comment='Id'),
                  Field('tipotitular', unique=True, type='string', length=1,    required=True, comment='Tipo Tirular'),
                  Field('desctipotitular', unique=True, type='string', length=50, required=True, comment='Desc Tipo Titular')
                  ]
@@ -586,7 +585,7 @@ class AtributosSucerp():
 
              # fields list
              lista = [
-                 Field('origenid', type='id', required=True, comment='Id'),
+                 Field('origenid', type='id', comment='Id'),
                  Field('tipoorigen', unique=True, type='string', length=1, required=True, comment='Origen'),
                  Field('descorigen', unique=True, type='string', length=50, required=True, comment='Desc Origen')
              ]
@@ -624,7 +623,7 @@ class AtributosSucerp():
 
              # fields list
              lista = [
-                 Field('codigotipomovimientoid', type='id', required=True, comment='Id'),
+                 Field('codigotipomovimientoid', type='id', comment='Id'),
                  Field('codigotipomovimiento', unique=True,  type='integer', required=True, comment='Codigo Tipo Movimiento'),
                  Field('desctipomovimiento', unique=True, type='string', length=50, required=True, comment='Desc Tipo Movimiento')
              ]
@@ -663,7 +662,7 @@ class AtributosSucerp():
 
              # fields list
              lista = [
-                Field('codigoformapagoid', type='id', required=True, comment='Id'),
+                Field('codigoformapagoid', type='id', comment='Id'),
                 Field('codigoformapago', unique=True, type='integer', required=True, comment='Codigo Forma Pago'),
                 Field('descrtipopago', unique=True, type='string', length=50, required=True, comment='Desc Tipo Pago')
              ]
@@ -704,7 +703,7 @@ class AtributosSucerp():
 
              # fields list
              lista = [
-                Field('codigomonedaid', type='id', required=True, comment='Id'),
+                Field('codigomonedaid', type='id', comment='Id'),
                 Field('codigomoneda', unique=True, type='integer', required=True, comment='Codigo Moneda'),
                 Field('desctipomoneda', unique=True, type='string', length=50, required=True, comment='Desc Tipo Moneda')
              ]
@@ -743,7 +742,7 @@ class AtributosSucerp():
 
              # Lista de campos
              lista = [
-                Field('tipodocumentoid', type='id', required=True, comment='Id'),
+                Field('tipodocumentoid', type='id', comment='Id'),
                 Field('tipodocumento', unique=True, type='integer', required=True, comment='Tipo Documento'),
                 Field('desctipodocumento', unique=True, type='string', length=50, required=True, comment='Desc Tipo Documento')
              ]
@@ -782,7 +781,7 @@ class AtributosSucerp():
 
              # fields list
              lista = [
-                Field('provinciaid', type='id', required=True, comment='Id'),
+                Field('provinciaid', type='id', comment='Id'),
                 Field('provincia', unique=True, type='integer', required=True, comment='Provincia'),
                 Field('descprovincia', unique=True, type='string', length=50, required=True, comment='Desc Provincia')
              ]
@@ -821,7 +820,7 @@ class AtributosSucerp():
 
              # fileds list
              lista = [
-                 Field('estadoid', type='id', required=True, comment='Id'),
+                 Field('estadoid', type='id', comment='Id'),
                  Field('estado', unique=True,      type='string', length=1,    required=True, comment='Estado'),
                  Field('descestado', unique=True, type='string', length=50, required=True, comment='Desc Estado')
              ]
@@ -860,7 +859,7 @@ class AtributosSucerp():
 
              # fields list
              lista = [
-                 Field('tipocuotaid', type='id', required=True, comment='Id'),
+                 Field('tipocuotaid', type='id', comment='Id'),
                  Field('tipocuota', unique=True, type='integer', required=True, comment='Tipo Cuota'),
                  Field('desctipocuota', unique=True,  type='string', length=50, required=True, comment='Desc Tipo Cuota')
              ]
@@ -902,7 +901,7 @@ class AtributosSucerp():
              lista = [
                 # 
                 # Id de la tabla 
-                Field('encabezadoid', type='id', required=True, comment='Id'),
+                Field('encabezadoid', type='id', comment='Id'),
                 # 
                 # Constante “E0”
                 Field("tiporegistroid", type='reference TIPOREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Registro'),
@@ -962,7 +961,7 @@ class AtributosSucerp():
              lista = [
                 # 
                 # Id de la tabla 
-                Field('altataxid', type='id', required=True, comment='Id'),
+                Field('altataxid', type='id', comment='Id'),
                 #
                 # Id de la tabla TIPO_REGISTRO
                 Field("tiporegistroid", type='reference TIPOREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Registro'),
@@ -1150,7 +1149,7 @@ class AtributosSucerp():
 
              # field list
              lista = [
-                 Field('relArbaSucerpid', type='id', required=True, comment='Id'),
+                 Field('relArbaSucerpid', type='id', comment='Id'),
                  Field('relArbaSucerpArba', type='string', length=10, required=True, comment='Arba'),
                  Field('relArbaSucerpMarca', type='string', length=60, required=True, comment='Marca'),
                  Field('relArbaSucerpModelo', type='string', length=60, required=True, comment='Modelo'),
@@ -1242,7 +1241,7 @@ class AtributosSucerp():
                  Field('receplogid', type='id', comment='Id'),
                  #
                  # Nombre del archivo recibido
-                 Field('archivorecibido', type='string', length=120, required=True, comment='Archivo recibido de Sucerp'),
+                 Field('archivorecibido', type='string', length=150, required=True, comment='Archivo recibido de Sucerp'),
                  #
                  # Nombre del formato procesado
                  Field('fromatoprocesado', type='string', length=4, required=True, comment='Formato procesado'),
@@ -1486,7 +1485,7 @@ class AtributosSucerp():
              lista = [
                  #
                  # Id de identificación del registro
-                 Field('altataxtitularid', type='id', required=True, comment='Id'),
+                 Field('altataxtitularid', type='id', comment='Id'),
                  #
                  # Constante “C1 ”
                  Field('tipocuerpoid', type='reference TIPOCUERPO', ondelete='CASCADE', comment='Id Fk Tipo Cuerpo'),
@@ -1576,7 +1575,7 @@ class AtributosSucerp():
              lista = [
                  #
                  # Id identificador del registro
-                 Field('bajataxid', type='id', required=True, comment='Id'),
+                 Field('bajataxid', type='id', comment='Id'),
                  #
                  # Constante “C2 ”
                  Field("tiporegistroid", type='reference TIPOREGISTRO', ondelete='CASCADE', comment='Id Fk Tipo Registro'),
@@ -1731,7 +1730,7 @@ class AtributosSucerp():
              lista = [
                  #
                  # Id identificador del registro
-                 Field('bajataxtitularid', type='id', required=True, comment='Id'),
+                 Field('bajataxtitularid', type='id', comment='Id'),
                  #
                  # Constante “C2 ”
                  Field('tipocuerpoid', type='reference TIPOCUERPO', ondelete='CASCADE', comment='Id Fk Tipo Cuerpo'),
@@ -1822,7 +1821,7 @@ class AtributosSucerp():
              lista = [
                  #
                  # Id identificador del registro
-                 Field('taxsellosid', type='id', required=True, comment='Id'),
+                 Field('taxsellosid', type='id', comment='Id'),
                  #
                  # Constante “C3 ”
                  Field("tiporegistroid", type='reference TIPOREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Registro'),
@@ -1999,7 +1998,7 @@ class AtributosSucerp():
              lista = [
                  #
                  # Id identificador del registro
-                 Field('taxsellospartesid', type='id', required=True, comment='Id'),
+                 Field('taxsellospartesid', type='id', comment='Id'),
                  #
                  # Constante “C3 ”
                  Field('tipocuerpoid', type='reference TIPOCUERPO', ondelete='CASCADE', comment='Id FK Tipo Cuerpo'),
@@ -2121,7 +2120,7 @@ class AtributosSucerp():
              lista = [
                 #
                 # Id identificador del registro
-                Field('taxsellospartestipotramiteid', type='id', required=True, comment='Id'),
+                Field('taxsellospartestipotramiteid', type='id', comment='Id'),
                 #
                 # Constante “C3 ”
                 Field('tipocuerpoid', type='reference TIPOCUERPO', ondelete='CASCADE', comment='Id FK Tipo Cuerpo'),
@@ -2208,7 +2207,7 @@ class AtributosSucerp():
              lista = [
                 #
                 # Id identificador del registro
-                Field('taxautomotorid', type='id', required=True, comment='Id'),
+                Field('taxautomotorid', type='id', comment='Id'),
                 #
                 # Constante “C4 ”
                 Field('tipocuerpoid', type='reference TIPOCUERPO', ondelete='CASCADE', comment='Id FK Tipo Cuerpo'),
@@ -2337,7 +2336,7 @@ class AtributosSucerp():
              lista = [
                 #
                 # Id identificador del registro
-                Field('infvehiculoid', type='id', required=True, comment='Id'),
+                Field('infvehiculoid', type='id', comment='Id'),
                 #
                 # Constante “C5 ”
                 Field("tiporegistroid", type='reference TIPOREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Registro'),
@@ -2492,7 +2491,7 @@ class AtributosSucerp():
              lista = [
                 #
                 # Id identificador del registro
-                Field('infvehiculotitularid', type='id', required=True, comment='Id'),
+                Field('infvehiculotitularid', type='id', comment='Id'),
                 #
                 # Constante “C5 ” 
                 Field('tipocuerpoid', type='reference TIPOCUERPO', ondelete='CASCADE', comment='Id FK Tipo Cuerpo'),
@@ -2854,7 +2853,7 @@ class AtributosSucerp():
              lista = [
                 #
                 # Id identificador del registro
-                Field('cambiotitularidadid', type='id', required=True, comment='Id'),
+                Field('cambiotitularidadid', type='id', comment='Id'),
                 #
                 # Constante “C6 ”
                 Field("tiporegistroid", type='reference TIPOREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Registro'),
@@ -3035,7 +3034,7 @@ class AtributosSucerp():
              lista = [
                 #
                 # Id identificador del registro
-                Field('cambiotitularidadtitid', type='id', required=True, comment='Id'),
+                Field('cambiotitularidadtitid', type='id', comment='Id'),
                 #
                 # Constante “C6 ”
                 Field('tipocuerpoid', type='reference TIPOCUERPO', ondelete='CASCADE', comment='Id FK Tipo Cuerpo'),
@@ -3128,7 +3127,7 @@ class AtributosSucerp():
              lista = [
                 #
                 # Id identificador del registro
-                Field('infradicacionid', type='id', required=True, comment='Id'),
+                Field('infradicacionid', type='id', comment='Id'),
                 #
                 # Constante “C7 ”
                 Field("tiporegistroid", type='reference TIPOREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Registro'),
@@ -3210,7 +3209,7 @@ class AtributosSucerp():
              lista = [
                 #
                 # Id identificador del registro
-                Field('anultramitesellosid', type='id', required=True, comment='Id'),
+                Field('anultramitesellosid', type='id',  comment='Id'),
                 #
                 # Constante “C8 ”
                 Field("tiporegistroid", type='reference TIPOREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Registro'),
@@ -3375,7 +3374,7 @@ class AtributosSucerp():
              lista = [
                 #
                 # Id identificador del registro
-                Field('anultramitesellosdetid', type='id', required=True, comment='Id'),
+                Field('anultramitesellosdetid', type='id', comment='Id'),
                 #
                 # Constante “C8 ”
                 Field("tiporegistroid", type='reference TIPOREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Registro'),
@@ -3455,7 +3454,7 @@ class AtributosSucerp():
              lista = [
                 #
                 # Id identificador del registro
-                Field('tramitesgeneralesid', type='id', required=True, comment='Id'),
+                Field('tramitesgeneralesid', type='id', comment='Id'),
                 #
                 # Constante “C9 ”
                 Field("tiporegistroid", type='reference TIPOREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Registro'),
@@ -3606,7 +3605,7 @@ class AtributosSucerp():
              lista = [
                 #
                 # Id identificador del registro
-                Field('tramitesgeneralestitid', type='id', required=True, comment='Id'),
+                Field('tramitesgeneralestitid', type='id', comment='Id'),
                 #
                 # Constante “C9 ”
                 Field("tiporegistroid", type='reference TIPOREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Registro'),
@@ -3700,7 +3699,7 @@ class AtributosSucerp():
              lista = [
                 #
                 # Id identificador del registro
-                Field('pieid', type='id', required=True, comment='Id'),
+                Field('pieid', type='id', comment='Id'),
                 #
                 # Constante “P0 ”
                 Field("tiporegistroid", type='reference TIPOREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Registro'),
@@ -3753,7 +3752,7 @@ class AtributosSucerp():
 
              # fields list
              lista = [
-                Field('aumosoid', type='id', required=True, comment='Id'),
+                Field('aumosoid', type='id', comment='Id'),
                 Field('idpakey', type='bigint', required=True, comment='IdPakey'),
                 Field('samnrodoc', type='bigint', required=True, comment='Sam Nro Documento'),
                 Field('samcuit', type='bigint', required=True, comment='Sam Cuit'),
@@ -3815,7 +3814,7 @@ class AtributosSucerp():
 
              # fields list
              lista = [
-                Field('apiestadosid',          type='id', required=True, comment='Id'),
+                Field('apiestadosid',          type='id', comment='Id'),
                 Field('apiestadodescripcion',  unique=True, type='string', length=100, required=True, comment='Descr Token Api Estado'),
                 Field('apiusercrt',            type='string', length=10,   required=True, comment='Token Api User Create'),
                 Field('tokenusercrttimestamp', type='datetime', required=True, comment='Token Api User Crt Time Stamp'),
@@ -3897,7 +3896,7 @@ class AtributosSucerp():
 
              # fields list
              lista = [
-                Field('archivorecibidoid', type='id', required=True, comment='Id'),
+                Field('archivorecibidoid', type='id', comment='Id'),
                 Field('archivonombre', unique=True, type='string', length=256, required=True, comment='Nombre Archivo'),
                 Field('archivousercrt',   type='string', length=10,  required=True, comment='Archivo User Create'),
                 Field('archivoprocesado', type='datetime', required=True, comment='Archivo Procesado'),
@@ -3937,7 +3936,7 @@ class AtributosSucerp():
 
              # fields list
              lista = [
-                Field('apitareasid', type='id', required=True, comment='Id'),
+                Field('apitareasid', type='id', comment='Id'),
                 Field('apitareasdescripcion', unique=True, type='string', length=100, required=True, comment='Descr Token Api Tareas'),
                 Field('apiusercrt',               type='string', length=10,   required=True, comment='Token Api User Create'),
                 Field('tokenusercrttimestamp', type='datetime', required=True, comment='Token Api User Crt Time Stamp'),
@@ -3979,7 +3978,7 @@ class AtributosSucerp():
 
              # fields list
              lista = [
-                Field('apiestadotareasid', type='id', required=True, comment='Id'),
+                Field('apiestadotareasid', type='id', comment='Id'),
                 Field('apiestadosid', type='reference APIESTADOS', ondelete='CASCADE', comment='Id FK Token Api Estado'),
                 Field('apitareasid', type='reference APITAREAS', ondelete='CASCADE', comment='Id FK Token Api Tareas'),
                 Field('apiestadosnewid', type='reference APIESTADOS', ondelete='CASCADE', comment='Id FK Token Estado New'),
@@ -4020,7 +4019,7 @@ class AtributosSucerp():
 
              # fields list
              lista = [
-                Field('apiregistrosid', type='id', required=True, comment='Id'),
+                Field('apiregistrosid', type='id', comment='Id'),
                 Field('apiregistrosdescripcion', unique=True, type='string', length=100, required=True, comment='Descr Token Api Registros'),
                 Field('apiregistrosnumero', unique=True, type='integer', required=True, comment='Token Api Registros Nro'),
                 Field('apiestadotareasid', type='reference APIESTADOSTAREAS', ondelete='CASCADE', comment='Id FK Token Api Estado Tareas'),
