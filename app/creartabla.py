@@ -171,8 +171,8 @@ iprod = JT400Helper(con['ip'], con['usuario'], con['password'])
 lib = con['schema']
 
 # realizamos la creacion de las tablas
-#creacionTablas()
+creacionTablas()
 
 # realizamos la eliminacion de las tablas
-eliminarTablas()
+#eliminarTablas()
 

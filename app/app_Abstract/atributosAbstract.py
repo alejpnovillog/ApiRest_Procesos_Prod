@@ -275,7 +275,6 @@ class AtributosGx():
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 class AtributosSucerp():
 
-
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     #   tablaApiLog(self)
     #   tablaRecepcionTexto(self)
@@ -330,575 +329,671 @@ class AtributosSucerp():
     #   tablaApiToken(self)
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-     def __init__(self):
-         pass
+    def __init__(self):
+        pass
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA APILOG
-     def tablaApiLog(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA APILOG
+    def tablaApiLog(self):
 
-         """
-          API LOG TABLE DEFINITION \n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
+        """
+        API LOG TABLE DEFINITION \n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
 
-          """
-         try:
+        """
+        try:
 
-             lista, primary, parm = list(), list(), dict()
+            lista, primary, parm = list(), list(), dict()
 
-             # fields list
-             lista = [
+            # fields list
+            lista = [
                 Field('apilogid', type='id',  comment='Id'),
                 Field('apilogerror', type='string', length=15360, required=True, comment='Json del Error'),
                 Field('apilogtimestamp', type='datetime', required=True, comment='Error Log Time Stamp'),
                 Field('apilogrecepcion', type='string', length=100, required=True, comment='Nombre Archivo Recepcion'),
-             ]
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_API_LOG']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_API_LOG']['migrate']
 
-             # table construction parameters
-             parm = {
-                 'name': 'APILOGFILE',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters
+            parm = {
+                'name': 'APILOGFILE',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-             print(f'Error - tablaApiLog {e}')
+        except Exception as e:
+            print(f'Error - tablaApiLog {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA RECEPCIONTEXTO
-     def tablaRecepcionTexto(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA RECEPCIONTEXTO
+    def tablaRecepcionTexto(self):
 
-         """
-          API LOG TABLE DEFINITION \n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
+        """
+        API LOG TABLE DEFINITION \n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
 
-          """
-         try:
+        """
+        try:
 
-             lista, primary, parm = list(), list(), dict()
+            lista, primary, parm = list(), list(), dict()
 
-             # fields list
-             lista = [
+            # fields list
+            lista = [
                 Field('recepcionid', type='id',  comment='Id'),
                 Field('recepcionC01', type='string', length=2, required=True, comment='Constante 1'),
                 Field('recepcionC02', type='string', length=2, required=True, comment='Constante 2'),
                 Field('recepcionReg', type='string', length=2385, required=True, comment='Registro'),
-             ]
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_RECEPCION_TEXTO']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_RECEPCION_TEXTO']['migrate']
 
-             # table construction parameters
-             parm = {
-                 'name': 'RECEPCIONTEXTO',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters
+            parm = {
+                'name': 'RECEPCIONTEXTO',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-             print(f'Error - tablaRecepcionTexto {e}')
+        except Exception as e:
+            print(f'Error - tablaRecepcionTexto {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA TIPOREGISTRO
-     def tablaTipoRegistro(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA TIPOREGISTRO
+    def tablaTipoRegistro(self):
 
         """
-             DEFINITION OF THE RECORD TYPE TABLE \n
-             WE RETURN: \n
-                TABLE NAME \n
-                STRUCTURE FIELDS \n
-                CONSTRUCTION ARGUMENTS \n
+            DEFINITION OF THE RECORD TYPE TABLE \n
+            WE RETURN: \n
+            TABLE NAME \n
+            STRUCTURE FIELDS \n
+            CONSTRUCTION ARGUMENTS \n
         """
         try:
 
-             lista, primary, parm = list(), list(), dict()
+            lista, primary, parm = list(), list(), dict()
 
-             # fields list
-             lista = [
-                 Field('tiporegistroid', type='id', comment='Id'),
-                 Field('tiporegistro', unique=True, type='string', length=2, required=True, comment='Tipo Registro'),
-                 Field('desctiporegistro', unique=True, type='string', length=50, required=True, comment='Desc Tipo Registro')
+            # fields list
+            lista = [
+                Field('tiporegistroid', type='id', comment='Id'),
+                Field('tiporegistro', unique=True, type='string', length=2, required=True, comment='Tipo Registro'),
+                Field('desctiporegistro', unique=True, type='string', length=50, required=True, comment='Desc Tipo Registro')
             ]
-                
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TIPO_REGISTRO']['migrate']
 
-             # table construction parameters
-             parm = {
-                 'name' :  'TIPOREGISTRO',
-                 'fields' :  tuple(lista),
-                 'arg' :  {'migrate': migrate},
-                 'sqlfldtexto' : True
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TIPO_REGISTRO']['migrate']
+
+            # table construction parameters
+            parm = {
+                'name' :  'TIPOREGISTRO',
+                'fields' :  tuple(lista),
+                'arg' :  {'migrate': migrate},
+                'sqlfldtexto' : True
             }
 
-             return parm
+            return parm
 
         except Exception as e:
             print(f'Error - tablaTipoRegistro {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA TIPORSUBEGISTRO
-     def tablaTipoSubRegistro(self):
-         """
-         DEFINITION OF THE SUBREGISTRY TYPE TABLE \n
-             WE RETURN: \n
-                TABLE NAME \n
-                STRUCTURE FIELDS \n
-                CONSTRUCTION ARGUMENTS \n
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA TIPORSUBEGISTRO
+    def tablaTipoSubRegistro(self):
+         
+        """
+        DEFINITION OF THE SUBREGISTRY TYPE TABLE \n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
 
-         """
-         try:
+        """
+        try:
 
-             lista, primary, parm = list(), list(), dict()
+            lista, primary, parm = list(), list(), dict()
 
-             # fields list
-             lista = [
-                 Field('tiposubregistroid', type='id', comment='Id'),
-                 Field('tiposubregistro', unique=True, type='string', length=1, required=True, comment='Tipo Sub Registro'),
-                 Field('desctiposubregistro', unique=True, type='string', length=50, required=True, comment='Descr Tipo Sub Registro')
-             ]
+            # fields list
+            lista = [
+                Field('tiposubregistroid', type='id', comment='Id'),
+                Field('tiposubregistro', unique=True, type='string', length=1, required=True, comment='Tipo Sub Registro'),
+                Field('desctiposubregistro', unique=True, type='string', length=50, required=True, comment='Descr Tipo Sub Registro')
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TIPO_SUB_REGISTRO']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TIPO_SUB_REGISTRO']['migrate']
 
-             # table construction parameters
-             parm = {
-                 'name': 'TIPOSUBREGISTRO',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters
+            parm = {
+                'name': 'TIPOSUBREGISTRO',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-                print(f'Error - tablaTipoSubRegistro {e}')
+        except Exception as e:
+            print(f'Error - tablaTipoSubRegistro {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA TIPOCUERPO
-     def tablaTipoCuerpo(self):
-         """
-         BODY TYPE TABLE DEFINITION\n
-             WE RETURN: \n
-                TABLE NAME \n
-                STRUCTURE FIELDS \n
-                CONSTRUCTION ARGUMENTS \n
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA TIPOCUERPO
+    def tablaTipoCuerpo(self):
+         
+        """
+        BODY TYPE TABLE DEFINITION\n
+            WE RETURN: \n
+            TABLE NAME \n
+            STRUCTURE FIELDS \n
+            CONSTRUCTION ARGUMENTS \n
 
-         """
+        """
 
-         try:
+        try:
 
-             lista, primary, parm = list(), list(), dict()
+            lista, primary, parm = list(), list(), dict()
 
-             # fields list
-             lista = [
-                 Field('tipocuerpoid', type='id', comment='Id'),
-                 Field('tipocuerpo', unique=True,  type='string', length=2,    required=True, comment='Tipo Cuerpo'),
-                 Field('desctipocuerpo', unique=True, type='string', length=50, required=True, comment='Desc Cuerpo')
-             ]
+            # fields list
+            lista = [
+                Field('tipocuerpoid', type='id', comment='Id'),
+                Field('tipocuerpo', unique=True,  type='string', length=2,    required=True, comment='Tipo Cuerpo'),
+                Field('desctipocuerpo', unique=True, type='string', length=50, required=True, comment='Desc Cuerpo')
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TIPO_CUERPO']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TIPO_CUERPO']['migrate']
 
-             # table construction parameters
-             parm = {
-                 'name': 'TIPOCUERPO',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters
+            parm = {
+                'name': 'TIPOCUERPO',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-                print(f'Error - tablaTipoCuerpo {e}')
+        except Exception as e:
+            print(f'Error - tablaTipoCuerpo {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA TIPOTITULAR
-     def tablaTipoTitular(self):
-         """
-         DEFINITION OF THE HOLDER TYPE TABLE \n
-             WE RETURN: \n
-                TABLE NAME \n
-                STRUCTURE FIELDS \n
-                CONSTRUCTION ARGUMENTS \n
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA TIPOTITULAR
+    def tablaTipoTitular(self):
+         
+        """
+        DEFINITION OF THE HOLDER TYPE TABLE \n
+            WE RETURN: \n
+            TABLE NAME \n
+            STRUCTURE FIELDS \n
+            CONSTRUCTION ARGUMENTS \n
 
-         """
+        """
 
-         try:
+        try:
 
-             lista, primary, parm = list(), list(), dict()
+            lista, primary, parm = list(), list(), dict()
 
-             # fields list
-             lista = [
-                 Field('tipotitularid', type='id', comment='Id'),
-                 Field('tipotitular', unique=True, type='string', length=1,    required=True, comment='Tipo Tirular'),
-                 Field('desctipotitular', unique=True, type='string', length=50, required=True, comment='Desc Tipo Titular')
-                 ]
+            # fields list
+            lista = [
+                    Field('tipotitularid', type='id', comment='Id'),
+                    Field('tipotitular', unique=True, type='string', length=1,    required=True, comment='Tipo Tirular'),
+                    Field('desctipotitular', unique=True, type='string', length=50, required=True, comment='Desc Tipo Titular')
+                ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TIPO_TITULAR']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TIPO_TITULAR']['migrate']
 
-             # table construction parameters
-             parm = {
-                 'name': 'TIPOTITULAR',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters
+            parm = {
+                'name': 'TIPOTITULAR',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-                print(f'Error - tablaTipoTitular {e}')
+        except Exception as e:
+            print(f'Error - tablaTipoTitular {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA TIPOORIGEN
-     def tablaTipoOrigen(self):
-         """
-         DEFINITION OF THE TYPE OF ORIGIN TABLE \n
-             WE RETURN: \n
-                TABLE NAME \n
-                STRUCTURE FIELDS \n
-                CONSTRUCTION ARGUMENTS \n
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA TIPOORIGEN
+    def tablaTipoOrigen(self):
+         
+        """
+        DEFINITION OF THE TYPE OF ORIGIN TABLE \n
+            WE RETURN: \n
+            TABLE NAME \n
+            STRUCTURE FIELDS \n
+            CONSTRUCTION ARGUMENTS \n
 
-         """
+        """
 
-         try:
+        try:
 
-             lista, primary, parm = list(), list(), dict()
+            lista, primary, parm = list(), list(), dict()
 
-             # fields list
-             lista = [
-                 Field('origenid', type='id', comment='Id'),
-                 Field('tipoorigen', unique=True, type='string', length=1, required=True, comment='Origen'),
-                 Field('descorigen', unique=True, type='string', length=50, required=True, comment='Desc Origen')
-             ]
+            # fields list
+            lista = [
+                Field('origenid', type='id', comment='Id'),
+                Field('tipoorigen', unique=True, type='string', length=1, required=True, comment='Origen'),
+                Field('descorigen', unique=True, type='string', length=50, required=True, comment='Desc Origen')
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TIPO_ORIGEN']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TIPO_ORIGEN']['migrate']
 
-             # table construction parameters
-             parm = {
-                 'name': 'TIPOORIGEN',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters
+            parm = {
+                'name': 'TIPOORIGEN',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-                print(f'Error - tablaTipoOrigen {e}')
+        except Exception as e:
+            print(f'Error - tablaTipoOrigen {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA TIPOMOVIMIENTO
-     def tablaTipoMovimiento(self):
-         """
-         DEFINITION OF THE MOVEMENT TYPE TABLE \n
-             WE RETURN: \n
-                TABLE NAME \n
-                STRUCTURE FIELDS \n
-                CONSTRUCTION ARGUMENTS \n
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA TIPOMOVIMIENTO
+    def tablaTipoMovimiento(self):
+         
+        """
+        DEFINITION OF THE MOVEMENT TYPE TABLE \n
+            WE RETURN: \n
+            TABLE NAME \n
+            STRUCTURE FIELDS \n
+            CONSTRUCTION ARGUMENTS \n
 
-         """
-         try:
+        """
+        try:
 
-             lista, primary, parm = list(), list(), dict()
+            lista, primary, parm = list(), list(), dict()
 
-             # fields list
-             lista = [
-                 Field('codigotipomovimientoid', type='id', comment='Id'),
-                 Field('codigotipomovimiento', unique=True,  type='integer', required=True, comment='Codigo Tipo Movimiento'),
-                 Field('desctipomovimiento', unique=True, type='string', length=50, required=True, comment='Desc Tipo Movimiento')
-             ]
+            # fields list
+            lista = [
+                Field('codigotipomovimientoid', type='id', comment='Id'),
+                Field('codigotipomovimiento', unique=True,  type='integer', required=True, comment='Codigo Tipo Movimiento'),
+                Field('desctipomovimiento', unique=True, type='string', length=50, required=True, comment='Desc Tipo Movimiento')
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TIPO_MOVIMIENTO']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TIPO_MOVIMIENTO']['migrate']
 
-             # table construction parameters
-             parm = {
-                 'name': 'TIPOMOVIMIENTO',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters
+            parm = {
+                'name': 'TIPOMOVIMIENTO',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-                print(f'Error - tablaTipoMovimiento {e}')
+        except Exception as e:
+            print(f'Error - tablaTipoMovimiento {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA TIPOPAGO
-     def tablaTipoPago(self):
-         """
-         DEFINITION OF THE PAYMENT TYPE TABLE \n
-             WE RETURN: \n
-                TABLE NAME \n
-                STRUCTURE FIELDS \n
-                CONSTRUCTION ARGUMENTS \n
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA TIPOPAGO
+    def tablaTipoPago(self):
+         
+        """
+        DEFINITION OF THE PAYMENT TYPE TABLE \n
+            WE RETURN: \n
+            TABLE NAME \n
+            STRUCTURE FIELDS \n
+            CONSTRUCTION ARGUMENTS \n
 
-         """
+        """
 
-         try:
+        try:
 
-             lista, primary, parm = list(), list(), dict()
+            lista, primary, parm = list(), list(), dict()
 
-             # fields list
-             lista = [
+            # fields list
+            lista = [
                 Field('codigoformapagoid', type='id', comment='Id'),
                 Field('codigoformapago', unique=True, type='integer', required=True, comment='Codigo Forma Pago'),
                 Field('descrtipopago', unique=True, type='string', length=50, required=True, comment='Desc Tipo Pago')
-             ]
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TIPO_PAGO']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TIPO_PAGO']['migrate']
 
-             # table construction parameters
-             parm = {
-                 'name': 'TIPOPAGO',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters
+            parm = {
+                'name': 'TIPOPAGO',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
 
-         except Exception as e:
-                print(f'Error - tablaTipoPago {e}')
+        except Exception as e:
+            print(f'Error - tablaTipoPago {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA TIPOMONEDA
-     def tablaTipoMoneda(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA TIPOMONEDA
+    def tablaTipoMoneda(self):
 
-         """
-         DEFINITION OF THE CURRENCY TABLE \n
-             WE RETURN: \n
-                TABLE NAME \n
-                STRUCTURE FIELDS \n
-                CONSTRUCTION ARGUMENTS \n
+        """
+        DEFINITION OF THE CURRENCY TABLE \n
+            WE RETURN: \n
+            TABLE NAME \n
+            STRUCTURE FIELDS \n
+            CONSTRUCTION ARGUMENTS \n
 
-         """
+        """
 
-         try:
+        try:
 
-             lista, primary, parm = list(), list(), dict()
+            lista, primary, parm = list(), list(), dict()
 
-             # fields list
-             lista = [
+            # fields list
+            lista = [
                 Field('codigomonedaid', type='id', comment='Id'),
                 Field('codigomoneda', unique=True, type='integer', required=True, comment='Codigo Moneda'),
                 Field('desctipomoneda', unique=True, type='string', length=50, required=True, comment='Desc Tipo Moneda')
-             ]
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TIPO_MONEDA']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TIPO_MONEDA']['migrate']
 
-             # table construction parameters
-             parm = {
-                 'name': 'TIPOMONEDA',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters
+            parm = {
+                'name': 'TIPOMONEDA',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-                print(f'Error - tablaTipoMoneda {e}')
+        except Exception as e:
+            print(f'Error - tablaTipoMoneda {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA TIPODOCUMENTO
-     def tablaTipoDocumento(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA TIPODOCUMENTO
+    def tablaTipoDocumento(self):
 
-         """
-         DEFINITION OF THE DOCUMENT TYPE TABLE\n
-             WE RETURN: \n
-                TABLE NAME \n
-                STRUCTURE FIELDS \n
-                CONSTRUCTION ARGUMENTS \n
+        """
+        DEFINITION OF THE DOCUMENT TYPE TABLE\n
+            WE RETURN: \n
+            TABLE NAME \n
+            STRUCTURE FIELDS \n
+            CONSTRUCTION ARGUMENTS \n
 
-         """
-         try:
+        """
+        try:
 
-             lista, primary, parm = list(), list(), dict()
+            lista, primary, parm = list(), list(), dict()
 
-             # Lista de campos
-             lista = [
+            # Lista de campos
+            lista = [
                 Field('tipodocumentoid', type='id', comment='Id'),
                 Field('tipodocumento', unique=True, type='integer', required=True, comment='Tipo Documento'),
                 Field('desctipodocumento', unique=True, type='string', length=50, required=True, comment='Desc Tipo Documento')
-             ]
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TIPO_DOCUMENTO']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TIPO_DOCUMENTO']['migrate']
 
-             # table construction parameters
-             parm = {
-                 'name': 'TIPODOCUMENTO',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters
+            parm = {
+                'name': 'TIPODOCUMENTO',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-                print(f'Error - tablaTipoDocumento {e}')
+        except Exception as e:
+            print(f'Error - tablaTipoDocumento {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA PROVINCIAS
-     def tablaProvincias(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA PROVINCIAS
+    def tablaProvincias(self):
 
-         """
-         DEFINITION OF THE TABLE OF PROVINCES \n
-             WE RETURN: \n
-                TABLE NAME \n
-                STRUCTURE FIELDS \n
-                CONSTRUCTION ARGUMENTS \n
+        """
+        DEFINITION OF THE TABLE OF PROVINCES \n
+            WE RETURN: \n
+            TABLE NAME \n
+            STRUCTURE FIELDS \n
+            CONSTRUCTION ARGUMENTS \n
 
-         """
-         try:
+        """
+        try:
 
-             lista, primary, parm = list(), list(), dict()
+            lista, primary, parm = list(), list(), dict()
 
-             # fields list
-             lista = [
+            # fields list
+            lista = [
                 Field('provinciaid', type='id', comment='Id'),
                 Field('provincia', unique=True, type='integer', required=True, comment='Provincia'),
                 Field('descprovincia', unique=True, type='string', length=50, required=True, comment='Desc Provincia')
-             ]
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_PROVINCIA']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_PROVINCIA']['migrate']
 
-             # table construction parameters
-             parm = {
-                 'name': 'PROVINCIAS',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters
+            parm = {
+                'name': 'PROVINCIAS',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-                print(f'Error - tablaProvincias {e}')
+        except Exception as e:
+            print(f'Error - tablaProvincias {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA ESTADO
-     def tablaEstado(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA ESTADO
+    def tablaEstado(self):
 
-         """
-         DEFINITION OF THE STATE TABLE \n
-             WE RETURN: \n
-                TABLE NAME \n
-                STRUCTURE FIELDS \n
-                CONSTRUCTION ARGUMENTS \n
+        """
+        DEFINITION OF THE STATE TABLE \n
+            WE RETURN: \n
+            TABLE NAME \n
+            STRUCTURE FIELDS \n
+            CONSTRUCTION ARGUMENTS \n
 
-         """
-         try:
+        """
+        try:
 
-             lista, primary, parm = list(), list(), dict()
+            lista, primary, parm = list(), list(), dict()
 
-             # fileds list
-             lista = [
-                 Field('estadoid', type='id', comment='Id'),
-                 Field('estado', unique=True,      type='string', length=1,    required=True, comment='Estado'),
-                 Field('descestado', unique=True, type='string', length=50, required=True, comment='Desc Estado')
-             ]
+            # fileds list
+            lista = [
+                Field('estadoid', type='id', comment='Id'),
+                Field('estado', unique=True,      type='string', length=1,    required=True, comment='Estado'),
+                Field('descestado', unique=True, type='string', length=50, required=True, comment='Desc Estado')
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_ESTADO']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_ESTADO']['migrate']
 
-             # table construction parameters
-             parm = {
-                 'name': 'TIPOESTADO',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters
+            parm = {
+                'name': 'TIPOESTADO',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-                print(f'Error - tablaEstado {e}')
+        except Exception as e:
+            print(f'Error - tablaEstado {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA TIPOPAGO
-     def tablaTipoCuota(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA TIPOPAGO
+    def tablaTipoCuota(self):
 
-         """
-         DEFINITION OF THE FEE TYPE TABLE \n
-             WE RETURN: \n
-                TABLE NAME \n
-                STRUCTURE FIELDS \n
-                CONSTRUCTION ARGUMENTS \n
+        """
+        DEFINITION OF THE FEE TYPE TABLE \n
+            WE RETURN: \n
+            TABLE NAME \n
+            STRUCTURE FIELDS \n
+            CONSTRUCTION ARGUMENTS \n
 
-         """
-         try:
+        """
+        try:
 
-             lista, primary, parm = list(), list(), dict()
+            lista, primary, parm = list(), list(), dict()
 
-             # fields list
-             lista = [
-                 Field('tipocuotaid', type='id', comment='Id'),
-                 Field('tipocuota', unique=True, type='integer', required=True, comment='Tipo Cuota'),
-                 Field('desctipocuota', unique=True,  type='string', length=50, required=True, comment='Desc Tipo Cuota')
-             ]
+            # fields list
+            lista = [
+                Field('tipocuotaid', type='id', comment='Id'),
+                Field('tipocuota', unique=True, type='integer', required=True, comment='Tipo Cuota'),
+                Field('desctipocuota', unique=True,  type='string', length=50, required=True, comment='Desc Tipo Cuota')
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TIPO_CUOTA']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TIPO_CUOTA']['migrate']
 
-             # table construction parameters
-             parm = {
-                 'name': 'TIPOCUOTA',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters
+            parm = {
+                'name': 'TIPOCUOTA',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-                print(f'Error - tablaTipoCuota {e}')
+        except Exception as e:
+            print(f'Error - tablaTipoCuota {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA ENCABEZADO
-     def tablaEncabezado(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA RECEPLOG
+    def tablaRecepLog(self):
 
-         """
-         DEFINITION OF THE HEADER TABLE \n
-             WE RETURN: \n
-                TABLE NAME \n
-                STRUCTURE FIELDS \n
-                CONSTRUCTION ARGUMENTS \n
+        """
+        DEFINITION OF IMPORTEXPORT PROCESS TABLE\n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
 
-         """
+        """
+        try:
 
-         try:
+            lista, primary, parm = list(), list(), dict()
 
-             lista, primary, parm = list(), list(), dict()
+            # field list
+            lista = [
+                #
+                # Id de identificación del registro
+                Field('receplogid', type='id', comment='Id'),
+                #
+                # Nombre del archivo recibido
+                Field('archivorecibido', type='string', length=1520, required=True, comment='Archivo recibido de Sucerp'),
+                #
+                # Nombre del formato procesado
+                Field('fromatoprocesado', type='string', length=4, required=True, comment='Formato procesado'),
+                #
+                # Numero de orden dentro del formato con error
+                Field('numerocampoformato', type='integer', required=True, comment='Numero de campo en el formato'),
+                #
+                # Fecha de incorporación del registro
+                Field('ktimestamp', type='datetime', required=True, comment='Timestamp')
+            ]
 
-             # fields list
-             lista = [
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_RECEPLOG']['migrate']
+
+            # table construction parameters Nombre en el sistema PROCE00005
+            parm = {
+            'name': 'RECEPLOG',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
+            return parm
+
+        except Exception as e:
+            print(f'Error - tablaRecepLog {e}')
+
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # Tabla de Control de Archivos Recibidos de Sucerp
+    def tablaRecepcionArchivos(self):
+
+        """
+        DEFINITION OF THE FILE RECEPTION TABLE \n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
+
+        """
+        try:
+
+            lista, primary, parm = list(), list(), dict()
+
+            # fields list
+            lista = [
+                Field('archivorecibidoid', type='id', comment='Id'),
+                Field('archivonombre', unique=True, type='string', length=256, required=True, comment='Nombre Archivo'),
+                Field('archivousercrt',   type='string', length=10,  required=True, comment='Archivo User Create'),
+                Field('archivoprocesado', type='datetime', required=True, comment='Archivo Procesado'),
+            ]
+
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_RECEPCIONARCHIVOS']['migrate']
+
+            # table construction parameters
+            parm = {
+                'name': 'RECEPCIONARCHIVOS',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
+
+            return parm
+
+        except Exception as e:
+            print(f'Error - tablaApiEstados {e}')
+
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA ENCABEZADO
+    def tablaEncabezado(self):
+
+        """
+        DEFINITION OF THE HEADER TABLE \n
+            WE RETURN: \n
+            TABLE NAME \n
+            STRUCTURE FIELDS \n
+            CONSTRUCTION ARGUMENTS \n
+
+        """
+
+        try:
+
+            lista, primary, parm = list(), list(), dict()
+
+            # fields list
+            lista = [
                 # 
                 # Id de la tabla 
                 Field('encabezadoid', type='id', comment='Id'),
@@ -921,44 +1016,51 @@ class AtributosSucerp():
                 # Fecha y hora de la producción del archivo de interacción. Formato aaaa-mm-dd hh:mm:ss
                 Field('fechahora', type='datetime', required=True, comment='Fecha Hora'),
                 #
+                # Indica que el registro pertenece al archivo recibido de Sucerp
+                Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
+                #
                 # Fecha time stamp de incorporación del registro
-                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp')
-             ]
+                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp'),
+                # 
+                # Indica que fue procesado a la Db de la Matanza
+                Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
+            
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_ENCABEZADO']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_ENCABEZADO']['migrate']
 
-             # table construction parameters Nombre en el sistema ENCABEZADO
-             parm = {
-                 'name': 'ENCABEZADO',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters Nombre en el sistema ENCABEZADO
+            parm = {
+                'name': 'ENCABEZADO',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-                print(f'Error - tablaEncabezado {e}')
+        except Exception as e:
+            print(f'Error - tablaEncabezado {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA ALTAIMPOSITIVA
-     def tablaAltaImpositiva(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA ALTAIMPOSITIVA
+    def tablaAltaImpositiva(self):
 
-         """
-         DEFINITION OF THE HIGH TAX TABLE \n
-             WE RETURN: \n
-                TABLE NAME \n
-                STRUCTURE FIELDS \n
-                CONSTRUCTION ARGUMENTS \n
+        """
+        DEFINITION OF THE HIGH TAX TABLE \n
+            WE RETURN: \n
+            TABLE NAME \n
+            STRUCTURE FIELDS \n
+            CONSTRUCTION ARGUMENTS \n
 
-         """
-         try:
+        """
+        try:
 
-             lista, primary, parm = list(), list(), dict()
+            lista, primary, parm = list(), list(), dict()
 
-             # fields list
-             lista = [
+            # fields list
+            lista = [
                 # 
                 # Id de la tabla 
                 Field('altataxid', type='id', comment='Id'),
@@ -1111,179 +1213,136 @@ class AtributosSucerp():
                 # Referencia a la Alta Impositiva Titular
                 Field('altataxtitularid', type='reference ALTAIMPOSITIVATITULAR', ondelete='CASCADE', comment='Id FK Alta Impositiva Titular'),
                 #
+                # Indica que el registro pertenece al archivo recibido de Sucerp
+                Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
+                #
                 # Fecha time stamp de incorporación del registro
                 Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp'),
-             ]
+                # 
+                # Indica que fue procesado a la Db de la Matanza
+                Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_ALTAIMPOSITIVA']['migrate']
+            ]
 
-             # table construction parameters Nombre en el sistems ALTAI00002
-             parm = {
-                'name': 'ALTAIMPOSITIVA',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_ALTAIMPOSITIVA']['migrate']
 
-             return parm
+            # table construction parameters Nombre en el sistems ALTAI00002
+            parm = {
+            'name': 'ALTAIMPOSITIVA',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-         except Exception as e:
-             print(f'Error - tablaAltaImpositiva {e}')
+            return parm
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA RELACIONARBASUCERPMARCA
-     def tablaRelArbaSucerpMarca(self):
+        except Exception as e:
+            print(f'Error - tablaAltaImpositiva {e}')
 
-         """
-         DEFINITION OF THE ARBA SUCERP BRAND RELATIONSHIP TABLE\n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA RELACIONARBASUCERPMARCA
+    def tablaRelArbaSucerpMarca(self):
 
-         """
-         try:
+        """
+        DEFINITION OF THE ARBA SUCERP BRAND RELATIONSHIP TABLE\n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
 
-             lista, primary, parm = list(), list(), dict()
-
-             # field list
-             lista = [
-                 Field('relArbaSucerpid', type='id', comment='Id'),
-                 Field('relArbaSucerpArba', type='string', length=10, required=True, comment='Arba'),
-                 Field('relArbaSucerpMarca', type='string', length=60, required=True, comment='Marca'),
-                 Field('relArbaSucerpModelo', type='string', length=60, required=True, comment='Modelo'),
-                 Field('relArbaSucerpCodMtmFmm', type='string', length=8, required=True, comment='Sucerp'),
-                 Field('relArbaSucerpInciso', type='string', length=4, required=True, comment='Inciso'),
-                 Field('relArbaSucerpEstado', type='string', length=1, required=True, comment='1=Procesa, 0=A Confirmar'),
-                 Field('relArbaSucerpOrigenDato', type='string', length=1, required=True, comment='Origen Dato'),
-                 Field('relArbaSucerpMarcaMoto', type='string', length=60, required=True, comment='Marca Moto'),
-                 Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp'),
-             ]
-
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_RELACION_ARBA_SUCERP_MARCA']['migrate']
-
-             parm = {
-                'name': 'RELACIONARBASUCERPMARCA',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
-             return parm
-
-         except Exception as e:
-             print(f'Error - tablaRelArbaSucerpMarca {e}')
-
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA PROCESOIMPORTACIONEXPORTACION
-     def tablaProcesoImportacionExportacion(self):
-
-         """
-         DEFINITION OF IMPORTEXPORT PROCESS TABLE\n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
-
-         """
-         try:
-
-             lista, primary, parm = list(), list(), dict()
-
-             # field list
-             lista = [
-                 Field('procesoid', type='id', comment='Id'),
-                 Field('procesocodigotabla', type='integer', required=True, comment='Proceso Codigo Tabla'),
-                 Field('procesonombretabla', type='string', length=150, required=True, comment='Proceso Nombre Tabla'),
-                 Field('procesotransferencia', type='string', length=1, required=True, comment='Transferencia (S, Nulo)'),
-                 Field('procesofechatransferencia', type='datetime',  comment='Fecha Transferencia'),
-                 Field('procesobasedatos', type='string', length=1, required=True, comment='Base Datos (S, Nulo)'),
-                 Field('procesofechabasedatos', type='datetime',  comment='Fecha Base Datos'),
-                 Field('procesoaccion', type='string', length=1, required=True, comment='Accion ( E, I, Nulo)'),
-             ]
-
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_PROCESOIMPORTACIONEXPORTACION']['migrate']
-
-            # table construction parameters Nombre en el sistema PROCE00005
-             parm = {
-                'name': 'PROCESOIMPORTACIONEXPORTACION',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
-             return parm
-
-         except Exception as e:
-             print(f'Error - tablaRelArbaSucerpMarca {e}')
-
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA RECEPLOG
-     def tablaRecepLog(self):
-
-         """
-         DEFINITION OF IMPORTEXPORT PROCESS TABLE\n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
-
-         """
-         try:
-
-             lista, primary, parm = list(), list(), dict()
-
-             # field list
-             lista = [
-                 #
-                 # Id de identificación del registro
-                 Field('receplogid', type='id', comment='Id'),
-                 #
-                 # Nombre del archivo recibido
-                 Field('archivorecibido', type='string', length=150, required=True, comment='Archivo recibido de Sucerp'),
-                 #
-                 # Nombre del formato procesado
-                 Field('fromatoprocesado', type='string', length=4, required=True, comment='Formato procesado'),
-                 #
-                 # Numero de orden dentro del formato con error
-                 Field('numerocampoformato', type='integer', required=True, comment='Numero de campo en el formato'),
-                 #
-                 # Fecha de incorporación del registro
-                 Field('ktimestamp', type='datetime', required=True, comment='Timestamp')
-             ]
-
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_RECEPLOG']['migrate']
-
-            # table construction parameters Nombre en el sistema PROCE00005
-             parm = {
-                'name': 'RECEPLOG',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
-             return parm
-
-         except Exception as e:
-             print(f'Error - tablaRecepLog {e}')
-
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA GXPROD.MENSAJESERROR
-     def tablaMensajeError(self):
-
-         """
-         DEFINITION OF MENSAJESERROR TABLE\n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
-
-         """
-         try:
+        """
+        try:
 
             lista, primary, parm = list(), list(), dict()
 
+            # field list
+            lista = [
+                Field('relArbaSucerpid', type='id', comment='Id'),
+                Field('relArbaSucerpArba', type='string', length=10, required=True, comment='Arba'),
+                Field('relArbaSucerpMarca', type='string', length=60, required=True, comment='Marca'),
+                Field('relArbaSucerpModelo', type='string', length=60, required=True, comment='Modelo'),
+                Field('relArbaSucerpCodMtmFmm', type='string', length=8, required=True, comment='Sucerp'),
+                Field('relArbaSucerpInciso', type='string', length=4, required=True, comment='Inciso'),
+                Field('relArbaSucerpEstado', type='string', length=1, required=True, comment='1=Procesa, 0=A Confirmar'),
+                Field('relArbaSucerpOrigenDato', type='string', length=1, required=True, comment='Origen Dato'),
+                Field('relArbaSucerpMarcaMoto', type='string', length=60, required=True, comment='Marca Moto'),
+                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp'),
+            ]
+
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_RELACION_ARBA_SUCERP_MARCA']['migrate']
+
+            parm = {
+            'name': 'RELACIONARBASUCERPMARCA',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
+            return parm
+
+        except Exception as e:
+            print(f'Error - tablaRelArbaSucerpMarca {e}')
+
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA PROCESOIMPORTACIONEXPORTACION
+    def tablaProcesoImportacionExportacion(self):
+
+        """
+        DEFINITION OF IMPORTEXPORT PROCESS TABLE\n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
+
+        """
+        try:
+
+            lista, primary, parm = list(), list(), dict()
+
+            # field list
+            lista = [
+                Field('procesoid', type='id', comment='Id'),
+                Field('procesocodigotabla', type='integer', required=True, comment='Proceso Codigo Tabla'),
+                Field('procesonombretabla', type='string', length=150, required=True, comment='Proceso Nombre Tabla'),
+                Field('procesotransferencia', type='string', length=1, required=True, comment='Transferencia (S, Nulo)'),
+                Field('procesofechatransferencia', type='datetime',  comment='Fecha Transferencia'),
+                Field('procesobasedatos', type='string', length=1, required=True, comment='Base Datos (S, Nulo)'),
+                Field('procesofechabasedatos', type='datetime',  comment='Fecha Base Datos'),
+                Field('procesoaccion', type='string', length=1, required=True, comment='Accion ( E, I, Nulo)'),
+            ]
+
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_PROCESOIMPORTACIONEXPORTACION']['migrate']
+
+            # table construction parameters Nombre en el sistema PROCE00005
+            parm = {
+            'name': 'PROCESOIMPORTACIONEXPORTACION',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
+            return parm
+
+        except Exception as e:
+            print(f'Error - tablaRelArbaSucerpMarca {e}')
+
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA GXPROD.MENSAJESERROR
+    def tablaMensajeError(self):
+
+        """
+        DEFINITION OF MENSAJESERROR TABLE\n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
+
+        """
+        try:
+
+            lista, primary, parm = list(), list(), dict()
+    
             # field list
             lista = [
                 #
@@ -1298,15 +1357,15 @@ class AtributosSucerp():
                 #
                 # Nivel de Gravedad del Mensaje
                 Field('NIVELGRAVEDADID', 'reference MSGNIVELGRAVEDAD', label='Id', ondelete='CASCADE')
-
+    
             ]
-
+    
             # We get the migrate parameter
             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_MENSAJESERROR']['migrate']
-
+    
             # Primary Key list
             primary = ['MSGCODE']
-
+    
         # table construction parameters Nombre en el sistema MENSA00001
             parm = {
             'name': 'MENSAJESERROR',
@@ -1316,25 +1375,25 @@ class AtributosSucerp():
             }
             return parm
 
-         except Exception as e:
-             print(f'Error - tablaMensajeError {e}')
+        except Exception as e:
+            print(f'Error - tablaMensajeError {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA GXPROD.MSGNIVELGRAVEDAD
-     def tablaMensajeNivelGravedad(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA GXPROD.MSGNIVELGRAVEDAD
+    def tablaMensajeNivelGravedad(self):
 
-         """
-         DEFINITION OF MSGNIVELGRAVEDAD TABLE\n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
+        """
+        DEFINITION OF MSGNIVELGRAVEDAD TABLE\n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
 
-         """
-         try:
+        """
+        try:
 
             lista, primary, parm = list(), list(), dict()
-
+    
             # field list
             lista = [
                 #
@@ -1346,13 +1405,13 @@ class AtributosSucerp():
                 #
                 # Ayuda del Mensaje
                 Field('MSGNIVELGRAVEDADALERTA', type='string', length=50, required=True, label='Ayuda Mensaje'),
-
+    
             ]
-
+    
             # We get the migrate parameter
             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_MSGNIVELGRAVEDAD']['migrate']
-
-
+    
+    
         # table construction parameters Nombre en el sistema MSGNI00001
             parm = {
             'name': 'MSGNIVELGRAVEDAD',
@@ -1362,22 +1421,22 @@ class AtributosSucerp():
             }
             return parm
 
-         except Exception as e:
-             print(f'Error - tablaMensajeNivelGravedad {e}')
+        except Exception as e:
+            print(f'Error - tablaMensajeNivelGravedad {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA GXPROD.MENSAJESERRORMSGDINAMICOS
-     def tablaMensajesErrorMsgdDinamicos(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA GXPROD.MENSAJESERRORMSGDINAMICOS
+    def tablaMensajesErrorMsgdDinamicos(self):
 
-         """
-         DEFINITION OF MENSAJESERROR TABLE\n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
+        """
+        DEFINITION OF MENSAJESERROR TABLE\n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
 
-         """
-         try:
+        """
+        try:
 
             lista, primary, parm = list(), list(), dict()
 
@@ -1401,7 +1460,7 @@ class AtributosSucerp():
             # Primary Key list
             primarykey=['MSGCODE', 'MSGDINAMICOID']
 
-        # table construction parameters Nombre en el sistema MENSA00002
+            # table construction parameters Nombre en el sistema MENSA00002
             parm = {
             'name': 'MENSAJESERRORMSGDINAMICOS',
                 'fields': tuple(lista),
@@ -1410,12 +1469,12 @@ class AtributosSucerp():
             }
             return parm
 
-         except Exception as e:
-             print(f'Error - tablaMensajeError {e}')
+        except Exception as e:
+            print(f'Error - tablaMensajeError {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA GXPROD.IMPRESIONPDF
-     def tablaImpresionPdf(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA GXPROD.IMPRESIONPDF
+    def tablaImpresionPdf(self):
 
         """
         DEFINITION OF IMPRESIONPDF TABLE\n
@@ -1465,659 +1524,690 @@ class AtributosSucerp():
         except Exception as e:
             print(f'Error - tablaImpresionPdf {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA ALTAIMPOSITIVATITULAR
-     def tablaAltaImpositivaTitular(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA ALTAIMPOSITIVATITULAR
+    def tablaAltaImpositivaTitular(self):
 
-         """
-         DEFINITION OF THE HOLDER'S HIGH TAX TABLE \n
-         WE RETURN:\n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
+        """
+        DEFINITION OF THE HOLDER'S HIGH TAX TABLE \n
+        WE RETURN:\n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
 
-         """
-         try:
+        """
+        try:
 
-             lista, primary, parm = list(), list(), dict()
+            lista, primary, parm = list(), list(), dict()
 
-             # fields list
-             lista = [
-                 #
-                 # Id de identificación del registro
-                 Field('altataxtitularid', type='id', comment='Id'),
-                 #
-                 # Constante “C1 ”
-                 Field('tipocuerpoid', type='reference TIPOCUERPO', ondelete='CASCADE', comment='Id Fk Tipo Cuerpo'),
-                 #
-                 # Constante “T ”
-                 Field('tiposubregistroid', type='reference TIPOSUBREGISTRO', ondelete='CASCADE', comment='Id Fk Tipo Sub Registro'),
-                 #
-                 # Tipo de documento del titular. Según tabla anexa V
-                 Field('tipodocumentoid', type='reference TIPODOCUMENTO', ondelete='CASCADE', comment='Id Fk Tipo Documento'),
-                 #
-                 # Número de documento correspondiente al titular
-                 Field('numerodocumento', type='bigint', required=True, comment='Nro Documento'),
-                 #
-                 # Número de CUIT / CUIL correspondiente al titular
-                 Field('cuitcuil', type='bigint', required=True, comment='Cuit/Cuil'),
-                 #
-                 # Nombre y Apellido o Razón Social del titular del vehículo
-                 Field('apellidonombre', type='string', length=150, required=True, comment='Apellido y Nombre'),
-                 #
-                 # Porcentaje de posesión del vehiculo
-                 Field('porcentajetitularidad', type='integer', required=True, comment='Porcentaje Titular'),
-                 #
-                 # Calle del domicilio del titular
-                 Field('calle', type='string', length=40, required=True, comment='Calle'),
-                 #
-                 # Número de puerta del domicilio del titular
-                 Field('numero', type='string', length=10, required=True, comment='Nro Puerta'),
-                 # CAMPO OPCIONAL
-                 # Piso del departamento del domicilio del titular
-                 Field('piso', type='string', length=10, required=True, comment='Piso'),
-                 # CAMPO OPCIONAL
-                 # Departamento del domicilio del titular
-                 Field('departamento', type='string', length=10, required=True, comment='Depto'),
-                 # CAMPO OPCIONAL
-                 # Barrio del domicilio del titular
-                 Field('barrio', type='string', length=40, required=True, comment='Barrio'),
-                 #
-                 # Localidad del domicilio del titular
-                 Field('localidad', type='string', length=40, required=True, comment='Localidad'),
-                 #
-                 # Código Postal del titular
-                 Field('codigopostal', type='string', length=8, required=True, comment='Cod Postal'),
-                 #
-                 # Provincia del Titular. Según tabla Anexo VI
-                 Field('provinciaid', type='reference PROVINCIAS', ondelete='CASCADE', comment='Id Fk Provincia'),
-                 # CAMPO OPCIONAL
-                 # Reservado para uso futuro
-                 Field('reservado', type='string', length=256, required=True, comment='Reservado Sucerp'),
-                 #
-                 # Fecha de incorporación del registro
-                 Field('ktimestamp', type='datetime', required=True, comment='Timestamp')
-             ]
+            # fields list
+            lista = [
+                #
+                # Id de identificación del registro
+                Field('altataxtitularid', type='id', comment='Id'),
+                #
+                # Constante “C1 ”
+                Field('tipocuerpoid', type='reference TIPOCUERPO', ondelete='CASCADE', comment='Id Fk Tipo Cuerpo'),
+                #
+                # Constante “T ”
+                Field('tiposubregistroid', type='reference TIPOSUBREGISTRO', ondelete='CASCADE', comment='Id Fk Tipo Sub Registro'),
+                #
+                # Tipo de documento del titular. Según tabla anexa V
+                Field('tipodocumentoid', type='reference TIPODOCUMENTO', ondelete='CASCADE', comment='Id Fk Tipo Documento'),
+                #
+                # Número de documento correspondiente al titular
+                Field('numerodocumento', type='bigint', required=True, comment='Nro Documento'),
+                #
+                # Número de CUIT / CUIL correspondiente al titular
+                Field('cuitcuil', type='bigint', required=True, comment='Cuit/Cuil'),
+                #
+                # Nombre y Apellido o Razón Social del titular del vehículo
+                Field('apellidonombre', type='string', length=150, required=True, comment='Apellido y Nombre'),
+                #
+                # Porcentaje de posesión del vehiculo
+                Field('porcentajetitularidad', type='integer', required=True, comment='Porcentaje Titular'),
+                #
+                # Calle del domicilio del titular
+                Field('calle', type='string', length=40, required=True, comment='Calle'),
+                #
+                # Número de puerta del domicilio del titular
+                Field('numero', type='string', length=10, required=True, comment='Nro Puerta'),
+                # CAMPO OPCIONAL
+                # Piso del departamento del domicilio del titular
+                Field('piso', type='string', length=10, required=True, comment='Piso'),
+                # CAMPO OPCIONAL
+                # Departamento del domicilio del titular
+                Field('departamento', type='string', length=10, required=True, comment='Depto'),
+                # CAMPO OPCIONAL
+                # Barrio del domicilio del titular
+                Field('barrio', type='string', length=40, required=True, comment='Barrio'),
+                #
+                # Localidad del domicilio del titular
+                Field('localidad', type='string', length=40, required=True, comment='Localidad'),
+                #
+                # Código Postal del titular
+                Field('codigopostal', type='string', length=8, required=True, comment='Cod Postal'),
+                #
+                # Provincia del Titular. Según tabla Anexo VI
+                Field('provinciaid', type='reference PROVINCIAS', ondelete='CASCADE', comment='Id Fk Provincia'),
+                # CAMPO OPCIONAL
+                # Reservado para uso futuro
+                Field('reservado', type='string', length=256, required=True, comment='Reservado Sucerp'),
+                #
+                # Indica que el registro pertenece al archivo recibido de Sucerp
+                Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
+                #
+                # Fecha de incorporación del registro
+                Field('ktimestamp', type='datetime', required=True, comment='Timestamp'),
+                # 
+                # Indica que fue procesado a la Db de la Matanza
+                Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_ALTAIMPOSITIVATITULAR']['migrate']
+            ]
+
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_ALTAIMPOSITIVATITULAR']['migrate']
 
             # table construction parameters Nombre en el sistema ALTAI00001
-             parm = {
-                 'name': 'ALTAIMPOSITIVATITULAR',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            parm = {
+                'name': 'ALTAIMPOSITIVATITULAR',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-             print(f'Error - tablaAltaImpositivaTitular {e}')
+        except Exception as e:
+            print(f'Error - tablaAltaImpositivaTitular {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA BAJAIMPOSITIVA
-     def tablaBajaImpositiva(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA BAJAIMPOSITIVA
+    def tablaBajaImpositiva(self):
 
-         """
-         DEFINITION OF THE TAX LOW TABLE \n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
+        """
+        DEFINITION OF THE TAX LOW TABLE \n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
 
-         """
-         try:
+        """
+        try:
 
-             lista, primary, parm = list(), list(), dict()
+            lista, primary, parm = list(), list(), dict()
 
-              # fields list
-             lista = [
-                 #
-                 # Id identificador del registro
-                 Field('bajataxid', type='id', comment='Id'),
-                 #
-                 # Constante “C2 ”
-                 Field("tiporegistroid", type='reference TIPOREGISTRO', ondelete='CASCADE', comment='Id Fk Tipo Registro'),
-                 #
-                 # Constante “C”
-                 Field('tiposubregistroid', type='reference TIPOSUBREGISTRO', ondelete='CASCADE', comment='Id Fk Tipo Sub Registro'),
-                 #
-                 # Código del organismo Municipal o Provincial al cual corresponde la información
-                 Field('codigoorganismo', type='integer', required=True, comment='Cod Organismo'),
-                 # CAMPO OPCIONAL
-                 # Número de trámite interno de la aplicación
-                 Field('numerotramite', type='bigint', required=True, comment='Nro Tramite'),
-                 #
-                 # Código de trámite registral realizado
-                 Field('codigotipotramite', type='integer', required=True, comment='Cod Tipo Tramite'),
-                 #
-                 # Descripción del tipo de trámite registral realizado
-                 Field('descrtipotramite', type='string', length=60, required=True, comment='Descripcion Tramite'),
-                 #
-                 # Código del tipo de acción realizada por el contribuyente
-                 Field('codigotipoaccion', type='integer', required=True, comment='Cod Tipo Accion'),
-                 #
-                 # Descripción del tipo de acción realizada por el contribuyente
-                 Field('descrtipoaccion', type='string', length=60, required=True, comment='Descripcion Tipo Accion'),
-                 #
-                 # Identificador de tipo de formulario exigible para el trámit
-                 Field('tipoformulario', type='integer', required=True, comment='Tipo Formulario'),
-                 #
-                 # Número de formulario en el que se realizo el trámite
-                 Field('numeroformulario', type='integer', required=True, comment='Nro Formulario'),
-                 #
-                 # Patente del Vehículo (Reempadronado)
-                 Field('dominionuevo', type='string', length=8, required=True, comment='Dominio Nuevo'),
-                 #
-                 # Patente del Vehículo (Dominio Anterior)
-                 Field('dominioviejo', type='string', length=8, required=True, comment='Dominio Viejo'),
-                 #
-                 # Código del vehículo según la DNRPA. MTM (Marca – Tipo – Modelo) y FMM (Fabrica – Marca – Modelo).
-                 Field('codigomtmfmm', type='string', length=8, required=True, comment='Codigo Sucerp'),
-                 #
-                 # Tipo de origen del vehículo (N – Nacional, I - Importado)
-                 Field('origenid', type='reference TIPOORIGEN', ondelete='CASCADE', comment='Id Fk Tipo Origen'),
-                 # CAMPO OPCIONAL
-                 # Categoría del vehículo
-                 Field('categoría', type='string', length=3, required=True, comment='Categoria'),
-                 #
-                 # Descripción de la marca del Vehículo
-                 Field('marca', type='string', length=60, required=True, comment='Marca'),
-                 #
-                 # Descripción del tipo de Vehículo
-                 Field('tipovehiculo', type='string', length=60,   required=True, comment='Tipo Vehiculo'),
-                 #
-                 # Descripción del modelo del vehículo
-                 Field('modelo',  type='string', length=100,  required=True, comment='Modelo'),
-                 #
-                 # Año/Modelo del Vehículo
-                 Field('yyyymodelo', type='integer', required=True, comment='Año Modelo'),
-                 # CAMPO OPCIONAL
-                 # Peso del Vehículo
-                 Field('peso', type='integer', required=True, comment='Peso Vehiculo'),
-                 # CAMPO OPCIONAL
-                 # Carga del Vehículo
-                 Field('carga', type='integer', required=True, comment='Carga'),
-                 # CAMPO OPCIONAL
-                 # Cilindrada (sólo motovehículos)
-                 Field('cilindrada', type='integer', required=True, comment='Cilindrada'),
-                 #
-                 # Valuación del vehículo
-                 Field('valuacion', type='integer', required=True, comment='Valuacion'),
-                 #
-                 # Código de tipo de uso del vehículo
-                 Field('codigotipouso', type='string', length=2,    required=True, comment='Cod Tipo Uso'),
-                 #
-                 # Descripción del tipo de uso del vehículo
-                 Field('descrtipouso', type='string', length=100,  required=True, comment='Descripcion Tipo Uso'),
-                 #
-                 # Fecha de vigencia. Formato aaaa-mm-dd.
-                 Field('fechavigencia', type='date', required=True, comment='Fecha Vigencia'),
-                 #
-                 # Cantidad de titulares del vehículo
-                 Field('cantidadtitulares', type='integer', required=True, comment='Cantidad Titulares'),
-                 #
-                 # Código de Registro Seccional
-                 Field('codigoregistronacional', type='integer', required=True, comment='Codigo Registro  Nacional'),
-                 #
-                 # Nombre del registro Seccional
-                 Field('razonsocial', type='string', length=40,   required=True, comment='Razon Social'),
-                 # CAMPO OPCIONAL
-                 # Código del Registro Seccional de destino del trámite
-                 Field('registroseccionaldestino', type='integer', required=True, comment='Registro Seccional Destino'),
-                 #
-                 # Razón social del Registro Seccional destino del trámite (sólo disponible en cambios de radicación)
-                 Field('razonsocialregistroseccionalorigen', type='string', length=40, required=True, comment='Raz. Soc. Reg. Seccional  Orig.'),
-                 # CAMPO OPCIONAL
-                 # Razón social de la Municipalidad destino del trámite.
-                 Field('municipalidaddestino', type='string', length=150,  required=True, comment='Muni. Destino'),
-                 #
-                 # Fecha de la operación. Formato aaaa-mm-dd hh:mm:ss
-                 Field('fechaoperacion', type='datetime', required=True, comment='Fecha Operacion'),
-                 # CAMPO OPCIONAL
-                 # Contiene los datos de cada parámetro adicional que el organismo requiera al realizar el trámite. 
-                 # Dispone de un máximo de 10 valores adicionales. Ver anexo VII.
-                 Field('parametrosadicionales',   type='string', length=650,  required=True, comment='Param. Adicionales'),
-                 # CAMPO OPCIONAL
-                 # Reservado para uso futuro
-                 Field('reservado', type='string', length=256,  required=True, comment='Reservado'),
-                 # CAMPO OPCIONAL
-                 # Observaciones
-                 Field('observaciones', type='string', length=256,  required=True, comment='Observaciones'),
-                 #
-                 # Referencia al titular de la baja impositiva
-                 Field('bajataxtitularid', type='reference BAJAIMPOSITIVATITULAR', ondelete='CASCADE', comment='Id Fk Baja Impositiva Titular'),
-                 #
-                 # Fecha del ingreso del registro 
-                 Field('ktimestamp', type='datetime', required=True, comment='Key TimeStamp'),
-             ]
-
-
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_BAJAIMPOSITIVA']['migrate']
-
-             # table construction parameters Nombre en el sistema BAJAI00002
-             parm = {
-                 'name': 'BAJAIMPOSITIVA',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
-
-             return parm
-
-         except Exception as e:
-             print(f'Error - tablaBajaImpositiva {e}')
-
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA BAJAIMPOSITIVATITULAR
-     def tablaBajaImpositivaTitular(self):
-
-         """
-         DEFINITION OF THE HOLDER'S LOW TAX TABLE \n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
-         """
-
-         try:
-
-             lista, primary, parm = list(), list(), dict()
-
-             # fields list
-             lista = [
-                 #
-                 # Id identificador del registro
-                 Field('bajataxtitularid', type='id', comment='Id'),
-                 #
-                 # Constante “C2 ”
-                 Field('tipocuerpoid', type='reference TIPOCUERPO', ondelete='CASCADE', comment='Id Fk Tipo Cuerpo'),
-                 #
-                 # Constante “T ”
-                 Field('tiposubregistroid', type='reference TIPOSUBREGISTRO', ondelete='CASCADE', comment='Id Fk Tipo Sub Registro'),
-                 #
-                 # Tipo de documento del titular. Según tabla anexa V
-                 Field('tipodocumentoid', type='reference TIPODOCUMENTO', ondelete='CASCADE', comment='Id Fk Tipo Documento'),
-                 #
-                 # Número de documento correspondiente al titular
-                 Field('numerodocumento', type='bigint', required=True, comment='Nro Documento'),
-                 #
-                 # Número de CUIT / CUIL correspondiente al titular
-                 Field('cuitcuil', type='bigint', required=True, comment='Cuit/Cuil'),
-                 #
-                 # Nombre y Apellido o Razón Social del titular del vehículo
-                 Field('apellidonombre', type='string', length=150,  required=True, comment='Apellido y Nombre'),
-                 #
-                 # Porcentaje de posesión del vehiculo
-                 Field('porcentajetitularidad', type='integer', required=True, comment='Procentaje Titular'),
-                 #
-                 # Calle del domicilio del titular
-                 Field('calle', type='string', length=40, required=True, comment='Calle'),
-                 #
-                 # Número de puerta del domicilio del titular
-                 Field('numero', type='string', length=10, required=True, comment='Nro Puerta'),
-                 #
-                 # Piso del departamento del domicilio del titular
-                 Field('piso', type='string', length=10, required=True, comment='Piso'),
-                 #
-                 # Departamento del domicilio del titular
-                 Field('departamento', type='string', length=10, required=True, comment='Depto'),
-                 # CAMPO OPCIONAL
-                 # Barrio del domicilio del titular
-                 Field('barrio', type='string', length=40, required=True, comment='Barrio'),
-                 #
-                 # Localidad del domicilio del titular
-                 Field('localidad', type='string', length=40, required=True, comment='Localidad'),
-                 #
-                 # Código Postal del titular
-                 Field('codigopostal', type='string', length=8,    required=True, comment='Cod Postal'),
-                 #
-                 # Provincia del Titular. Según tabla Anexo VI
-                 Field('provinciaid', type='reference PROVINCIAS', ondelete='CASCADE', comment='Id Fk Provincias'),
-                 # CAMPO OPCIONAL
-                 # Reservado para uso futuro
-                 Field('reservado', type='string', length=256, required=True, comment='Reservado Sucerp'),
-                 #
-                 # Fecha del ingreso del registro 
-                 Field('ktimestamp', type='datetime', required=True, comment='Timestamp')
-             ]
-
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_BAJAIMPOSITIVATITULAR']['migrate']
-
-             # table construction parameters Nombre en el sistema BAJAI00001
-             parm = {
-                 'name': 'BAJAIMPOSITIVATITULAR',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
-
-             return parm
-
-         except Exception as e:
-             print(f'Error - tablaBajaImpositivaTitular {e}')
-
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA IMPUESTOSELLOS
-     def tablaImpuestosSellos(self):
-
-         """
-         DEFINITION OF THE STAMP TAX TABLE \n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
-
-         """
-
-         try:
-
-             lista, primary, parm = list(), list(), dict()
-
-             # fields list
-             lista = [
-                 #
-                 # Id identificador del registro
-                 Field('taxsellosid', type='id', comment='Id'),
-                 #
-                 # Constante “C3 ”
-                 Field("tiporegistroid", type='reference TIPOREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Registro'),
-                 #
-                 # Constante “C”
-                 Field('tiposubregistroid', type='reference TIPOSUBREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Sub Registro'),
-                 #
-                 # Código del organismo Municipal o Provincial al cual corresponde la información
-                 Field('codigoorganismo', type='integer', required=True, comment='Codigo Organismo'),
-                 #
-                 # Número de trámite interno de la aplicación
-                 Field('numerotramite', type='bigint', required=True, comment='Nro Tramite'),
-                 #
-                 # Código del tipo de acción realizada por el contribuyente
-                 Field('codigotipoaccion', type='integer', required=True, comment='Cod Tipo Accion'),
-                 #
-                 # Descripción del tipo de acción realizada por el contribuyente
-                 Field('descrtipoaccion', type='string', length=60, required=True, comment='Descr. Tipo Accion'),
-                 #
-                 # Identificador de tipo de formulario exigible para el trámite
-                 Field('tipoformulario', type='integer', required=True, comment='Tipo Formulario'),
-                 #
-                 # Número de formulario en el que se realizo el trámite
-                 Field('numeroformulario', type='integer', required=True, comment='Nro Formulario'),
-                 # CAMPO OPCIONAL
-                 # Patente del Vehículo (Reempadronado), es opcional, 
-                 # puede llegar o el dominio o el nº de recibo, nunca los dos a la vez
-                 Field('dominionuevo', type='string', length=8, required=True, comment='Dominio Nuevo'),
-                 # CAMPO OPCIONAL
-                 # Patente del Vehículo (Dominio Anterior)
-                 Field('dominioviejo', type='string', length=8, required=True, comment='Dominio Viejo' ),
-                 # CAMPO OPCIONAL
-                 # Nº de recibo que otorga el registro seccional, es opcional, 
-                 # puede llegar o el dominio o el nº de recibo, nunca los dos a la vez
-                 Field('recibo', type='string', length=15, required=True, comment='Recibo'),
-                 # CAMPO OPCIONAL
-                 # Código del vehículo según la DNRPA. MTM (Marca – Tipo – Modelo) 
-                 # y FMM (Fabrica – Marca – Modelo).
-                 Field('codigomtmfmm', type='string', length=8, required=True, comment='Codigo Sucerp'),
-                 # CAMPO OPCIONAL
-                 # Tipo de origen del vehículo (N – Nacional, I - Importado)
-                 Field('origenid', type='reference TIPOORIGEN', ondelete='CASCADE', comment='Id FK Origen'),
-                 # CAMPO OPCIONAL
-                 # Categoría del vehículo
-                 Field('categoría', type='string', length=3, required=True, comment='Categoria'),
-                 # CAMPO OPCIONAL
-                 # Descripción de la marca del Vehículo
-                 Field('marca', type='string', length=60, required=True, comment='Marca'),
-                 # CAMPO OPCIONAL
-                 # Descripción del tipo de Vehículo
-                 Field('tipovehiculo', type='string', length=60, required=True, comment='Tipo Vehiculo'),
-                 # CAMPO OPCIONAL
-                 # Descripción del modelo del vehículo 
-                 Field('modelo', type='string', length=100, required=True, comment='Modelo'),
-                 # CAMPO OPCIONAL
-                 # Año/Modelo del Vehículo
-                 Field('yyyymodelo', type='integer', required=True, comment='Año Modelo'),
-                 # CAMPO OPCIONAL
-                 # Código de tipo de uso del vehículo
-                 Field('codigotipouso', type='string', length=2, required=True, comment='Codigo Tipo Uso'),
-                 # CAMPO OPCIONAL
-                 # Descripción del tipo de uso del vehículo
-                 Field('descrtipouso', type='string', length=100, required=True, comment='Descr Tipo Uso'),
-                 # CAMPO OPCIONAL
-                 # Valuación del Vehículo
-                 Field('valuacion', type='integer', required=True, comment='Valuacion'),
-                 #
-                 # Cantidad de partes
-                 Field('cantidadpartes', type='integer', required=True, comment='Cantidad Partes'),
-                 #
-                 # Total de los montos de impuesto adicionales al contrato
-                 Field('montoimpuestoadicional', type='decimal(12, 2)', required=True, comment='Monto Impuesto Adicional'),
-                 #
-                 # Total de los montos de punitorios cobrados
-                 Field('montopunitorios', type='decimal(12, 2)', required=True, comment='Monto Punitorios'),
-                 #
-                 # Total de los montos percibido
-                 Field('montototalcobrado', type='decimal(12, 2)', required=True, comment='Monto Total Cobrado'),
-                 #
-                 # Total del monto abonado fuera del RRSS, exhibido ante la presentación de un comprobante. 
-                 # Puede ser el importe parcial o total del sello
-                 Field('montoabonado', type='decimal(12, 2)', required=True, comment='Monto Abonado'),
-                 # CAMPO OPCIONAL
-                 # Según tabla Anexo III
-                 Field('codigoformapagoid', type='reference TIPOPAGO', ondelete='CASCADE', comment='Id FK Cod Forma Pago'),
-                 # CAMPO OPCIONAL
-                 # Según tabla Anexo IV
-                 Field('codigomonedaid', type='reference TIPOMONEDA', ondelete='CASCADE', comment='Id FK Cod Moneda'),
-                 # CAMPO OPCIONAL
-                 # Código de entidad bancaria
-                 Field('codigoentidadbancaria', type='integer', required=True, comment='Codigo Entidad Bancaria'),
-                 # CAMPO OPCIONAL
-                 # Razón Social de la entidad bancaria
-                 Field('descrentidadbancaria', type='string', length=60, required=True, comment='Descr Entidad Bancaria'),
-                 # CAMPO OPCIONAL
-                 # Número de cheque
-                 Field('numerocheque', type='string', length=20, required=True, comment='Nro Cheque'),
-                 # 
-                 # S: Esta exento, N: no esta exento
-                 Field('exencion', type='string', length=1, required=True, comment='Execcion'),
-                 # CAMPO OPCIONAL
-                 # Código de la exención
-                 Field('codigoexencion', type='string', length=10, required=True, comment='Codigo Execcion'),
-                 # CAMPO OPCIONAL
-                 # Descripción de la exención
-                 Field('descripcionexencion', type='string', length=100, required=True, comment='Descr Execcion'),
-                 # CAMPO OPCIONAL
-                 # Fecha de depósito. Formato aaaa-mm-dd hh:mm:ss
-                 Field('fechadeposito', type='datetime', required=True, comment='fecha Deposito'),
-                 #
-                 #  Código de Registro Seccional
-                 Field('codigoregistroseccional', type='integer', required=True, comment='Codigo Registro Seccional'),
-                 #
-                 # Número de CUIT del encargado del Registro Seccional
-                 Field('cuitregistroseccional', type='bigint', required=True, comment='Cuit Registro Seccional'),
-                 #
-                 # Nombre del Registro Seccional
-                 Field('razonsocial', type='string', length=40, required=True, comment='Razon Social'),
-                 #
-                 # Fecha de la operación. Formato aaaa-mm-dd hh:mm:ss
-                 Field('fechaoperacion', type='datetime', required=True, comment='fecha Operacion'),
-                 # CAMPO OPCIONAL
-                 # Contiene los datos de cada parámetro adicional que el organismo requiera al realizar el trámite. 
-                 # Dispone de un máximo de 10 valores adicionales. Ver anexo VII.
-                 Field('parametrosadicionales', type='string', length=650, required=True, comment='Parm Adicionales'),
-                 # CAMPO OPCIONAL
-                 # Reservado para uso futuro
-                 Field('reservado', type='string', length=256, required=True, comment='Reservado'),
-                 # CAMPO OPCIONAL
-                 # Observaciones
-                 Field('observaciones', type='string', length=256, required=True, comment='Observaciones'),
-                 # CAMPO OPCIONAL
-                 # Observaciones anulación
-                 Field('observacionesanulacion', type='string', length=256, required=True, comment='Observaciones Anulacion'),
-                 #
-                 # Fecha del ingreso del registro 
-                 Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp'),
-             ]
+            # fields list
+            lista = [
+                #
+                # Id identificador del registro
+                Field('bajataxid', type='id', comment='Id'),
+                #
+                # Constante “C2 ”
+                Field("tiporegistroid", type='reference TIPOREGISTRO', ondelete='CASCADE', comment='Id Fk Tipo Registro'),
+                #
+                # Constante “C”
+                Field('tiposubregistroid', type='reference TIPOSUBREGISTRO', ondelete='CASCADE', comment='Id Fk Tipo Sub Registro'),
+                #
+                # Código del organismo Municipal o Provincial al cual corresponde la información
+                Field('codigoorganismo', type='integer', required=True, comment='Cod Organismo'),
+                # CAMPO OPCIONAL
+                # Número de trámite interno de la aplicación
+                Field('numerotramite', type='bigint', required=True, comment='Nro Tramite'),
+                #
+                # Código de trámite registral realizado
+                Field('codigotipotramite', type='integer', required=True, comment='Cod Tipo Tramite'),
+                #
+                # Descripción del tipo de trámite registral realizado
+                Field('descrtipotramite', type='string', length=60, required=True, comment='Descripcion Tramite'),
+                #
+                # Código del tipo de acción realizada por el contribuyente
+                Field('codigotipoaccion', type='integer', required=True, comment='Cod Tipo Accion'),
+                #
+                # Descripción del tipo de acción realizada por el contribuyente
+                Field('descrtipoaccion', type='string', length=60, required=True, comment='Descripcion Tipo Accion'),
+                #
+                # Identificador de tipo de formulario exigible para el trámit
+                Field('tipoformulario', type='integer', required=True, comment='Tipo Formulario'),
+                #
+                # Número de formulario en el que se realizo el trámite
+                Field('numeroformulario', type='integer', required=True, comment='Nro Formulario'),
+                #
+                # Patente del Vehículo (Reempadronado)
+                Field('dominionuevo', type='string', length=8, required=True, comment='Dominio Nuevo'),
+                #
+                # Patente del Vehículo (Dominio Anterior)
+                Field('dominioviejo', type='string', length=8, required=True, comment='Dominio Viejo'),
+                #
+                # Código del vehículo según la DNRPA. MTM (Marca – Tipo – Modelo) y FMM (Fabrica – Marca – Modelo).
+                Field('codigomtmfmm', type='string', length=8, required=True, comment='Codigo Sucerp'),
+                #
+                # Tipo de origen del vehículo (N – Nacional, I - Importado)
+                Field('origenid', type='reference TIPOORIGEN', ondelete='CASCADE', comment='Id Fk Tipo Origen'),
+                # CAMPO OPCIONAL
+                # Categoría del vehículo
+                Field('categoría', type='string', length=3, required=True, comment='Categoria'),
+                #
+                # Descripción de la marca del Vehículo
+                Field('marca', type='string', length=60, required=True, comment='Marca'),
+                #
+                # Descripción del tipo de Vehículo
+                Field('tipovehiculo', type='string', length=60,   required=True, comment='Tipo Vehiculo'),
+                #
+                # Descripción del modelo del vehículo
+                Field('modelo',  type='string', length=100,  required=True, comment='Modelo'),
+                #
+                # Año/Modelo del Vehículo
+                Field('yyyymodelo', type='integer', required=True, comment='Año Modelo'),
+                # CAMPO OPCIONAL
+                # Peso del Vehículo
+                Field('peso', type='integer', required=True, comment='Peso Vehiculo'),
+                # CAMPO OPCIONAL
+                # Carga del Vehículo
+                Field('carga', type='integer', required=True, comment='Carga'),
+                # CAMPO OPCIONAL
+                # Cilindrada (sólo motovehículos)
+                Field('cilindrada', type='integer', required=True, comment='Cilindrada'),
+                #
+                # Valuación del vehículo
+                Field('valuacion', type='integer', required=True, comment='Valuacion'),
+                #
+                # Código de tipo de uso del vehículo
+                Field('codigotipouso', type='string', length=2,    required=True, comment='Cod Tipo Uso'),
+                #
+                # Descripción del tipo de uso del vehículo
+                Field('descrtipouso', type='string', length=100,  required=True, comment='Descripcion Tipo Uso'),
+                #
+                # Fecha de vigencia. Formato aaaa-mm-dd.
+                Field('fechavigencia', type='date', required=True, comment='Fecha Vigencia'),
+                #
+                # Cantidad de titulares del vehículo
+                Field('cantidadtitulares', type='integer', required=True, comment='Cantidad Titulares'),
+                #
+                # Código de Registro Seccional
+                Field('codigoregistronacional', type='integer', required=True, comment='Codigo Registro  Nacional'),
+                #
+                # Nombre del registro Seccional
+                Field('razonsocial', type='string', length=40,   required=True, comment='Razon Social'),
+                # CAMPO OPCIONAL
+                # Código del Registro Seccional de destino del trámite
+                Field('registroseccionaldestino', type='integer', required=True, comment='Registro Seccional Destino'),
+                #
+                # Razón social del Registro Seccional destino del trámite (sólo disponible en cambios de radicación)
+                Field('razonsocialregistroseccionalorigen', type='string', length=40, required=True, comment='Raz. Soc. Reg. Seccional  Orig.'),
+                # CAMPO OPCIONAL
+                # Razón social de la Municipalidad destino del trámite.
+                Field('municipalidaddestino', type='string', length=150,  required=True, comment='Muni. Destino'),
+                #
+                # Fecha de la operación. Formato aaaa-mm-dd hh:mm:ss
+                Field('fechaoperacion', type='datetime', required=True, comment='Fecha Operacion'),
+                # CAMPO OPCIONAL
+                # Contiene los datos de cada parámetro adicional que el organismo requiera al realizar el trámite. 
+                # Dispone de un máximo de 10 valores adicionales. Ver anexo VII.
+                Field('parametrosadicionales',   type='string', length=650,  required=True, comment='Param. Adicionales'),
+                # CAMPO OPCIONAL
+                # Reservado para uso futuro
+                Field('reservado', type='string', length=256,  required=True, comment='Reservado'),
+                # CAMPO OPCIONAL
+                # Observaciones
+                Field('observaciones', type='string', length=256,  required=True, comment='Observaciones'),
+                #
+                # Referencia al titular de la baja impositiva
+                Field('bajataxtitularid', type='reference BAJAIMPOSITIVATITULAR', ondelete='CASCADE', comment='Id Fk Baja Impositiva Titular'),
+                #
+                # Indica que el registro pertenece al archivo recibido de Sucerp
+                Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
+                #
+                # Fecha del ingreso del registro 
+                Field('ktimestamp', type='datetime', required=True, comment='Key TimeStamp'),
+                # 
+                # Indica que fue procesado a la Db de la Matanza
+                Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
+            ]
 
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_IMPUESTOSELLOS']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_BAJAIMPOSITIVA']['migrate']
 
-             # table construction parameters Nombre en el sistema IMPUE00001
-             parm = {
-                 'name': 'IMPUESTOSELLOS',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters Nombre en el sistema BAJAI00002
+            parm = {
+                'name': 'BAJAIMPOSITIVA',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-             print(f'Error - tablaImpuestosSellos {e}')
+        except Exception as e:
+            print(f'Error - tablaBajaImpositiva {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA IMPUESTOSELLOSPARTES
-     def tablaImpuestosSellosPartes(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA BAJAIMPOSITIVATITULAR
+    def tablaBajaImpositivaTitular(self):
 
-         """
-         PART STAMP TAX TABLE DEFINITION \n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
+        """
+        DEFINITION OF THE HOLDER'S LOW TAX TABLE \n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
+        """
 
-         """
+        try:
 
-         try:
-             lista, primary, parm = list(), list(), dict()
+            lista, primary, parm = list(), list(), dict()
 
-             # fields list
-             lista = [
-                 #
-                 # Id identificador del registro
-                 Field('taxsellospartesid', type='id', comment='Id'),
-                 #
-                 # Constante “C3 ”
-                 Field('tipocuerpoid', type='reference TIPOCUERPO', ondelete='CASCADE', comment='Id FK Tipo Cuerpo'),
-                 #
-                 # Constante “P ” 
-                 Field('tiposubregistroid', type='reference TIPOSUBREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Sub Registro'),
-                 #
-                 # Tipo de interviniente en la operación.
-                 Field('tipointerviniente', type='integer', required=True, comment='Tipo Interviniente'),
-                 #
-                 # Descripción del tipo de parte del impuesto
-                 Field('descrtipointerviniente', type='string', length=60,   required=True, comment='Descr Tipo Interviniente'),
-                 # CAMPO OPCIONAL
-                 # Tipo de documento del titular. Según tabla anexa V
-                 Field('tipodocumentoid', type='reference TIPODOCUMENTO', ondelete='CASCADE', comment='Id FK Tipo Documento'),
-                 # CAMPO OPCIONAL
-                 # Número de documento correspondiente al titular
-                 Field('numerodocumento', type='bigint', required=True, comment='Nro Documento'),
-                 #
-                 # Número de CUIT / CUIL correspondiente al titular
-                 Field('cuitcuil', type='bigint', required=True, comment='Cuit/Cuil'),
-                 # CAMPO OPCIONAL
-                 # Nombre y Apellido o Razón Social del titular del vehículo
-                 Field('apellidonombre', type='string', length=150,  required=True, comment='Apellido y Nombre'),
-                 #
-                 # Porcentaje de posesión del vehiculo
-                 Field('porcentajetitularidad', type='integer', required=True, comment='Porcentaje Titular'),
-                 # CAMPO OPCIONAL
-                 # Calle del domicilio del titular
-                 Field('calle', type='string', length=40,   required=True, comment='Calle'),
-                 # CAMPO OPCIONAL
-                 # Número de puerta del domicilio del titular
-                 Field('numero', type='string', length=10,   required=True, comment='Nro Puerta'),
-                 # CAMPO OPCIONAL
-                 # Piso del departamento del domicilio del titular
-                 Field('piso', type='string', length=10,   required=True, comment='Piso'),
-                 # CAMPO OPCIONAL
-                 # Departamento del domicilio del titular
-                 Field('departamento', type='string', length=10, required=True, comment='Depto'),
-                 # CAMPO OPCIONAL
-                 # Barrio del domicilio del titular
-                 Field('barrio', type='string', length=40,   required=True, comment='Barrio'),
-                 # CAMPO OPCIONAL
-                 # Localidad del domicilio del titular
-                 Field('localidad', type='string', length=40,   required=True, comment='Localidad'),
-                 # CAMPO OPCIONAL
-                 # Código Postal del titular
-                 Field('codigopostal', type='string', length=8,    required=True, comment='Codigo Postal'),
-                 # CAMPO OPCIONAL
-                 # Provincia del Titular. Según tabla Anexo VI
-                 Field('provinciaid', type='reference PROVINCIAS', ondelete='CASCADE', comment='Id FK Provincia'),
-                 #
-                 # S: Esta exento, N: no esta exento
-                 Field('exencion', type='string', length=1,    required=True, comment='Execcion'),
-                 # CAMPO OPCIONAL
-                 # Código de la exención
-                 Field('codigoexencion', type='string', length=10,   required=True, comment='Codigo Execcion'),
-                 # CAMPO OPCIONAL
-                 # Descripción de la exención
-                 Field('descripcionexencion', type='string', length=100,  required=True, comment='Descr Execcion'),
-                 # CAMPO OPCIONAL
-                 # Código de trámite registral realizado
-                 Field('codigotipotramite', type='integer', required=True, comment='Codigo Tipo Tramite'),
-                 # CAMPO OPCIONAL
-                 # Descripción del tipo de trámite registral realizado
-                 Field('descrtipotramite', type='string', length=60,   required=True, comment='Descr Tipo Tramite'),
-                 # CAMPO OPCIONAL
-                 # Reservado
-                 Field('reservado', type='string', length=256,  required=True, comment='Reservado'),
-                 #
-                 # Fecha del ingreso del registro 
-                 Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp')
-             ]
+            # fields list
+            lista = [
+                #
+                # Id identificador del registro
+                Field('bajataxtitularid', type='id', comment='Id'),
+                #
+                # Constante “C2 ”
+                Field('tipocuerpoid', type='reference TIPOCUERPO', ondelete='CASCADE', comment='Id Fk Tipo Cuerpo'),
+                #
+                # Constante “T ”
+                Field('tiposubregistroid', type='reference TIPOSUBREGISTRO', ondelete='CASCADE', comment='Id Fk Tipo Sub Registro'),
+                #
+                # Tipo de documento del titular. Según tabla anexa V
+                Field('tipodocumentoid', type='reference TIPODOCUMENTO', ondelete='CASCADE', comment='Id Fk Tipo Documento'),
+                #
+                # Número de documento correspondiente al titular
+                Field('numerodocumento', type='bigint', required=True, comment='Nro Documento'),
+                #
+                # Número de CUIT / CUIL correspondiente al titular
+                Field('cuitcuil', type='bigint', required=True, comment='Cuit/Cuil'),
+                #
+                # Nombre y Apellido o Razón Social del titular del vehículo
+                Field('apellidonombre', type='string', length=150,  required=True, comment='Apellido y Nombre'),
+                #
+                # Porcentaje de posesión del vehiculo
+                Field('porcentajetitularidad', type='integer', required=True, comment='Procentaje Titular'),
+                #
+                # Calle del domicilio del titular
+                Field('calle', type='string', length=40, required=True, comment='Calle'),
+                #
+                # Número de puerta del domicilio del titular
+                Field('numero', type='string', length=10, required=True, comment='Nro Puerta'),
+                #
+                # Piso del departamento del domicilio del titular
+                Field('piso', type='string', length=10, required=True, comment='Piso'),
+                #
+                # Departamento del domicilio del titular
+                Field('departamento', type='string', length=10, required=True, comment='Depto'),
+                # CAMPO OPCIONAL
+                # Barrio del domicilio del titular
+                Field('barrio', type='string', length=40, required=True, comment='Barrio'),
+                #
+                # Localidad del domicilio del titular
+                Field('localidad', type='string', length=40, required=True, comment='Localidad'),
+                #
+                # Código Postal del titular
+                Field('codigopostal', type='string', length=8,    required=True, comment='Cod Postal'),
+                #
+                # Provincia del Titular. Según tabla Anexo VI
+                Field('provinciaid', type='reference PROVINCIAS', ondelete='CASCADE', comment='Id Fk Provincias'),
+                # CAMPO OPCIONAL
+                # Reservado para uso futuro
+                Field('reservado', type='string', length=256, required=True, comment='Reservado Sucerp'),
+                #
+                # Indica que el registro pertenece al archivo recibido de Sucerp
+                Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
+                #
+                # Fecha del ingreso del registro 
+                Field('ktimestamp', type='datetime', required=True, comment='Timestamp'),
+                # 
+                # Indica que fue procesado a la Db de la Matanza
+                Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_IMPUESTOSELLOSPARTES']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_BAJAIMPOSITIVATITULAR']['migrate']
 
-             # table construction parameters Nombre en el sistema IMPUE00002
-             parm = {
-                 'name': 'IMPUESTOSELLOSPARTES',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters Nombre en el sistema BAJAI00001
+            parm = {
+                'name': 'BAJAIMPOSITIVATITULAR',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-             print(f'Error - tablaImpuestosSellosPartes {e}')
+        except Exception as e:
+            print(f'Error - tablaBajaImpositivaTitular {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA IMPUESTOSELLOSPARTESTIPOTRAMITE
-     def tablaImpuestosSellosPartesTipoTramite(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA IMPUESTOSELLOS
+    def tablaImpuestosSellos(self):
 
-         """
-         DEFINITION OF THE TAX TABLE OF PARTS STAMPS BY TYPE OF PROCESS\n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
-            
-            DETALLE DE SUBCAMPOS DEL CAMPO RESERVADO
-            
-            1-2     Exención objetiva           Char 1          Determina si tiene exención objetiva (S o N)
-            3-18    Código de exención          Char 15         Código de exención
-            19-20   Celebración instrumento     Char 1          Determina el lugar de celebración del instrumento (D  Dentro de la provincia, F  Fuera de la provincia).
-            20-21   Dispone de factura          Char 1          Establece si dispone de factura o no (S o N).
-            22-23   Inscripto en IIBB           Char 1          Establece si el vendedor se encuentra inscripto en Ingresos Brutos de la jurisdicción (S o N).
-            24-36   Importe de multa            Float 12,2      Determina que monto del punitorio es la multa por el pago fuera del vencimiento.
-            
-            
+        """
+        DEFINITION OF THE STAMP TAX TABLE \n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
 
-         """
+        """
 
-         try:
-             lista, primary, parm = list(), list(), dict()
+        try:
 
-             # fields list
-             lista = [
+            lista, primary, parm = list(), list(), dict()
+
+            # fields list
+            lista = [
+                #
+                # Id identificador del registro
+                Field('taxsellosid', type='id', comment='Id'),
+                #
+                # Constante “C3 ”
+                Field("tiporegistroid", type='reference TIPOREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Registro'),
+                #
+                # Constante “C”
+                Field('tiposubregistroid', type='reference TIPOSUBREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Sub Registro'),
+                #
+                # Código del organismo Municipal o Provincial al cual corresponde la información
+                Field('codigoorganismo', type='integer', required=True, comment='Codigo Organismo'),
+                #
+                # Número de trámite interno de la aplicación
+                Field('numerotramite', type='bigint', required=True, comment='Nro Tramite'),
+                #
+                # Código del tipo de acción realizada por el contribuyente
+                Field('codigotipoaccion', type='integer', required=True, comment='Cod Tipo Accion'),
+                #
+                # Descripción del tipo de acción realizada por el contribuyente
+                Field('descrtipoaccion', type='string', length=60, required=True, comment='Descr. Tipo Accion'),
+                #
+                # Identificador de tipo de formulario exigible para el trámite
+                Field('tipoformulario', type='integer', required=True, comment='Tipo Formulario'),
+                #
+                # Número de formulario en el que se realizo el trámite
+                Field('numeroformulario', type='integer', required=True, comment='Nro Formulario'),
+                # CAMPO OPCIONAL
+                # Patente del Vehículo (Reempadronado), es opcional, 
+                # puede llegar o el dominio o el nº de recibo, nunca los dos a la vez
+                Field('dominionuevo', type='string', length=8, required=True, comment='Dominio Nuevo'),
+                # CAMPO OPCIONAL
+                # Patente del Vehículo (Dominio Anterior)
+                Field('dominioviejo', type='string', length=8, required=True, comment='Dominio Viejo' ),
+                # CAMPO OPCIONAL
+                # Nº de recibo que otorga el registro seccional, es opcional, 
+                # puede llegar o el dominio o el nº de recibo, nunca los dos a la vez
+                Field('recibo', type='string', length=15, required=True, comment='Recibo'),
+                # CAMPO OPCIONAL
+                # Código del vehículo según la DNRPA. MTM (Marca – Tipo – Modelo) 
+                # y FMM (Fabrica – Marca – Modelo).
+                Field('codigomtmfmm', type='string', length=8, required=True, comment='Codigo Sucerp'),
+                # CAMPO OPCIONAL
+                # Tipo de origen del vehículo (N – Nacional, I - Importado)
+                Field('origenid', type='reference TIPOORIGEN', ondelete='CASCADE', comment='Id FK Origen'),
+                # CAMPO OPCIONAL
+                # Categoría del vehículo
+                Field('categoría', type='string', length=3, required=True, comment='Categoria'),
+                # CAMPO OPCIONAL
+                # Descripción de la marca del Vehículo
+                Field('marca', type='string', length=60, required=True, comment='Marca'),
+                # CAMPO OPCIONAL
+                # Descripción del tipo de Vehículo
+                Field('tipovehiculo', type='string', length=60, required=True, comment='Tipo Vehiculo'),
+                # CAMPO OPCIONAL
+                # Descripción del modelo del vehículo 
+                Field('modelo', type='string', length=100, required=True, comment='Modelo'),
+                # CAMPO OPCIONAL
+                # Año/Modelo del Vehículo
+                Field('yyyymodelo', type='integer', required=True, comment='Año Modelo'),
+                # CAMPO OPCIONAL
+                # Código de tipo de uso del vehículo
+                Field('codigotipouso', type='string', length=2, required=True, comment='Codigo Tipo Uso'),
+                # CAMPO OPCIONAL
+                # Descripción del tipo de uso del vehículo
+                Field('descrtipouso', type='string', length=100, required=True, comment='Descr Tipo Uso'),
+                # CAMPO OPCIONAL
+                # Valuación del Vehículo
+                Field('valuacion', type='integer', required=True, comment='Valuacion'),
+                #
+                # Cantidad de partes
+                Field('cantidadpartes', type='integer', required=True, comment='Cantidad Partes'),
+                #
+                # Total de los montos de impuesto adicionales al contrato
+                Field('montoimpuestoadicional', type='decimal(12, 2)', required=True, comment='Monto Impuesto Adicional'),
+                #
+                # Total de los montos de punitorios cobrados
+                Field('montopunitorios', type='decimal(12, 2)', required=True, comment='Monto Punitorios'),
+                #
+                # Total de los montos percibido
+                Field('montototalcobrado', type='decimal(12, 2)', required=True, comment='Monto Total Cobrado'),
+                #
+                # Total del monto abonado fuera del RRSS, exhibido ante la presentación de un comprobante. 
+                # Puede ser el importe parcial o total del sello
+                Field('montoabonado', type='decimal(12, 2)', required=True, comment='Monto Abonado'),
+                # CAMPO OPCIONAL
+                # Según tabla Anexo III
+                Field('codigoformapagoid', type='reference TIPOPAGO', ondelete='CASCADE', comment='Id FK Cod Forma Pago'),
+                # CAMPO OPCIONAL
+                # Según tabla Anexo IV
+                Field('codigomonedaid', type='reference TIPOMONEDA', ondelete='CASCADE', comment='Id FK Cod Moneda'),
+                # CAMPO OPCIONAL
+                # Código de entidad bancaria
+                Field('codigoentidadbancaria', type='integer', required=True, comment='Codigo Entidad Bancaria'),
+                # CAMPO OPCIONAL
+                # Razón Social de la entidad bancaria
+                Field('descrentidadbancaria', type='string', length=60, required=True, comment='Descr Entidad Bancaria'),
+                # CAMPO OPCIONAL
+                # Número de cheque
+                Field('numerocheque', type='string', length=20, required=True, comment='Nro Cheque'),
+                # 
+                # S: Esta exento, N: no esta exento
+                Field('exencion', type='string', length=1, required=True, comment='Execcion'),
+                # CAMPO OPCIONAL
+                # Código de la exención
+                Field('codigoexencion', type='string', length=10, required=True, comment='Codigo Execcion'),
+                # CAMPO OPCIONAL
+                # Descripción de la exención
+                Field('descripcionexencion', type='string', length=100, required=True, comment='Descr Execcion'),
+                # CAMPO OPCIONAL
+                # Fecha de depósito. Formato aaaa-mm-dd hh:mm:ss
+                Field('fechadeposito', type='datetime', required=True, comment='fecha Deposito'),
+                #
+                #  Código de Registro Seccional
+                Field('codigoregistroseccional', type='integer', required=True, comment='Codigo Registro Seccional'),
+                #
+                # Número de CUIT del encargado del Registro Seccional
+                Field('cuitregistroseccional', type='bigint', required=True, comment='Cuit Registro Seccional'),
+                #
+                # Nombre del Registro Seccional
+                Field('razonsocial', type='string', length=40, required=True, comment='Razon Social'),
+                #
+                # Fecha de la operación. Formato aaaa-mm-dd hh:mm:ss
+                Field('fechaoperacion', type='datetime', required=True, comment='fecha Operacion'),
+                # CAMPO OPCIONAL
+                # Contiene los datos de cada parámetro adicional que el organismo requiera al realizar el trámite. 
+                # Dispone de un máximo de 10 valores adicionales. Ver anexo VII.
+                Field('parametrosadicionales', type='string', length=650, required=True, comment='Parm Adicionales'),
+                # CAMPO OPCIONAL
+                # Reservado para uso futuro
+                Field('reservado', type='string', length=256, required=True, comment='Reservado'),
+                # CAMPO OPCIONAL
+                # Observaciones
+                Field('observaciones', type='string', length=256, required=True, comment='Observaciones'),
+                # CAMPO OPCIONAL
+                # Observaciones anulación
+                Field('observacionesanulacion', type='string', length=256, required=True, comment='Observaciones Anulacion'),
+                #
+                # Indica que el registro pertenece al archivo recibido de Sucerp
+                Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
+                #
+                # Fecha del ingreso del registro 
+                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp'),
+                # 
+                # Indica que fue procesado a la Db de la Matanza
+                Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
+            ]
+
+
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_IMPUESTOSELLOS']['migrate']
+
+            # table construction parameters Nombre en el sistema IMPUE00001
+            parm = {
+                'name': 'IMPUESTOSELLOS',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
+
+            return parm
+
+        except Exception as e:
+            print(f'Error - tablaImpuestosSellos {e}')
+
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA IMPUESTOSELLOSPARTES
+    def tablaImpuestosSellosPartes(self):
+
+        """
+        PART STAMP TAX TABLE DEFINITION \n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
+
+        """
+
+        try:
+            lista, primary, parm = list(), list(), dict()
+
+            # fields list
+            lista = [
+                #
+                # Id identificador del registro
+                Field('taxsellospartesid', type='id', comment='Id'),
+                #
+                # Constante “C3 ”
+                Field('tipocuerpoid', type='reference TIPOCUERPO', ondelete='CASCADE', comment='Id FK Tipo Cuerpo'),
+                #
+                # Constante “P ” 
+                Field('tiposubregistroid', type='reference TIPOSUBREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Sub Registro'),
+                #
+                # Tipo de interviniente en la operación.
+                Field('tipointerviniente', type='integer', required=True, comment='Tipo Interviniente'),
+                #
+                # Descripción del tipo de parte del impuesto
+                Field('descrtipointerviniente', type='string', length=60,   required=True, comment='Descr Tipo Interviniente'),
+                # CAMPO OPCIONAL
+                # Tipo de documento del titular. Según tabla anexa V
+                Field('tipodocumentoid', type='reference TIPODOCUMENTO', ondelete='CASCADE', comment='Id FK Tipo Documento'),
+                # CAMPO OPCIONAL
+                # Número de documento correspondiente al titular
+                Field('numerodocumento', type='bigint', required=True, comment='Nro Documento'),
+                #
+                # Número de CUIT / CUIL correspondiente al titular
+                Field('cuitcuil', type='bigint', required=True, comment='Cuit/Cuil'),
+                # CAMPO OPCIONAL
+                # Nombre y Apellido o Razón Social del titular del vehículo
+                Field('apellidonombre', type='string', length=150,  required=True, comment='Apellido y Nombre'),
+                #
+                # Porcentaje de posesión del vehiculo
+                Field('porcentajetitularidad', type='integer', required=True, comment='Porcentaje Titular'),
+                # CAMPO OPCIONAL
+                # Calle del domicilio del titular
+                Field('calle', type='string', length=40,   required=True, comment='Calle'),
+                # CAMPO OPCIONAL
+                # Número de puerta del domicilio del titular
+                Field('numero', type='string', length=10,   required=True, comment='Nro Puerta'),
+                # CAMPO OPCIONAL
+                # Piso del departamento del domicilio del titular
+                Field('piso', type='string', length=10,   required=True, comment='Piso'),
+                # CAMPO OPCIONAL
+                # Departamento del domicilio del titular
+                Field('departamento', type='string', length=10, required=True, comment='Depto'),
+                # CAMPO OPCIONAL
+                # Barrio del domicilio del titular
+                Field('barrio', type='string', length=40,   required=True, comment='Barrio'),
+                # CAMPO OPCIONAL
+                # Localidad del domicilio del titular
+                Field('localidad', type='string', length=40,   required=True, comment='Localidad'),
+                # CAMPO OPCIONAL
+                # Código Postal del titular
+                Field('codigopostal', type='string', length=8,    required=True, comment='Codigo Postal'),
+                # CAMPO OPCIONAL
+                # Provincia del Titular. Según tabla Anexo VI
+                Field('provinciaid', type='reference PROVINCIAS', ondelete='CASCADE', comment='Id FK Provincia'),
+                #
+                # S: Esta exento, N: no esta exento
+                Field('exencion', type='string', length=1,    required=True, comment='Execcion'),
+                # CAMPO OPCIONAL
+                # Código de la exención
+                Field('codigoexencion', type='string', length=10,   required=True, comment='Codigo Execcion'),
+                # CAMPO OPCIONAL
+                # Descripción de la exención
+                Field('descripcionexencion', type='string', length=100,  required=True, comment='Descr Execcion'),
+                # CAMPO OPCIONAL
+                # Código de trámite registral realizado
+                Field('codigotipotramite', type='integer', required=True, comment='Codigo Tipo Tramite'),
+                # CAMPO OPCIONAL
+                # Descripción del tipo de trámite registral realizado
+                Field('descrtipotramite', type='string', length=60,   required=True, comment='Descr Tipo Tramite'),
+                # CAMPO OPCIONAL
+                # Reservado
+                Field('reservado', type='string', length=256,  required=True, comment='Reservado'),
+                #
+                # Indica que el registro pertenece al archivo recibido de Sucerp
+                Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
+                #
+                # Fecha del ingreso del registro 
+                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp'),
+                # 
+                # Indica que fue procesado a la Db de la Matanza
+                Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
+            ]
+
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_IMPUESTOSELLOSPARTES']['migrate']
+
+            # table construction parameters Nombre en el sistema IMPUE00002
+            parm = {
+                'name': 'IMPUESTOSELLOSPARTES',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
+
+            return parm
+
+        except Exception as e:
+            print(f'Error - tablaImpuestosSellosPartes {e}')
+
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA IMPUESTOSELLOSPARTESTIPOTRAMITE
+    def tablaImpuestosSellosPartesTipoTramite(self):
+
+        """
+        DEFINITION OF THE TAX TABLE OF PARTS STAMPS BY TYPE OF PROCESS\n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
+        
+        DETALLE DE SUBCAMPOS DEL CAMPO RESERVADO
+        
+        1-2     Exención objetiva           Char 1          Determina si tiene exención objetiva (S o N)
+        3-18    Código de exención          Char 15         Código de exención
+        19-20   Celebración instrumento     Char 1          Determina el lugar de celebración del instrumento (D  Dentro de la provincia, F  Fuera de la provincia).
+        20-21   Dispone de factura          Char 1          Establece si dispone de factura o no (S o N).
+        22-23   Inscripto en IIBB           Char 1          Establece si el vendedor se encuentra inscripto en Ingresos Brutos de la jurisdicción (S o N).
+        24-36   Importe de multa            Float 12,2      Determina que monto del punitorio es la multa por el pago fuera del vencimiento.
+        
+        
+
+        """
+
+        try:
+            lista, primary, parm = list(), list(), dict()
+
+            # fields list
+            lista = [
                 #
                 # Id identificador del registro
                 Field('taxsellospartestipotramiteid', type='id', comment='Id'),
@@ -2167,44 +2257,50 @@ class AtributosSucerp():
                 # Reservado (**)
                 Field('reservado', type='string', length=256,  required=True, comment='Reservado'),
                 #
+                # Indica que el registro pertenece al archivo recibido de Sucerp
+                Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
+                #
                 # Fecha del ingreso del registro 
-                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp')
-             ]
+                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp'),
+                # 
+                # Indica que fue procesado a la Db de la Matanza
+                Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
+            ]
 
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_IMPUESTOSELLOSPARTESTIPOTRAMITE']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_IMPUESTOSELLOSPARTESTIPOTRAMITE']['migrate']
 
-             # table construction parameters Nombre en el sistema IMPUE00003
-             parm = {
-                 'name': 'IMPUESTOSELLOSPARTESTIPOTRAMITE',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters Nombre en el sistema IMPUE00003
+            parm = {
+                'name': 'IMPUESTOSELLOSPARTESTIPOTRAMITE',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-             print(f'Error - tablaImpuestosSellosPartesTipoTramite {e}')
+        except Exception as e:
+            print(f'Error - tablaImpuestosSellosPartesTipoTramite {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA IMPUESTOAUTOMOTOR
-     def tablaImpuestoAutomotor(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA IMPUESTOAUTOMOTOR
+    def tablaImpuestoAutomotor(self):
 
-         """
-         DEFINITION OF THE AUTOMOTIVE TAX TABLE \n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
+        """
+        DEFINITION OF THE AUTOMOTIVE TAX TABLE \n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
 
-         """
-         try:
-             lista, primary, parm = list(), list(), dict()
+        """
+        try:
+            lista, primary, parm = list(), list(), dict()
 
-             # fields list
-             lista = [
+            # fields list
+            lista = [
                 #
                 # Id identificador del registro
                 Field('taxautomotorid', type='id', comment='Id'),
@@ -2296,44 +2392,50 @@ class AtributosSucerp():
                 # Observaciones
                 Field('observaciones',  type='string', length=256,  required=True, comment='Observaciones'),
                 #
+                # Indica que el registro pertenece al archivo recibido de Sucerp
+                Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
+                #
                 # Fecha del ingreso del registro 
-                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp')
-             ]
+                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp'),
+                # 
+                # Indica que fue procesado a la Db de la Matanza
+                Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_IMPUESTOAUTOMOTOR']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_IMPUESTOAUTOMOTOR']['migrate']
 
-             # table construction parameters Nombre en el sistema IMPUE00004
-             parm = {
-                 'name': 'IMPUESTOAUTOMOTOR',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters Nombre en el sistema IMPUE00004
+            parm = {
+                'name': 'IMPUESTOAUTOMOTOR',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
-         except Exception as e:
-             print(f'Error - tablaImpuestoAutomotor {e}')
+            return parm
+        except Exception as e:
+            print(f'Error - tablaImpuestoAutomotor {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA INFORMACIONVEHICULO
-     def tablaInformacionVehiculo(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA INFORMACIONVEHICULO
+    def tablaInformacionVehiculo(self):
 
-         """
-          DEFINITION OF THE VEHICLE INFORMATION TABLE \n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
+        """
+        DEFINITION OF THE VEHICLE INFORMATION TABLE \n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
 
-          """
+        """
 
-         try:
-             lista, primary, parm = list(), list(), dict()
+        try:
+            lista, primary, parm = list(), list(), dict()
 
 
-             # fields list
-             lista = [
+            # fields list
+            lista = [
                 #
                 # Id identificador del registro
                 Field('infvehiculoid', type='id', comment='Id'),
@@ -2452,43 +2554,50 @@ class AtributosSucerp():
                 # 
                 Field('controlsucerp', type='string', length=3,    required=True, comment='Control Sucerp'),
                 #
+                # Indica que el registro pertenece al archivo recibido de Sucerp
+                Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
+                #
                 # Fecha del ingreso del registro 
-                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp')
-             ]
+                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp'),
+                # 
+                # Indica que fue procesado a la Db de la Matanza
+                Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_INFORMACIONVEHICULO']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_INFORMACIONVEHICULO']['migrate']
 
-             # table construction parameters Nombre en el sistema INFOR00001
-             parm = {
-                 'name': 'INFORMACIONVEHICULO',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters Nombre en el sistema INFOR00001
+            parm = {
+                'name': 'INFORMACIONVEHICULO',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-             print(f'Error - tablaInformacionVehiculo {e}')
+        except Exception as e:
+            print(f'Error - tablaInformacionVehiculo {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA INFORMACIONVEHICULOTITULAR
-     def tablaInformacionVehiculoTitular(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA INFORMACIONVEHICULOTITULAR
+    def tablaInformacionVehiculoTitular(self):
 
-         """
-          DEFINITION OF THE HOLDER'S VEHICLE INFORMATION TABLE \n
-         WE RETURN: \n
+        """
+            DEFINITION OF THE HOLDER'S VEHICLE INFORMATION TABLE \n
+            WE RETURN: \n
             TABLE NAME \n
             STRUCTURE FIELDS \n
             CONSTRUCTION ARGUMENTS \n
 
-         """
-         try:
-             lista, primary, parm = list(), list(), dict()
+        """
+        try:
 
-             # fields list
-             lista = [
+            lista, primary, parm = list(), list(), dict()
+
+            # fields list
+            lista = [
                 #
                 # Id identificador del registro
                 Field('infvehiculotitularid', type='id', comment='Id'),
@@ -2544,44 +2653,50 @@ class AtributosSucerp():
                 # 
                 Field('infvehiculoid', type='reference INFORMACIONVEHICULO', ondelete='CASCADE', notnull=False, comment='Id FK Inf Vehiculo'),
                 #
+                # Indica que el registro pertenece al archivo recibido de Sucerp
+                Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
+                #
                 # Fecha del ingreso del registro 
-                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp')
-             ]
+                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp'),
+                # 
+                # Indica que fue procesado a la Db de la Matanza
+                Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_INFORMACIONVEHICULOTITULAR']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_INFORMACIONVEHICULOTITULAR']['migrate']
 
-             # table construction parameters
-             parm = {
-                 'name': 'INFORMACIONVEHICULOTITULAR',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters
+            parm = {
+                'name': 'INFORMACIONVEHICULOTITULAR',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-             print(f'Error - tablaInformacionVehiculoTitular {e}')
+        except Exception as e:
+            print(f'Error - tablaInformacionVehiculoTitular {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA TMPINFORMACIONVEHICULO
-     def tablaTmpInformacionVehiculo(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA TMPINFORMACIONVEHICULO
+    def tablaTmpInformacionVehiculo(self):
 
-         """
-          TEMPORARY VEHICLE INFORMATION TABLE DEFINITION \n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
+        """
+        TEMPORARY VEHICLE INFORMATION TABLE DEFINITION \n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
 
-          """
+        """
 
-         try:
-             lista, primary, parm = list(), list(), dict()
+        try:
+            lista, primary, parm = list(), list(), dict()
 
-             # fields list
-             lista = [
+            # fields list
+            lista = [
                 #
                 # Id identificador del registro
                 Field('INFVE00001', type='integer', comment='Id'),
@@ -2703,46 +2818,46 @@ class AtributosSucerp():
                 #
                 # Fecha del ingreso del registro 
                 Field('KTIME00001', type='datetime', comment='Key Time Stamp')
-             ]
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TMPINFORMACIONVEHICULO']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TMPINFORMACIONVEHICULO']['migrate']
 
-             # Primary Key List
-             primary = ['INFVE00001']
+            # Primary Key List
+            primary = ['INFVE00001']
 
-             # table construction parameters
-             parm = {
-                 'name': 'INFOR00001',
-                 'fields': tuple(lista),
-                 'arg': {'primarykey': primary, 'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters
+            parm = {
+                'name': 'INFOR00001',
+                'fields': tuple(lista),
+                'arg': {'primarykey': primary, 'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-             print(f'Error - tablaTmpInformacionVehiculo {e}')
+        except Exception as e:
+            print(f'Error - tablaTmpInformacionVehiculo {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA TMPINFORMACIONVEHICULOTITULAR
-     def tablaTmpInformacionVehiculoTitular(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA TMPINFORMACIONVEHICULOTITULAR
+    def tablaTmpInformacionVehiculoTitular(self):
 
-         """
-          DEFINITION OF THE INFORMATION TABLE OF THE TEMPORARY OWNER VEHICLE \n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
+        """
+        DEFINITION OF THE INFORMATION TABLE OF THE TEMPORARY OWNER VEHICLE \n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
 
-          """
+        """
 
-         try:
-             lista, primary, parm = list(), list(), dict()
+        try:
+            lista, primary, parm = list(), list(), dict()
 
-             # fields list
-             lista = [
-                 
+            # fields list
+            lista = [
+                
                 #
                 # Id identificador del registro
                 Field('INFVE00003', type='integer', comment='Id'),
@@ -2755,102 +2870,103 @@ class AtributosSucerp():
                 #
                 # Tipo de documento del titular. Según tabla anexa V
                 Field('TIPOD00001', type='integer', comment='Id FK Tipo Documento'),
-                 
+                    
                 #
                 # Número de documento correspondiente al titular
                 Field('NUMER00001', type='integer', comment='Nro Documento'),
-                 
+                    
                 #
                 # Número de CUIT / CUIL correspondiente al titular
                 Field('CUITC00001', type='integer', comment='Cuit/Cuil'),
-                 
+                    
                 #
                 # Nombre y Apellido o Razón Social del titular del vehículo
                 Field('APELL00001', type='string', length=150, comment='Apellido y Nombre'),
-                 
+                    
                 #
                 # Porcentaje de posesión del vehiculo
                 Field('PORCE00001', type='integer', comment='Porcentaje Titular'),
-                 
+                    
                 #
                 # Calle del domicilio del titular
                 Field('CALLE00001', type='string', length=40, comment='Calle'),
-                 
+                    
                 #
                 # Número de puerta del domicilio del titular
                 Field('NUMER00002', type='string', length=10, comment='Nro Puerta'),
-                 
+                    
                 #
                 # Piso del departamento del domicilio del titular
                 Field('PISO_00001', type='string', length=10, comment='Piso'),
-                 
+                    
                 #
                 # Departamento del domicilio del titular
                 Field('DEPAR00001', type='string', length=10, comment='Depto'),
-                 
+                    
                 # CAMPO OPCIONAL
                 # Barrio del domicilio del titular
                 Field('BARRI00001', type='string', length=40, comment='Barrio'),
-                 
+                    
                 #
                 # Localidad del domicilio del titular
                 Field('LOCAL00001', type='string', length=40, comment='Localidad'),
-                 
+                    
                 #
                 # Código Postal del titular
                 Field('CODIG00001', type='string', length=8, comment='Codigo Postal'),
-                 
+                    
                 #
                 # Provincia del Titular. Según tabla Anexo VI
                 Field('PROVI00001', type='integer', comment='Id FK Provincia'),
-                 
+                    
                 # CAMPO OPCIONAL
                 # Reservado para uso futuro
                 Field('RESER00001', type='string', length=256, comment='Reservado'),
-                 
+                    
                 #
                 # 
                 Field('INFVE00002', type='integer', comment='Id FK Inf Vehiculo'),
-                 
+                    
                 #
                 # Fecha del ingreso del registro 
                 Field('KTIME00001', type='detetime', comment='Key Time Stamp')
-             ]
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TMPINFORMACIONVEHICULOTITULAR']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TMPINFORMACIONVEHICULOTITULAR']['migrate']
 
-             # Lista de Primary Key
-             primary = ['INFVE00003']
+            # Lista de Primary Key
+            primary = ['INFVE00003']
 
-             # table construction parameters
-             parm = {
-                 'name': 'INFOR00002',
-                 'fields': tuple(lista),
-                 'arg': {'primarykey': primary, 'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters
+            parm = {
+                'name': 'INFOR00002',
+                'fields': tuple(lista),
+                'arg': {'primarykey': primary, 'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
-         except Exception as e:
-             print(f'Error - tablaTmpInformacionVehiculoTitular {e}')
+            return parm
+        except Exception as e:
+            print(f'Error - tablaTmpInformacionVehiculoTitular {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA CAMBIOTITULARIDAD
-     def tablaCambioTitularidad(self):
-         """
-          DEFINITION OF THE CHANGE OF OWNERSHIP TABLE \n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA CAMBIOTITULARIDAD
+    def tablaCambioTitularidad(self):
+         
+        """
+        DEFINITION OF THE CHANGE OF OWNERSHIP TABLE \n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
 
-         """
-         try:
-             lista, primary, parm = list(), list(), dict()
+        """
+        try:
+            lista, primary, parm = list(), list(), dict()
 
-             # fields list
-             lista = [
+            # fields list
+            lista = [
                 #
                 # Id identificador del registro
                 Field('cambiotitularidadid', type='id', comment='Id'),
@@ -2994,44 +3110,50 @@ class AtributosSucerp():
                 #
                 Field('cambiotitularidadtitid', type='reference CAMBIOTITULARIDADTITULAR', ondelete='CASCADE', comment='Id FK Camb Titularidad Titu'),
                 #
+                # Indica que el registro pertenece al archivo recibido de Sucerp
+                Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
+                #
                 # Fecha del ingreso del registro 
-                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp')
-             ]
+                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp'),
+                # 
+                # Indica que fue procesado a la Db de la Matanza
+                Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_CAMBIOTITULARIDAD']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_CAMBIOTITULARIDAD']['migrate']
 
-             # table construction parameters Nombre en el sistema CAMBI00003
-             parm = {
-                 'name': 'CAMBIOTITULARIDAD',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters Nombre en el sistema CAMBI00003
+            parm = {
+                'name': 'CAMBIOTITULARIDAD',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-             print(f'Error - tablaCambioTitularidad {e}')
+        except Exception as e:
+            print(f'Error - tablaCambioTitularidad {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA CAMBIOTITULARIDADTITULAR
-     def tablaCambioTitularidadTitular(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA CAMBIOTITULARIDADTITULAR
+    def tablaCambioTitularidadTitular(self):
 
-         """
-          DEFINITION OF THE TABLE OF CHANGE OF OWNERSHIP OF THE HOLDER \n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
+        """
+        DEFINITION OF THE TABLE OF CHANGE OF OWNERSHIP OF THE HOLDER \n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
 
-         """
-         try:
+        """
+        try:
 
-             lista, primary, parm = list(), list(), dict()
+            lista, primary, parm = list(), list(), dict()
 
-             # fields list
-             lista = [
+            # fields list
+            lista = [
                 #
                 # Id identificador del registro
                 Field('cambiotitularidadtitid', type='id', comment='Id'),
@@ -3087,44 +3209,50 @@ class AtributosSucerp():
                 # Reservado para uso futuro
                 Field('reservado', type='string', length=256, required=True, comment='Reservado'),
                 #
+                # Indica que el registro pertenece al archivo recibido de Sucerp
+                Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
+                #
                 # Fecha del ingreso del registro 
-                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp')
-             ]
+                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp'),
+                # 
+                # Indica que fue procesado a la Db de la Matanza
+                Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_CAMBIOTITULARIDADTITULAR']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_CAMBIOTITULARIDADTITULAR']['migrate']
 
-             # table construction parameters Nombre en el sistema CAMBI00002
-             parm = {
-                 'name': 'CAMBIOTITULARIDADTITULAR',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters Nombre en el sistema CAMBI00002
+            parm = {
+                'name': 'CAMBIOTITULARIDADTITULAR',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-             print(f'Error - tablaCambioTitularidadTitular {e}')
+        except Exception as e:
+            print(f'Error - tablaCambioTitularidadTitular {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA INFORMACIORADICACION
-     def tablaInformacionRadicacion(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA INFORMACIORADICACION
+    def tablaInformacionRadicacion(self):
 
-         """
-          DEFINITION OF THE FILING INFORMATION TABLE \n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
+        """
+        DEFINITION OF THE FILING INFORMATION TABLE \n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
 
-         """
-         try:
+        """
+        try:
 
-             lista, primary, parm = list(), list(), dict()
+            lista, primary, parm = list(), list(), dict()
 
-             # fields list
-             lista = [
+            # fields list
+            lista = [
                 #
                 # Id identificador del registro
                 Field('infradicacionid', type='id', comment='Id'),
@@ -3167,46 +3295,52 @@ class AtributosSucerp():
                 # de la modificación de la radiación por parte de un Registro Seccional
                 Field('observaciones', type='string', length=256,  required=True, comment='Observaciones'),
                 #
+                # Indica que el registro pertenece al archivo recibido de Sucerp
+                Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
+                #
                 # Fecha del ingreso del registro 
-                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp')
-             ]
+                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp'),
+                # 
+                # Indica que fue procesado a la Db de la Matanza
+                Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_INFORMACIORADICACION']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_INFORMACIORADICACION']['migrate']
 
-             # table construction parameters Nombre en el sistema INFOR00003
-             parm = {
-                 'name': 'INFORMACIORADICACION',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters Nombre en el sistema INFOR00003
+            parm = {
+                'name': 'INFORMACIORADICACION',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-             print(f'Error - tablaInformacionRadicacion {e}')
+        except Exception as e:
+            print(f'Error - tablaInformacionRadicacion {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA ANULACIONTRAMITESSELLOS
-     def tablaAnulacionTramitesSellos(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA ANULACIONTRAMITESSELLOS
+    def tablaAnulacionTramitesSellos(self):
 
-         """
-          DEFINITION OF THE TABLE FOR CANCELLATION OF STAMP PROCEDURES \n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
+        """
+        DEFINITION OF THE TABLE FOR CANCELLATION OF STAMP PROCEDURES \n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
 
-         """
+        """
 
-         try:
+        try:
 
-             lista, primary, parm = list(), list(), dict()
+            lista, primary, parm = list(), list(), dict()
 
 
-             # fields list
-             lista = [
+            # fields list
+            lista = [
                 #
                 # Id identificador del registro
                 Field('anultramitesellosid', type='id',  comment='Id'),
@@ -3333,50 +3467,58 @@ class AtributosSucerp():
                 # Observaciones
                 Field('observaciones',            type='string', length=256,  required=True, comment='Observaciones'),
                 #
+                # Indica que el registro pertenece al archivo recibido de Sucerp
+                Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
+                #
                 # Fecha del ingreso del registro 
-                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp')
-             ]
+                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp'),
+                # 
+                # Indica que fue procesado a la Db de la Matanza
+                Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
+            ]
 
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_ANULACIONTRAMITESSELLOS']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_ANULACIONTRAMITESSELLOS']['migrate']
 
-             # table construction parameters Nombre en el sistema ANULA00001
-             parm = {
-                 'name': 'ANULACIONTRAMITESSELLOS',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters Nombre en el sistema ANULA00001
+            parm = {
+                'name': 'ANULACIONTRAMITESSELLOS',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-             print(f'Error - tablaAnulacionTramitesSellos {e}')
+        except Exception as e:
+            print(f'Error - tablaAnulacionTramitesSellos {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA ANULACIONTRAMITESSELLOSDETALLE
-     def tablaAnulacionTramitesSellosDetalle(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA ANULACIONTRAMITESSELLOSDETALLE
+    def tablaAnulacionTramitesSellosDetalle(self):
 
-         """
-          DETAILED DEFINITION OF THE TABLE FOR CANCELLATION OF STAMP PROCEDURES \n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
+        """
+        DETAILED DEFINITION OF THE TABLE FOR CANCELLATION OF STAMP PROCEDURES \n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
 
-         """
-         try:
+        """
 
-             lista, primary, parm = list(), list(), dict()
+        try:
 
-             # fields list
-             lista = [
+            lista, primary, parm = list(), list(), dict()
+
+            # fields list
+            lista = [
+
                 #
                 # Id identificador del registro
                 Field('anultramitesellosdetid', type='id', comment='Id'),
                 #
-                # Constante “C8 ”
+                # Constante C8
                 Field("tiporegistroid", type='reference TIPOREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Registro'),
                 #
                 # Constante “D”
@@ -3414,44 +3556,51 @@ class AtributosSucerp():
                 # Relación de ANULACIONTRAMITESSELLOS
                 Field('anultramitesellosid', type='reference ANULACIONTRAMITESSELLOS', ondelete='CASCADE', comment='Id FK Anulacion Tramites Sellos'),
                 #
+                # Indica que el registro pertenece al archivo recibido de Sucerp
+                Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
+                #
                 # Fecha del ingreso del registro 
-                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp')
-             ]
+                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp'),
+                # 
+                # Indica que fue procesado a la Db de la Matanza
+                Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_ANULACIONTRAMITESSELLOSDETALLE']['migrate']
+            ]
 
-             # table construction parameters Nombre en el sistema ANULA00002
-             parm = {
-                 'name': 'ANULACIONTRAMITESSELLOSDETALLE',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_ANULACIONTRAMITESSELLOSDETALLE']['migrate']
 
-             return parm
+            # table construction parameters Nombre en el sistema ANULA00002
+            parm = {
+                'name': 'ANULACIONTRAMITESSELLOSDETALLE',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-         except Exception as e:
-             print(f'Error - tablaAnulacionTramitesSellosDetalle {e}')
+            return parm
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA TRAMITESGENERALES
-     def tablaTramitesGenerales(self):
+        except Exception as e:
+            print(f'Error - tablaAnulacionTramitesSellosDetalle {e}')
 
-         """
-          DEFINITION OF THE TABLE OF GENERAL PROCEDURES \n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA TRAMITESGENERALES
+    def tablaTramitesGenerales(self):
 
-         """
-         try:
+        """
+        DEFINITION OF THE TABLE OF GENERAL PROCEDURES \n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
 
-             lista, primary, parm = list(), list(), dict()
+        """
+        try:
 
-             # fields  list
-             lista = [
+            lista, primary, parm = list(), list(), dict()
+
+            # fields  list
+            lista = [
                 #
                 # Id identificador del registro
                 Field('tramitesgeneralesid', type='id', comment='Id'),
@@ -3565,44 +3714,50 @@ class AtributosSucerp():
                 # Relación de TRAMITESGENERALESTITULARES
                 Field('tramitesgeneralestitid', type='reference TRAMITESGENERALESTITULARES', ondelete='CASCADE', comment='Id FK Tramite Grales Tramites'),
                 #
+                # Indica que el registro pertenece al archivo recibido de Sucerp
+                Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
+                #
                 # Fecha del ingreso del registro 
-                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp')
-             ]
+                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp'),
+                # 
+                # Indica que fue procesado a la Db de la Matanza
+                Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TRAMITESGENERALES']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TRAMITESGENERALES']['migrate']
 
-             # table construction parameters Nombre en el sistema TRAMI00002
-             parm = {
-                 'name': 'TRAMITESGENERALES',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters Nombre en el sistema TRAMI00002
+            parm = {
+                'name': 'TRAMITESGENERALES',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-             print(f'Error - tablaTramitesGenerales {e}')
+        except Exception as e:
+            print(f'Error - tablaTramitesGenerales {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA TRAMITESGENERALESTITULARES
-     def tablaTramitesGeneralesTitulares(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA TRAMITESGENERALESTITULARES
+    def tablaTramitesGeneralesTitulares(self):
 
-         """
-          DEFINITION OF THE TABLE OF GENERAL PROCEDURES FOR HOLDERS \n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
+        """
+        DEFINITION OF THE TABLE OF GENERAL PROCEDURES FOR HOLDERS \n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
 
-         """
-         try:
+        """
+        try:
 
-             lista, primary, parm = list(), list(), dict()
+            lista, primary, parm = list(), list(), dict()
 
-             # fields list
-             lista = [
+            # fields list
+            lista = [
                 #
                 # Id identificador del registro
                 Field('tramitesgeneralestitid', type='id', comment='Id'),
@@ -3658,45 +3813,51 @@ class AtributosSucerp():
                 # Reservado para uso futuro
                 Field('reservado', type='string', length=256,  required=True, comment='Reservado'),
                 #
+                # Indica que el registro pertenece al archivo recibido de Sucerp
+                Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
+                #
                 # Fecha del ingreso del registro 
-                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp')
-             ]
+                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp'),
+                # 
+                # Indica que fue procesado a la Db de la Matanza
+                Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TRAMITESGENERALESTITULARES']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TRAMITESGENERALESTITULARES']['migrate']
 
-             # table construction parameters Nombre en el sistema TRAMI00001
-             parm = {
-                 'name': 'TRAMITESGENERALESTITULARES',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters Nombre en el sistema TRAMI00001
+            parm = {
+                'name': 'TRAMITESGENERALESTITULARES',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-             print(f'Error - tablaTramitesGeneralesTitulares {e}')
+        except Exception as e:
+            print(f'Error - tablaTramitesGeneralesTitulares {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA PIE
-     def tablaPie(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA PIE
+    def tablaPie(self):
 
-         """
-          DEFINITION OF THE FOOT BOARD \n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
+        """
+        DEFINITION OF THE FOOT BOARD \n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
 
-         """
-         try:
+        """
+        try:
 
-             lista, primary, parm = list(), list(), dict()
+            lista, primary, parm = list(), list(), dict()
 
 
-             # fields list
-             lista = [
+            # fields list
+            lista = [
                 #
                 # Id identificador del registro
                 Field('pieid', type='id', comment='Id'),
@@ -3713,45 +3874,51 @@ class AtributosSucerp():
                 # encabezado ni pie del mismo.
                 Field('checksum',                 type='string', length=32,   required=True, comment='Check Sum'),
                 #
+                # Indica que el registro pertenece al archivo recibido de Sucerp
+                Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
+                #
                 # Fecha del ingreso del registro 
-                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp')
-                ]
+                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp'),
+                # 
+                # Indica que fue procesado a la Db de la Matanza
+                Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_PIE']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_PIE']['migrate']
 
-             # table construction parameters Nombre en el sistema PIE
-             parm = {
-                 'name': 'PIE',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters Nombre en el sistema PIE
+            parm = {
+                'name': 'PIE',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-             print(f'Error - tablaPie {e}')
+        except Exception as e:
+            print(f'Error - tablaPie {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA APIAUMOSO
-     def tablaApiAumoso(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA APIAUMOSO
+    def tablaApiAumoso(self):
 
-         """
-          DEFINITION OF THE AUMOSO TABLE \n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
+        """
+        DEFINITION OF THE AUMOSO TABLE \n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
 
-         """
-         try:
+        """
+        try:
 
-             lista, primary, parm = list(), list(), dict()
+            lista, primary, parm = list(), list(), dict()
 
 
-             # fields list
-             lista = [
+            # fields list
+            lista = [
                 Field('aumosoid', type='id', comment='Id'),
                 Field('idpakey', type='bigint', required=True, comment='IdPakey'),
                 Field('samnrodoc', type='bigint', required=True, comment='Sam Nro Documento'),
@@ -3778,247 +3945,167 @@ class AtributosSucerp():
                 Field('cuotacancelada',  type='string', length=1,    required=True, default='N', comment='Cuota Cancelada'),
                 Field('codigotipotramite', type='integer', required=True, comment='Codigo Tipo Tramite'),
                 Field('tipoformulario', type='integer', required=True, comment='Tipo Formulario'),
-             ]
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_API_AUMOSO']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_API_AUMOSO']['migrate']
 
-             # table construction parameters
-             parm = {
-                 'name': 'APIAUMOSO',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters
+            parm = {
+                'name': 'APIAUMOSO',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-             print(f'Error - tablaApiAumoso {e}')
+        except Exception as e:
+            print(f'Error - tablaApiAumoso {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA APIESTADOS
-     def tablaApiEstados(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA APIESTADOS
+    def tablaApiEstados(self):
 
-         """
-          API STATE TABLE DEFINITION \n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
+        """
+        API STATE TABLE DEFINITION \n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
 
-          """
-         try:
+        """
+        try:
 
-             lista, primary, parm = list(), list(), dict()
+            lista, primary, parm = list(), list(), dict()
 
-             # fields list
-             lista = [
+            # fields list
+            lista = [
                 Field('apiestadosid',          type='id', comment='Id'),
                 Field('apiestadodescripcion',  unique=True, type='string', length=100, required=True, comment='Descr Token Api Estado'),
                 Field('apiusercrt',            type='string', length=10,   required=True, comment='Token Api User Create'),
                 Field('tokenusercrttimestamp', type='datetime', required=True, comment='Token Api User Crt Time Stamp'),
                 Field('apiuserdlt',            type='string', length=10,   required=True, comment='Token Api User Delete'),
                 Field('tokenuserdlttimestamp', type='datetime', required=True, comment='Token Api User Dlt Time Stamp'),
-             ]
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_API_ESTADOS']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_API_ESTADOS']['migrate']
 
-             # table construction parameters
-             parm = {
-                 'name': 'APIESTADOS',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters
+            parm = {
+                'name': 'APIESTADOS',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-             print(f'Error - tablaApiEstados {e}')
+        except Exception as e:
+            print(f'Error - tablaApiEstados {e}')
 
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA APITAREAS
+    def tablaApiTareas(self):
 
+        """
+        TASK API TABLE DEFINITION \n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
 
+        """
+        try:
 
+            lista, primary, parm = list(), list(), dict()
 
-         """
-          API LOG TABLE DEFINITION \n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
-
-          """
-         try:
-
-             lista, primary, parm = list(), list(), dict()
-
-             # fields list
-             lista = [
-                Field('apilogid', type='id',  comment='Id'),
-                Field('apilogerror', type='string', length=15360, required=True, comment='Json del Error'),
-                Field('apilogtimestamp', type='datetime', required=True, comment='Error Log Time Stamp'),
-                Field('apilogidcontrib', type='string', length=15, required=True, comment='Id Contribuyente Aumoso'),
-             ]
-
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_API_LOG']['migrate']
-
-             # table construction parameters
-             parm = {
-                 'name': 'APILOG',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
-
-             return parm
-
-         except Exception as e:
-             print(f'Error - tablaApiLog {e}')
-
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # Tabla de Control de Archivos Recibidos de Sucerp
-     def tablaRecepcionArchivos(self):
-
-         """
-          DEFINITION OF THE FILE RECEPTION TABLE \n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
-
-          """
-         try:
-
-             lista, primary, parm = list(), list(), dict()
-
-             # fields list
-             lista = [
-                Field('archivorecibidoid', type='id', comment='Id'),
-                Field('archivonombre', unique=True, type='string', length=256, required=True, comment='Nombre Archivo'),
-                Field('archivousercrt',   type='string', length=10,  required=True, comment='Archivo User Create'),
-                Field('archivoprocesado', type='datetime', required=True, comment='Archivo Procesado'),
-             ]
-
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_RECEPCIONARCHIVOS']['migrate']
-
-             # table construction parameters
-             parm = {
-                 'name': 'RECEPCIONARCHIVOS',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
-
-             return parm
-
-         except Exception as e:
-             print(f'Error - tablaApiEstados {e}')
-
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA APITAREAS
-     def tablaApiTareas(self):
-
-         """
-          TASK API TABLE DEFINITION \n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
-
-         """
-         try:
-
-             lista, primary, parm = list(), list(), dict()
-
-             # fields list
-             lista = [
+            # fields list
+            lista = [
                 Field('apitareasid', type='id', comment='Id'),
                 Field('apitareasdescripcion', unique=True, type='string', length=100, required=True, comment='Descr Token Api Tareas'),
                 Field('apiusercrt',               type='string', length=10,   required=True, comment='Token Api User Create'),
                 Field('tokenusercrttimestamp', type='datetime', required=True, comment='Token Api User Crt Time Stamp'),
                 Field('apiuserdlt',               type='string', length=10,   required=True, comment='Token Api User Delete'),
                 Field('tokenuserdlttimestamp', type='datetime', required=True, comment='Token Api User Dlt Time Stamp'),
-             ]
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_API_TAREAS']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_API_TAREAS']['migrate']
 
-             # table construction parameters
-             parm = {
-                 'name': 'APITAREAS',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters
+            parm = {
+                'name': 'APITAREAS',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-             print(f'Error - tablaApiTareas {e}')
+        except Exception as e:
+            print(f'Error - tablaApiTareas {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA APIESTADOSTAREAS
-     def tablaApiEstadosTareas(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA APIESTADOSTAREAS
+    def tablaApiEstadosTareas(self):
 
-         """
-          DEFINITION OF THE API TABLE STATES TASKS \n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
+        """
+        DEFINITION OF THE API TABLE STATES TASKS \n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
 
-         """
-         try:
+        """
+        try:
 
-             lista, primary, parm = list(), list(), dict()
+            lista, primary, parm = list(), list(), dict()
 
-             # fields list
-             lista = [
+            # fields list
+            lista = [
                 Field('apiestadotareasid', type='id', comment='Id'),
                 Field('apiestadosid', type='reference APIESTADOS', ondelete='CASCADE', comment='Id FK Token Api Estado'),
                 Field('apitareasid', type='reference APITAREAS', ondelete='CASCADE', comment='Id FK Token Api Tareas'),
                 Field('apiestadosnewid', type='reference APIESTADOS', ondelete='CASCADE', comment='Id FK Token Estado New'),
-             ]
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_API_ESTADOS_TAREAS']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_API_ESTADOS_TAREAS']['migrate']
 
-             # table construction parameters
-             parm = {
-                 'name': 'APIESTADOSTAREAS',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters
+            parm = {
+                'name': 'APIESTADOSTAREAS',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-             print(f'Error - tablaApiEstadosTareas {e}')
+        except Exception as e:
+            print(f'Error - tablaApiEstadosTareas {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA APIREGISTROS
-     def tablaApiRegistros(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA APIREGISTROS
+    def tablaApiRegistros(self):
 
-         """
-          API TABLE DEFINITION REGISTERS \n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
+        """
+        API TABLE DEFINITION REGISTERS \n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
 
-         """
-         try:
+        """
+        try:
 
-             lista, primary, parm = list(), list(), dict()
+            lista, primary, parm = list(), list(), dict()
 
 
-             # fields list
-             lista = [
+            # fields list
+            lista = [
                 Field('apiregistrosid', type='id', comment='Id'),
                 Field('apiregistrosdescripcion', unique=True, type='string', length=100, required=True, comment='Descr Token Api Registros'),
                 Field('apiregistrosnumero', unique=True, type='integer', required=True, comment='Token Api Registros Nro'),
@@ -4027,42 +4114,42 @@ class AtributosSucerp():
                 Field('tokenusercrttimestamp', type='datetime', required=True, comment='Token Api User Crt Time Stamp'),
                 Field('apiuserdlt',               type='string', length=10,   required=True, comment='Token Api User Delete'),
                 Field('tokenuserdlttimestamp', type='datetime', required=True, comment='Token Api User Dlt Time Stamp'),
-             ]
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_API_REGISTROS']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_API_REGISTROS']['migrate']
 
-             # table construction parameters
-             parm = {
-                 'name': 'APIREGISTROS',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters
+            parm = {
+                'name': 'APIREGISTROS',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
-         except Exception as e:
-             print(f'Error - tablaApiRegistros {e}')
+            return parm
+        except Exception as e:
+            print(f'Error - tablaApiRegistros {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA APITOKENUSER
-     def tablaApiTokenUser(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA APITOKENUSER
+    def tablaApiTokenUser(self):
 
-         """
-          DEFINITION OF THE USERS API TOKEN TABLE \n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
+        """
+        DEFINITION OF THE USERS API TOKEN TABLE \n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
 
-         """
-         try:
+        """
+        try:
 
-             lista, primary, parm = list(), list(), dict()
+            lista, primary, parm = list(), list(), dict()
 
 
-             # fields list
-             lista = [
+            # fields list
+            lista = [
                 Field('apiuserid', type='id', comment='Id'),
                 Field('apiusernombre', unique=True, type='string', length=10, required=True, comment='Token Api User Nombre'),
                 Field('apiuserpass', type='password', length=10, required=True, comment='Token Api User Pass'),
@@ -4078,41 +4165,41 @@ class AtributosSucerp():
                 Field('apiuserdlt', type='string', length=10,   comment='Token Api User Delete'),
                 Field('tokenuserdlttimestamp', type='datetime',  comment='Token Api User Dlt Time Stamp'),
 
-             ]
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_API_TOKEN_USER']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_API_TOKEN_USER']['migrate']
 
-             # table construction parameters
-             parm = {
-                 'name': 'APITOKENUSER',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters
+            parm = {
+                'name': 'APITOKENUSER',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
-         except Exception as e:
-             print(f'Error - tablaApiTokenUser {e}')
+            return parm
+        except Exception as e:
+            print(f'Error - tablaApiTokenUser {e}')
 
-     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     # TABLA APITOKEN
-     def tablaApiToken(self):
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA APITOKEN
+    def tablaApiToken(self):
 
-         """
-          API TOKEN TABLE DEFINITION \n
-         WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
+        """
+        API TOKEN TABLE DEFINITION \n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
 
-         """
-         try:
+        """
+        try:
 
-             lista, primary, parm = list(), list(), dict()
+            lista, primary, parm = list(), list(), dict()
 
-             # fields list
-             lista = [
+            # fields list
+            lista = [
                 Field('tokenapiid', type='id',  comment='Id'),
                 Field('tokenvalor', unique=True,  type='string', length=512,  required=True, comment='Token Valor'),
                 Field('apiuserid', type='reference APITOKENUSER', ondelete='CASCADE', comment='Id FK Token Api User'),
@@ -4122,20 +4209,20 @@ class AtributosSucerp():
                 Field('tokenconectar', type='boolean', required=True, default='0', comment='Token Conectar'),
                 Field('tokeniniciotransaccion', type='boolean', required=True, default='0', comment='Token Inicio Transaccion'),
                 Field('tokenfintransaccion', type='boolean', required=True, default='0', comment='Token Fin Transaccion'),
-             ]
+            ]
 
-             # We get the migrate parameter
-             migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_API_TOKEN']['migrate']
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_API_TOKEN']['migrate']
 
-             # table construction parameters
-             parm = {
-                 'name': 'APITOKEN',
-                 'fields': tuple(lista),
-                 'arg': {'migrate': migrate},
-                 'sqlfldtexto': True
-             }
+            # table construction parameters
+            parm = {
+                'name': 'APITOKEN',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
 
-             return parm
+            return parm
 
-         except Exception as e:
-             print(f'Error - tablaApiToken {e}')
+        except Exception as e:
+            print(f'Error - tablaApiToken {e}')
