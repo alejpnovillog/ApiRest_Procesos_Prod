@@ -1,0 +1,44 @@
+# LISTA DE FORMATOS RECIBIDOS CON LOS ARCHIVOS ENVIADOS POR SUCERP
+
+1. Formato de ENCABEZADO E0 recibimos 18 registros
+   
+2. Formato de PIE P0 recibimos 18 de los cuales 13 se pudo procesar ya que el archivo no tuvo errores
+
+3. Formato de ALTAIMPOSITIVA recibimos 2228 con 1 caso de error
+
+4. Formato de ALTAIMPOSITIVATITULAR recibimos 297
+
+5. Formato de IMPUESTOAUTOMOTOR recibimos 6 con 3 errores
+
+6. Formato de CAMBIOTITULARIDAD recibimos 31
+
+7. Formato de INFORMACIONRADICACION recibimos 15
+
+8. Formato de ANULACIONTRAMITESSELLOS recibimos 6 con 4 errores
+
+
+# LISTA DE ARCHIVOS PROCESADOS
+
+- 2023-04-19_1698427153.txt
+- 2023-05-05_1698427104.txt
+- 2023-07-05_1698427113.txt
+- 2023-02-16_1698427138.txt
+- 2023-01-02_1698427039.txt
+- 2023-04-25_1698427169.txt
+- 2023-06-05_1698427107.txt
+- 2023-06-23_1698427164.txt
+- 2023-05-10_1698427130.txt
+- 2023-05-18_1698427150.txt
+- 2023-06-08_1698427125.txt
+- 2023-03-28_1698427173.txt
+- 2023-05-16_1698427140.txt
+- 2023-01-23_1698427161.txt
+- 2023-07-06_1698427117.txt
+- 2023-01-18_1698427146.txt
+- 2023-07-03_1698427031.txt
+- 2023-04-18_1698427148.txt
+
+
+
+
+
