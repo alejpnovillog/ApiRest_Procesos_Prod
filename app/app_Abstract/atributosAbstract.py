@@ -294,7 +294,7 @@ class AtributosSucerp():
     #   tablaAltaImpositiva(self)
     #   tablaAltaImpositivaTitular(self)
     #   tablaRelArbaSucerpMarca(self)
-    #   tablaProcesoImportacionExportacion(self)
+    #   PROCESOIMPORTACIONEXPORTACION
     #   tablaRecepLog(self)
     #   tablaMensajeError(self)
     #   tablaMensajeNivelGravedad(self)
@@ -1044,11 +1044,174 @@ class AtributosSucerp():
             print(f'Error - tablaEncabezado {e}')
 
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    # TABLA ALTAIMPOSITIVA
-    def tablaAltaImpositiva(self):
+    # TABLA INFORMACIONVEHICULO
+    def tablaInformacionVehiculo(self):
 
         """
-        DEFINITION OF THE HIGH TAX TABLE \n
+        DEFINITION OF THE VEHICLE INFORMATION TABLE \n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
+
+        """
+
+        try:
+            lista, primary, parm = list(), list(), dict()
+
+
+            # fields list
+            lista = [
+                #
+                # Id identificador del registro
+                Field('infvehiculoid', type='id', comment='Id'),
+                #
+                # Constante “C5 ”
+                Field("tiporegistroid", type='reference TIPOREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Registro'),
+                #
+                # Constante “C”
+                Field('tiposubregistroid', type='reference TIPOSUBREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Sub Registro'),
+                #
+                # Código del organismo Municipal o Provincial al cual corresponde la información
+                Field('codigoorganismo', type='integer', required=True, comment='Codigo Organismo'),
+                #
+                # Patente del Vehículo (Reempadronado)
+                Field('dominionuevo', type='string', length=8,    required=True, comment='Dominio Nuevo'),
+                #
+                # Patente del Vehículo (Dominio Anterior)
+                Field('dominioviejo', type='string', length=8,    required=True, comment='Dominio Viejo'),
+                #
+                # Código del vehículo según la DNRPA. MTM (Marca – Tipo – Modelo) y FMM (Fabrica – Marca – Modelo).
+                Field('codigomtmfmm', type='string', length=8, required=True, comment='Codigo Sucerp'),
+                #
+                # Tipo de origen del vehículo (N – Nacional, I – Importado).
+                Field('origenid', type='reference TIPOORIGEN', ondelete='CASCADE', comment='Id FK Origen'),
+                # CAMPO OPCIONAL
+                # Categoría del vehículo
+                Field('categoría', type='string', length=3,    required=True, comment='Categoria'),
+                #
+                # Descripción de la marca del Vehículo
+                Field('marca', type='string', length=60,   required=True, comment='Marca'),
+                #
+                # Descripción del tipo de Vehículo
+                Field('tipovehiculo', type='string', length=60,   required=True, comment='Tipo Vehiculo'),
+                #
+                # Descripción del modelo del vehículo
+                Field('modelo', type='string', length=100,  required=True, comment='Modelo'),
+                #
+                # Año/Modelo del Vehículo
+                Field('yyyymodelo', type='integer', required=True, comment='Año Modelo'),
+                # CAMPO OPCIONAL
+                # Peso del Vehículo
+                Field('peso', type='integer', required=True, comment='Peso'),
+                # CAMPO OPCIONAL
+                # Carga del Vehículo
+                Field('carga', type='integer', required=True, comment='Carga'),
+                # CAMPO OPCIONAL
+                # Cilindrada (sólo motovehículos)
+                Field('cilindrada', type='integer', required=True, comment='Cilindrada'),
+                #
+                # Valuación del Vehículo
+                Field('valuacion', type='integer', required=True, comment='Valuacion'),
+                #
+                # Código de tipo de uso del vehículo
+                Field('codigotipouso', type='string', length=2,    required=True, comment='Codigo Tipo Uso'),
+                #
+                # Descripción del tipo de uso del vehículo
+                Field('descrtipouso', type='string', length=100,  required=True, comment='Descr Tipo Uso'),
+                #
+                # Fecha de la inscripción inicial del vehículo
+                Field('fechainscripcioninicial', type='date', required=True, comment='Fecha Inscripcion Inicial'),
+                # CAMPO OPCIONAL
+                # Fecha de la última transferencia del vehículo
+                Field('fechaultimatransferencia', type='date', required=True, comment='Fecha Ult Transferencia'),
+                # CAMPO OPCIONAL
+                # Fecha del último movimiento en SU jurisdicción
+                Field('fechaultimomovimiento', type='date', required=True, comment='Fecha Ult Movimiento'),
+                #
+                # Estado dominial. Según tabla anexa VIII
+                Field('estadodominial', type='string', length=1,    required=True, comment='Estado Dominial'),
+                # CAMPO OPCIONAL
+                # Fecha en que se produjo el último cambio dominial
+                Field('fechacambioestadodominal', type='date', required=True, comment='Fecha Camb Estado Dominial'),
+                #
+                # Determina si dispone de una guarda habitual
+                Field('guardahabitual', type='string', length=1,    required=True, comment='Guarda Habitual'),
+                # CAMPO OPCIONAL
+                # Calle del domicilio de guarda
+                Field('calle', type='string', length=40, required=True, comment='Calle'),
+                # CAMPO OPCIONAL
+                # Número de puerta del domicilio de guarda
+                Field('numero', type='string', length=10, required=True, comment='Nro Puerta'),
+                # CAMPO OPCIONAL
+                # Piso del departamento del domicilio de guarda
+                Field('piso', type='string', length=10, required=True, comment='Piso'),
+                # CAMPO OPCIONAL
+                # Departamento del domicilio de guarda
+                Field('departamento', type='string', length=10, required=True, comment='Depto'),
+                # CAMPO OPCIONAL - EN LA DESCRIPCION ACTUAL EL CAMPO NO EXISTE 
+                # Localidad del domicilio de guarda 
+                Field('barrio', type='string', length=40, required=True, comment='Barrio'),
+                # CAMPO OPCIONAL
+                # Localidad del domicilio de guarda
+                Field('localidad', type='string', length=40, required=True, comment='Localidad'),
+                # CAMPO OPCIONAL
+                # Código Postal de guarda
+                Field('codigopostal', type='string', length=8, required=True, comment='Codigo Postal'),
+                # CAMPO OPCIONAL
+                # Provincia de guarda. Según tabla Anexo VI
+                Field('provinciaid', type='reference PROVINCIAS', ondelete='CASCADE', comment='Id FK Provincia'),
+                #
+                # Cantidad de titulares del vehículo
+                Field('cantidadtitulares', type='integer', required=True, comment='Cantidad Titulares'),
+                #
+                # Código de Registro Seccional
+                Field('codigoregistroseccional', type='integer', required=True, comment='Codigo Registro Seccional'),
+                #
+                # Nombre del Registro Seccional
+                Field('razonsocial',  type='string', length=40,   required=True, comment='Razon Social'),
+                #
+                # Fecha de la operación. Formato aaaa-mm-dd hh:mm:ss
+                Field('fechaoperacion', type='datetime', required=True, comment='fecha Operacion'),
+                # CAMPO OPCIONAL
+                # Reservado para uso futuro
+                Field('reservado', type='string', length=256,  required=True, comment='Reservado'),
+                # EN LA DESCRIPCION ACTUAL EL CAMPO NO EXISTE 
+                # 
+                Field('controlsucerp', type='string', length=3,    required=True, comment='Control Sucerp'),
+                #
+                # Indica que el registro pertenece al archivo recibido de Sucerp
+                Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
+                #
+                # Fecha del ingreso del registro 
+                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp'),
+                # 
+                # Indica que fue procesado a la Db de la Matanza
+                Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
+            ]
+
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_INFORMACIONVEHICULO']['migrate']
+
+            # table construction parameters Nombre en el sistema INFOR00001
+            parm = {
+                'name': 'INFORMACIONVEHICULO',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
+
+            return parm
+
+        except Exception as e:
+            print(f'Error - tablaInformacionVehiculo {e}')
+
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA INFORMACIONVEHICULOTITULAR
+    def tablaInformacionVehiculoTitular(self):
+
+        """
+            DEFINITION OF THE HOLDER'S VEHICLE INFORMATION TABLE \n
             WE RETURN: \n
             TABLE NAME \n
             STRUCTURE FIELDS \n
@@ -1061,175 +1224,74 @@ class AtributosSucerp():
 
             # fields list
             lista = [
-                # 
-                # Id de la tabla 
-                Field('altataxid', type='id', comment='Id'),
                 #
-                # Id de la tabla TIPO_REGISTRO
-                Field("tiporegistroid", type='reference TIPOREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Registro'),
+                # Id identificador del registro
+                Field('infvehiculotitularid', type='id', comment='Id'),
                 #
-                # Id de la tabla TIPO_SUBREGISTRO
+                # Constante “C5 ” 
+                Field('tipocuerpoid', type='reference TIPOCUERPO', ondelete='CASCADE', comment='Id FK Tipo Cuerpo'),
+                #
+                # Constante “T ”
                 Field('tiposubregistroid', type='reference TIPOSUBREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Sub Registro'),
                 #
-                # Código del organismo Municipal o Provincial al cual corresponde la información
-                Field('codigoorganismo', type='integer', required=True, comment='Codigo Organismo'),
-                # CAMPO OPCIONAL
-                # Número de trámite interno de la aplicación
-                Field('numerotramite', type='bigint',  required=True, comment='Nro Tramite '),
-                #
-                # Código de tipo de trámite registral realizado
-                Field('codigotipotramite', type='integer', required=True, comment='Codigo Tipo Tramite '),
-                #
-                # Descripción del tipo de trámite registral realizado
-                Field('descrtipotramite', type='string', length=60, required=True, comment='Descr Tipo Tramite '),
-                #
-                # Código del tip    o de acción realizada por el contribuyente
-                Field('codigotipoaccion', type='integer', required=True, comment='Codigo Tipo Accion'),
-                #
-                # Descripción del tipo de acción realizada por el contribuyente
-                Field('descrtipoaccion', type='string', length=60,   required=True, comment='Descr Tipo Accion'),
-                #
-                # Identificador de tipo de formulario exigible para el trámite
-                Field('tipoformulario', type='integer', required=True, comment='Tipo Formulario'),
-                #
-                # Número de formulario en el que se realizo el trámite
-                Field('numeroformulario', type='integer', required=True, comment='Nro Formulario'),
-                #
-                # Patente del Vehículo (Reempadronado)
-                Field('dominionuevo', type='string', length=8, required=True, comment='Dominio Nuevo'),
-                #
-                # Patente del Vehículo (Dominio Anterior)
-                Field('dominioviejo', type='string', length=8, required=True, comment='Dominio Viejo'),
-                #
-                # Código del vehículo según la DNRPA. MTM (Marca – Tipo – Modelo) y FMM (Fabrica – Marca – Modelo).
-                Field('codigomtmfmm', type='string', length=8, required=True, comment='Codigo Sucerp'),
-                #
-                # Tipo de origen del vehículo (N – Nacional, I - Importado)
-                Field('origenid', type='reference TIPOORIGEN', ondelete='CASCADE', comment='Id FK Tipo Origen Vehiculo'),
-                # CAMPO OPCIONAL
-                # Categoría del vehículo
-                Field('categoría', type='string', length=3, required=True, comment='Categoria'),
-                #
-                # Descripción de la marca del Vehículo
-                Field('marca', type='string', length=60, required=True, comment='Marca'),
-                #
-                # Descripción del tipo de Vehículo
-                Field('tipovehiculo', type='string', length=60, required=True, comment='Tipo Vehiculo'),
-                #
-                # Descripción del modelo del vehículo
-                Field('modelo', type='string', length=100, required=True, comment='Modelo'),
-                #
-                # Año/Modelo del vehículo
-                Field('yyyymodelo', type='integer', required=True, comment='Año Modelo'),
-                # CAMPO OPCIONAL
-                # Peso del vehículo
-                Field('peso', type='integer', required=True, comment='Peso'),
-                # CAMPO OPCIONAL
-                # Carga del Vehículo
-                Field('carga', type='integer', required=True, comment='Carga'),
-                # CAMPO OPCIONAL
-                # Cilindrada (sólo motovehículos)
-                Field('cilindrada', type='integer', required=True, comment='Cilindrada'),
-                #
-                # Valuación del vehículo
-                Field('valuacion', type='integer', required=True, comment='Valuacion'),
-                #
-                # Código de tipo de uso del vehículo
-                Field('codigotipouso', type='string', length=2, required=True, comment='Codigo Tipo Uso'),
-                #
-                # Descripción del tipo de uso del vehículo
-                Field('descrtipouso', type='string', length=100, required=True, comment='Descr Tipo Uso'),
-                #
-                # Fecha de vigencia. Formato aaaa-mm-dd
-                Field('fechavigencia', type='date', required=True, comment='Fecha Vigencia'),
-                #
-                # Tipo de documento del titular principal. Según tabla anexa V
+                # Tipo de documento del titular. Según tabla anexa V
                 Field('tipodocumentoid', type='reference TIPODOCUMENTO', ondelete='CASCADE', comment='Id FK Tipo Documento'),
                 #
-                # Número de documento del titular principal
+                # Número de documento correspondiente al titular
                 Field('numerodocumento', type='bigint', required=True, comment='Nro Documento'),
                 #
-                # Número de CUIT o CUIL del titular principal
+                # Número de CUIT / CUIL correspondiente al titular
                 Field('cuitcuil', type='bigint', required=True, comment='Cuit/Cuil'),
                 #
-                # Nombre y Apellido o Razón Social del titular principal
-                Field('apenomrazonsocial', type='string', length=150,  required=True, comment='ApeNom Razon Social'),
+                # Nombre y Apellido o Razón Social del titular del vehículo
+                Field('apellidonombre', type='string', length=150, required=True, comment='Apellido y Nombre'),
                 #
-                # Calle donde recibirá el impuesto
-                Field('calle', type='string', length=40,   required=True, comment='Calle'),
+                # Porcentaje de posesión del vehiculo
+                Field('porcentajetitularidad', type='integer', required=True, comment='Porcentaje Titular'),
                 #
-                # Número donde recibirá el impuesto
-                Field('numero', type='string', length=10,   requiSred=True, comment='Nro Puerta'),
+                # Calle del domicilio del titular
+                Field('calle', type='string', length=40, required=True, comment='Calle'),
+                #
+                # Número de puerta del domicilio del titular
+                Field('numero', type='string', length=10, required=True, comment='Nro Puerta'),
+                #
+                # Piso del departamento del domicilio del titular
+                Field('piso', type='string', length=10, required=True, comment='Piso'),
+                #
+                # Departamento del domicilio del titular
+                Field('departamento', type='string', length=10, required=True, comment='Depto'),
                 # CAMPO OPCIONAL
-                # Piso donde recibirá el impuesto
-                Field('piso', type='string', length=10,   required=True, comment='Piso'),
-                # CAMPO OPCIONAL
-                # Departamento donde recibirá el impuesto
-                Field('departamento', type='string', length=10,   required=True, comment='Depto'),
-                # CAMPO OPCIONAL
-                # Barrio donde recibirá el impuesto
-                Field('barrio', type='string', length=40,   required=True, comment='Barrio'),
+                # Barrio del domicilio del titular
+                Field('barrio', type='string', length=40, required=True, comment='Barrio'),
                 #
-                # Localidad donde recibirá el impuesto
-                Field('localidad', type='string', length=40,   required=True, comment='Localidad'),
+                # Localidad del domicilio del titular
+                Field('localidad', type='string', length=40, required=True, comment='Localidad'),
                 #
-                # Código Postal donde recibirá el impuesto
-                Field('codigopostal', type='string', length=8,    required=True, comment='Codigo Postal'),
+                # Código Postal del titular
+                Field('codigopostal', type='string', length=8, required=True, comment='Codigo Postal'),
                 #
-                # Código de provincia donde recibirá el impuesto
+                # Provincia del Titular. Según tabla Anexo VI
                 Field('provinciaid', type='reference PROVINCIAS', ondelete='CASCADE', comment='Id FK Provincia'),
-                #
-                # Cantidad de titulares del vehículo
-                Field('cantidadtitulares', type='integer', required=True, comment='Cantidad Titulares'),
-                #
-                # Código de Registro Seccional que realizó la transacción
-                Field('codigoregistroseccional', type='integer', required=True, comment='Codigo Registro Seccional'),
-                #
-                # Nombre del Registro Seccional
-                Field('razonsocial',  type='string', length=40,   required=True, comment='Razon Social'),
-                #
-                # Código del Registro Seccional de origen del trámite (sólo disponible en cambios de radicación y recuperos)
-                Field('registroseccionalorigen', type='integer', required=True, comment='Registro Seccion Origen'),
-                # CAMPO OPCIONAL
-                # Razón social del Registro Seccional origen del trámite (sólo disponible en cambios de radicación).
-                Field('razonsocialregistroseccionalorigen', type='string', length=40, required=True, comment='Raz Soc Reg Seccional Origeb'),
-                # CAMPO OPCIONAL
-                # Razón social de la Municipalidad origen del trámite.
-                Field('municipalidadorigen', type='string', length=150,  required=True, comment='Municipalidad Origen'),
-                #
-                # Fecha de la operación. Formato aaaa-mm-dd hh:ii:ss
-                Field('fechaoperacion', type='datetime', required=True, comment='fecha Operacion'),
-                # CAMPO OPCIONAL
-                # Contiene los datos de cada parámetro adicional que el organismo requiera al realizar el trámite. 
-                # Dispone de un máximo de 10 valores adicionales. Ver anexo V
-                Field('parametrosadicionales',   type='string', length=650,  required=True, comment='Parm Adicionales'),
                 # CAMPO OPCIONAL
                 # Reservado para uso futuro
-                Field('reservado', type='string', length=256,  required=True, comment='Reservado'),
-                # CAMPO OPCIONAL
-                # Observaciones
-                Field('observaciones',  type='string', length=256,  required=True, comment='Observaciones'),
-                #
-                # Referencia a la Alta Impositiva Titular
-                Field('altataxtitularid', type='reference ALTAIMPOSITIVATITULAR', ondelete='CASCADE', comment='Id FK Alta Impositiva Titular'),
+                Field('reservado', type='string', length=256, required=True, comment='Reservado'),
                 #
                 # Indica que el registro pertenece al archivo recibido de Sucerp
                 Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
                 #
-                # Fecha time stamp de incorporación del registro
+                # Fecha del ingreso del registro 
                 Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp'),
                 # 
                 # Indica que fue procesado a la Db de la Matanza
                 Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
-
             ]
 
             # We get the migrate parameter
-            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_ALTAIMPOSITIVA']['migrate']
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_INFORMACIONVEHICULOTITULAR']['migrate']
 
-            # table construction parameters Nombre en el sistems ALTAI00002
+            # table construction parameters
             parm = {
-            'name': 'ALTAIMPOSITIVA',
+                'name': 'INFORMACIONVEHICULOTITULAR',
                 'fields': tuple(lista),
                 'arg': {'migrate': migrate},
                 'sqlfldtexto': True
@@ -1238,7 +1300,7 @@ class AtributosSucerp():
             return parm
 
         except Exception as e:
-            print(f'Error - tablaAltaImpositiva {e}')
+            print(f'Error - tablaInformacionVehiculoTitular {e}')
 
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     # TABLA RELACIONARBASUCERPMARCA
@@ -1525,6 +1587,204 @@ class AtributosSucerp():
             print(f'Error - tablaImpresionPdf {e}')
 
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA ALTAIMPOSITIVA
+    def tablaAltaImpositiva(self):
+
+        """
+        DEFINITION OF THE HIGH TAX TABLE \n
+            WE RETURN: \n
+            TABLE NAME \n
+            STRUCTURE FIELDS \n
+            CONSTRUCTION ARGUMENTS \n
+
+        """
+        try:
+
+            lista, primary, parm = list(), list(), dict()
+
+            # fields list
+            lista = [
+                # 
+                # Id de la tabla 
+                Field('altataxid', type='id', comment='Id'),
+                #
+                # Id de la tabla TIPO_REGISTRO
+                Field("tiporegistroid", type='reference TIPOREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Registro'),
+                #
+                # Id de la tabla TIPO_SUBREGISTRO
+                Field('tiposubregistroid', type='reference TIPOSUBREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Sub Registro'),
+                #
+                # Código del organismo Municipal o Provincial al cual corresponde la información
+                Field('codigoorganismo', type='integer', required=True, comment='Codigo Organismo'),
+                # CAMPO OPCIONAL
+                # Número de trámite interno de la aplicación
+                Field('numerotramite', type='bigint',  required=True, comment='Nro Tramite '),
+                #
+                # Código de tipo de trámite registral realizado
+                Field('codigotipotramite', type='integer', required=True, comment='Codigo Tipo Tramite '),
+                #
+                # Descripción del tipo de trámite registral realizado
+                Field('descrtipotramite', type='string', length=60, required=True, comment='Descr Tipo Tramite '),
+                #
+                # Código del tip    o de acción realizada por el contribuyente
+                Field('codigotipoaccion', type='integer', required=True, comment='Codigo Tipo Accion'),
+                #
+                # Descripción del tipo de acción realizada por el contribuyente
+                Field('descrtipoaccion', type='string', length=60,   required=True, comment='Descr Tipo Accion'),
+                #
+                # Identificador de tipo de formulario exigible para el trámite
+                Field('tipoformulario', type='integer', required=True, comment='Tipo Formulario'),
+                #
+                # Número de formulario en el que se realizo el trámite
+                Field('numeroformulario', type='integer', required=True, comment='Nro Formulario'),
+                #
+                # Patente del Vehículo (Reempadronado)
+                Field('dominionuevo', type='string', length=8, required=True, comment='Dominio Nuevo'),
+                #
+                # Patente del Vehículo (Dominio Anterior)
+                Field('dominioviejo', type='string', length=8, required=True, comment='Dominio Viejo'),
+                #
+                # Código del vehículo según la DNRPA. MTM (Marca – Tipo – Modelo) y FMM (Fabrica – Marca – Modelo).
+                Field('codigomtmfmm', type='string', length=8, required=True, comment='Codigo Sucerp'),
+                #
+                # Tipo de origen del vehículo (N – Nacional, I - Importado)
+                Field('origenid', type='reference TIPOORIGEN', ondelete='CASCADE', comment='Id FK Tipo Origen Vehiculo'),
+                # CAMPO OPCIONAL
+                # Categoría del vehículo
+                Field('categoría', type='string', length=3, required=True, comment='Categoria'),
+                #
+                # Descripción de la marca del Vehículo
+                Field('marca', type='string', length=60, required=True, comment='Marca'),
+                #
+                # Descripción del tipo de Vehículo
+                Field('tipovehiculo', type='string', length=60, required=True, comment='Tipo Vehiculo'),
+                #
+                # Descripción del modelo del vehículo
+                Field('modelo', type='string', length=100, required=True, comment='Modelo'),
+                #
+                # Año/Modelo del vehículo
+                Field('yyyymodelo', type='integer', required=True, comment='Año Modelo'),
+                # CAMPO OPCIONAL
+                # Peso del vehículo
+                Field('peso', type='integer', required=True, comment='Peso'),
+                # CAMPO OPCIONAL
+                # Carga del Vehículo
+                Field('carga', type='integer', required=True, comment='Carga'),
+                # CAMPO OPCIONAL
+                # Cilindrada (sólo motovehículos)
+                Field('cilindrada', type='integer', required=True, comment='Cilindrada'),
+                #
+                # Valuación del vehículo
+                Field('valuacion', type='integer', required=True, comment='Valuacion'),
+                #
+                # Código de tipo de uso del vehículo
+                Field('codigotipouso', type='string', length=2, required=True, comment='Codigo Tipo Uso'),
+                #
+                # Descripción del tipo de uso del vehículo
+                Field('descrtipouso', type='string', length=100, required=True, comment='Descr Tipo Uso'),
+                #
+                # Fecha de vigencia. Formato aaaa-mm-dd
+                Field('fechavigencia', type='date', required=True, comment='Fecha Vigencia'),
+                #
+                # Tipo de documento del titular principal. Según tabla anexa V
+                Field('tipodocumentoid', type='reference TIPODOCUMENTO', ondelete='CASCADE', comment='Id FK Tipo Documento'),
+                #
+                # Número de documento del titular principal
+                Field('numerodocumento', type='bigint', required=True, comment='Nro Documento'),
+                #
+                # Número de CUIT o CUIL del titular principal
+                Field('cuitcuil', type='bigint', required=True, comment='Cuit/Cuil'),
+                #
+                # Nombre y Apellido o Razón Social del titular principal
+                Field('apenomrazonsocial', type='string', length=150,  required=True, comment='ApeNom Razon Social'),
+                #
+                # Calle donde recibirá el impuesto
+                Field('calle', type='string', length=40,   required=True, comment='Calle'),
+                #
+                # Número donde recibirá el impuesto
+                Field('numero', type='string', length=10,   requiSred=True, comment='Nro Puerta'),
+                # CAMPO OPCIONAL
+                # Piso donde recibirá el impuesto
+                Field('piso', type='string', length=10,   required=True, comment='Piso'),
+                # CAMPO OPCIONAL
+                # Departamento donde recibirá el impuesto
+                Field('departamento', type='string', length=10,   required=True, comment='Depto'),
+                # CAMPO OPCIONAL
+                # Barrio donde recibirá el impuesto
+                Field('barrio', type='string', length=40,   required=True, comment='Barrio'),
+                #
+                # Localidad donde recibirá el impuesto
+                Field('localidad', type='string', length=40,   required=True, comment='Localidad'),
+                #
+                # Código Postal donde recibirá el impuesto
+                Field('codigopostal', type='string', length=8,    required=True, comment='Codigo Postal'),
+                #
+                # Código de provincia donde recibirá el impuesto
+                Field('provinciaid', type='reference PROVINCIAS', ondelete='CASCADE', comment='Id FK Provincia'),
+                #
+                # Cantidad de titulares del vehículo
+                Field('cantidadtitulares', type='integer', required=True, comment='Cantidad Titulares'),
+                #
+                # Código de Registro Seccional que realizó la transacción
+                Field('codigoregistroseccional', type='integer', required=True, comment='Codigo Registro Seccional'),
+                #
+                # Nombre del Registro Seccional
+                Field('razonsocial',  type='string', length=40,   required=True, comment='Razon Social'),
+                #
+                # Código del Registro Seccional de origen del trámite (sólo disponible en cambios de radicación y recuperos)
+                Field('registroseccionalorigen', type='integer', required=True, comment='Registro Seccion Origen'),
+                # CAMPO OPCIONAL
+                # Razón social del Registro Seccional origen del trámite (sólo disponible en cambios de radicación).
+                Field('razonsocialregistroseccionalorigen', type='string', length=40, required=True, comment='Raz Soc Reg Seccional Origeb'),
+                # CAMPO OPCIONAL
+                # Razón social de la Municipalidad origen del trámite.
+                Field('municipalidadorigen', type='string', length=150,  required=True, comment='Municipalidad Origen'),
+                #
+                # Fecha de la operación. Formato aaaa-mm-dd hh:ii:ss
+                Field('fechaoperacion', type='datetime', required=True, comment='fecha Operacion'),
+                # CAMPO OPCIONAL
+                # Contiene los datos de cada parámetro adicional que el organismo requiera al realizar el trámite. 
+                # Dispone de un máximo de 10 valores adicionales. Ver anexo V
+                Field('parametrosadicionales',   type='string', length=650,  required=True, comment='Parm Adicionales'),
+                # CAMPO OPCIONAL
+                # Reservado para uso futuro
+                Field('reservado', type='string', length=256,  required=True, comment='Reservado'),
+                # CAMPO OPCIONAL
+                # Observaciones
+                Field('observaciones',  type='string', length=256,  required=True, comment='Observaciones'),
+                #
+                # Indica que el registro pertenece al archivo recibido de Sucerp
+                Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
+                #
+                # Fecha time stamp de incorporación del registro
+                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp'),
+                # 
+                # Indica que fue procesado a la Db de la Matanza
+                Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
+                #
+                # Indica que el registro pertenece al Informacion Vehiculo
+                Field('infvehiculoid', type='reference INFORMACIONVEHICULO', ondelete='CASCADE', comment='Id Fk INFORMACIONVEHICULO'),
+
+
+            ]
+
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_ALTAIMPOSITIVA']['migrate']
+
+            # table construction parameters Nombre en el sistems ALTAI00002
+            parm = {
+            'name': 'ALTAIMPOSITIVA',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
+
+            return parm
+
+        except Exception as e:
+            print(f'Error - tablaAltaImpositiva {e}')
+
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     # TABLA ALTAIMPOSITIVATITULAR
     def tablaAltaImpositivaTitular(self):
 
@@ -1602,6 +1862,12 @@ class AtributosSucerp():
                 # 
                 # Indica que fue procesado a la Db de la Matanza
                 Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
+                #
+                # Referencia a la Alta Impositiva
+                Field('altataxid', type='reference ALTAIMPOSITIVA', ondelete='CASCADE', comment='Id FK ALTAIMPOSITIVA'),
+                #
+                # Referencia a la INFORMACIONVEHICULOTITULAR
+                Field('infvehiculotitularid', type='reference INFORMACIONVEHICULOTITULAR', ondelete='CASCADE', comment='Id FK INFORMACIONVEHICULOTITULAR'),
 
             ]
 
@@ -1752,9 +2018,6 @@ class AtributosSucerp():
                 # Observaciones
                 Field('observaciones', type='string', length=256,  required=True, comment='Observaciones'),
                 #
-                # Referencia al titular de la baja impositiva
-                Field('bajataxtitularid', type='reference BAJAIMPOSITIVATITULAR', ondelete='CASCADE', comment='Id Fk Baja Impositiva Titular'),
-                #
                 # Indica que el registro pertenece al archivo recibido de Sucerp
                 Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
                 #
@@ -1763,6 +2026,10 @@ class AtributosSucerp():
                 # 
                 # Indica que fue procesado a la Db de la Matanza
                 Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
+                #
+                # Indica que el registro pertenece al Informacion Vehiculo
+                Field('infvehiculoid', type='reference INFORMACIONVEHICULO', ondelete='CASCADE', comment='Id Fk INFORMACIONVEHICULO'),
+
             ]
 
 
@@ -1860,6 +2127,10 @@ class AtributosSucerp():
                 # 
                 # Indica que fue procesado a la Db de la Matanza
                 Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
+                #
+                # Referencia a la INFORMACIONVEHICULOTITULAR
+                Field('infvehiculotitularid', type='reference INFORMACIONVEHICULOTITULAR', ondelete='CASCADE', comment='Id FK INFORMACIONVEHICULOTITULAR'),
+
             ]
 
             # We get the migrate parameter
@@ -1877,6 +2148,273 @@ class AtributosSucerp():
 
         except Exception as e:
             print(f'Error - tablaBajaImpositivaTitular {e}')
+
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA TRAMITESGENERALES
+    def tablaTramitesGenerales(self):
+
+        """
+        DEFINITION OF THE TABLE OF GENERAL PROCEDURES \n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
+
+        """
+        try:
+
+            lista, primary, parm = list(), list(), dict()
+
+            # fields  list
+            lista = [
+                #
+                # Id identificador del registro
+                Field('tramitesgeneralesid', type='id', comment='Id'),
+                #
+                # Constante “C9 ”
+                Field("tiporegistroid", type='reference TIPOREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Registro'),
+                #
+                # Constante “C”
+                Field('tiposubregistroid', type='reference TIPOSUBREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Sub Registro'),
+                #
+                # Código del organismo Municipal o Provincial al cual corresponde la información
+                Field('codigoorganismo', type='integer', required=True, comment='Codigo Organismo'),
+                #
+                # Número de trámite interno de la aplicación
+                Field('numerotramite', type='bigint',              required=True, comment='Nro Tramite'),
+                #
+                # Código de trámite registral realizado
+                Field('codigotipotramite', type='integer', required=True, comment='Codigo Tipo Tramite'),
+                #
+                # Descripción del tipo de trámite registral realizado
+                Field('descrtipotramite',         type='string', length=60,   required=True, comment='Descr Tipo Tramite'),
+                #
+                # Código del tipo de acción realizada por el contribuyente
+                Field('codigotipoaccion', type='integer', required=True, comment='Codigo Tipo Accion'),
+                #
+                # Descripción del tipo de acción realizada por el contribuyente
+                Field('descrtipoaccion', type='string', length=60,   required=True, comment='Descr Tipo Accion'),
+                #
+                # Identificador de tipo de formulario exigible para el trámite
+                Field('tipoformulario', type='integer', required=True, comment='Tipo Formulario'),
+                #
+                # Número de formulario en el que se realizó el trámite
+                Field('numeroformulario', type='integer', required=True, comment='Nro Formulario'),
+                #
+                # Patente del Vehículo (Reempadronado)
+                Field('dominionuevo', type='string', length=8,    required=True, comment='Dominio Nuevo'),
+                #
+                # Patente del Vehículo (Dominio Anterior)
+                Field('dominioviejo', type='string', length=8,    required=True, comment='Dominio Viejo'),
+                #
+                # Código del vehículo según la DNRPA. 
+                # MTM (Marca – Tipo – Modelo) y FMM (Fabrica – Marca – Modelo).
+                Field('codigomtmfmm', type='string', length=8,    required=True, comment='Codigo Sucerp'),
+                #
+                # Tipo de origen del vehículo (N – Nacional, I – Importado).
+                Field('origenid', type='reference TIPOORIGEN', ondelete='CASCADE', comment='Id FK Origen'),
+                # CAMPO OPCIONAL
+                # Categoría del vehículo
+                Field('categoría', type='string', length=3,    required=True, comment='Categoria'),
+                #
+                # Descripción de la marca del Vehículo
+                Field('marca', type='string', length=60,   required=True, comment='Marca'),
+                #
+                # Descripción del tipo de Vehículo
+                Field('tipovehiculo', type='string', length=60,   required=True, comment='Tipo Vehiculo'),
+                #
+                # Descripción del modelo del vehículo
+                Field('modelo', type='string', length=100,  required=True, comment='Modelo'),
+                #
+                # Año/Modelo del Vehículo
+                Field('yyyymodelo', type='integer', required=True, comment='Año Modelo'),
+                # CAMPO OPCIONAL
+                # Peso del Vehículo
+                Field('peso', type='integer', required=True, comment='Peso'),
+                # CAMPO OPCIONAL
+                # Carga del Vehículo
+                Field('carga', type='integer', required=True, comment='Carga'),
+                # CAMPO OPCIONAL
+                # Cilindrada (sólo motovehículos)
+                Field('cilindrada', type='integer', required=True, comment='Cilindrada'),
+                #
+                # Valuación del Vehículo
+                Field('valuacion', type='integer', required=True, comment='Valuacion'),
+                #
+                # Código de tipo de uso del vehículo
+                Field('codigotipouso', type='string', length=2,    required=True, comment='Codigo Tipo Uso'),
+                #
+                # Descripción del tipo de uso del vehículo
+                Field('descrtipouso', type='string', length=100,  required=True, comment='Descr Tipo Uso'),
+                #
+                # Fecha de Transferencia. Formato aaaa-mm-dd
+                Field('fechavigencia', type='date', required=True, comment='Fecha Vigencia'),
+                #
+                # Tipo de documento del titular principal. Según tabla anexa V
+                Field('tipodocumentoid', type='reference TIPODOCUMENTO', ondelete='CASCADE', comment='Id FK Tipo Documento'),
+                #
+                # Número de documento correspondiente al titular principal
+                Field('numerodocumento', type='bigint', required=True, comment='Nro Documento'),
+                #
+                # Número de CUIT o CUIL del titular principal
+                Field('cuitcuil', type='bigint', required=True, comment='Cuit/Cuil'),
+                #
+                # Nombre y Apellido o Razón Social del titular principal
+                Field('apenomrazonsocial', type='string', length=150,  required=True, comment='ApeNom Razon Social'),
+                #
+                # Calle donde recibirá el impuesto
+                Field('calle', type='string', length=40,   required=True, comment='Calle'),
+                #
+                # Número donde recibirá el impuesto
+                Field('numero', type='string', length=10, required=True, comment='Nro Puerta'),
+                # CAMPO OPCIONAL
+                # Piso donde recibirá el impuesto
+                Field('piso', type='string', length=10,   required=True, comment='Piso'),
+                # CAMPO OPCIONAL
+                # Departamento donde recibirá el impuesto
+                Field('departamento', type='string', length=10,   required=True, comment='Depto'),
+                # CAMPO OPCIONAL
+                # Barrio donde recibirá el impuesto
+                Field('barrio', type='string', length=40,   required=True, comment='Barrio'),
+                #
+                # Indica que el registro pertenece al archivo recibido de Sucerp
+                Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
+                #
+                # Fecha del ingreso del registro 
+                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp'),
+                # 
+                # Indica que fue procesado a la Db de la Matanza
+                Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
+                #
+                # Referencia a la INFORMACIONVEHICULOTITULAR
+                Field('infvehiculotitularid', type='reference INFORMACIONVEHICULOTITULAR', ondelete='CASCADE', comment='Id FK INFORMACIONVEHICULOTITULAR'),
+                #
+                # Indica que el registro pertenece al Informacion Vehiculo
+                Field('infvehiculoid', type='reference INFORMACIONVEHICULO', ondelete='CASCADE', comment='Id Fk INFORMACIONVEHICULO'),
+
+            ]   
+
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TRAMITESGENERALES']['migrate']
+
+            # table construction parameters Nombre en el sistema TRAMI00002
+            parm = {
+                'name': 'TRAMITESGENERALES',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
+
+            return parm
+
+        except Exception as e:
+            print(f'Error - tablaTramitesGenerales {e}')
+
+    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # TABLA TRAMITESGENERALESTITULARES
+    def tablaTramitesGeneralesTitulares(self):
+
+        """
+        DEFINITION OF THE TABLE OF GENERAL PROCEDURES FOR HOLDERS \n
+        WE RETURN: \n
+        TABLE NAME \n
+        STRUCTURE FIELDS \n
+        CONSTRUCTION ARGUMENTS \n
+
+        """
+        try:
+
+            lista, primary, parm = list(), list(), dict()
+
+            # fields list
+            lista = [
+                #
+                # Id identificador del registro
+                Field('tramitesgeneralestitid', type='id', comment='Id'),
+                #
+                # Constante “C9 ”
+                Field("tiporegistroid", type='reference TIPOREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Registro'),
+                #
+                # Constante “T ”
+                Field('tiposubregistroid', type='reference TIPOSUBREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Sub Registro'),
+                #
+                # Determina el tipo de titular transferido. (N=Titular Nuevo – A=Titular Anterior)
+                Field('tipotitularid', type='reference TIPOTITULAR', ondelete='CASCADE', comment='Id FK Tipo Titular'),
+                #
+                # Tipo de documento del titular. Según tabla anexa V
+                Field('tipodocumentoid', type='reference TIPODOCUMENTO', ondelete='CASCADE', comment='Id FK Tipo Documento'),
+                #
+                # Número de documento correspondiente al titular
+                Field('numerodocumento', type='bigint', required=True, comment='Nro Documento'),
+                #
+                # Número de CUIT / CUIL correspondiente al titular
+                Field('cuitcuil', type='bigint', required=True, comment='Cuit/Cuil'),
+                #
+                # Nombre y Apellido o Razón Social del titular del vehículo
+                Field('apellidonombre', type='string', length=150, required=True, comment='Apellido y Nombre'),
+                #
+                # Porcentaje de posesión del vehiculo
+                Field('porcentajetitularidad', type='integer', required=True, comment='Procentaje Titular'),
+                #
+                # Calle del domicilio del titular
+                Field('calle', type='string', length=40,   required=True, comment='Calle'),
+                #
+                # Número de puerta del domicilio del titular
+                Field('numero', type='string', length=10,   required=True, comment='Nro Puerta'),
+                # CAMPO OPCIONAL
+                # Piso del departamento del domicilio del titular
+                Field('piso', type='string', length=10,   required=True, comment='Piso'),
+                # CAMPO OPCIONAL
+                # Departamento del domicilio del titular
+                Field('departamento', type='string', length=10,   required=True, comment='Depto'),
+                # CAMPO OPCIONAL
+                # Barrio del domicilio del titular
+                Field('barrio', type='string', length=40,   required=True, comment='Barrio'),
+                #
+                # Localidad del domicilio del titular
+                Field('localidad', type='string', length=40,   required=True, comment='Localidad'),
+                #
+                # Código Postal del titular
+                Field('codigopostal', type='string', length=8,    required=True, comment='Codigo Postal'),
+                #
+                # Provincia del Titular. Según tabla Anexo VI
+                Field('provinciaid', type='reference PROVINCIAS', ondelete='CASCADE', comment='Id FK Provincia'),
+                # CAMPO OPCIONAL
+                # Reservado para uso futuro
+                Field('reservado', type='string', length=256,  required=True, comment='Reservado'),
+                #
+                # Indica que el registro pertenece al archivo recibido de Sucerp
+                Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
+                #
+                # Fecha del ingreso del registro 
+                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp'),
+                # 
+                # Indica que fue procesado a la Db de la Matanza
+                Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
+                #
+                # Referencia a la INFORMACIONVEHICULOTITULAR
+                Field('infvehiculotitularid', type='reference INFORMACIONVEHICULOTITULAR', ondelete='CASCADE', comment='Id FK INFORMACIONVEHICULOTITULAR'),
+                #
+                # Relación de TRAMITESGENERALES
+                Field('tramitesgeneralesid', type='reference TRAMITESGENERALES', ondelete='CASCADE', comment='Id FK Tramite Grales Tramites'),
+
+            ]
+
+            # We get the migrate parameter
+            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TRAMITESGENERALESTITULARES']['migrate']
+
+            # table construction parameters Nombre en el sistema TRAMI00001
+            parm = {
+                'name': 'TRAMITESGENERALESTITULARES',
+                'fields': tuple(lista),
+                'arg': {'migrate': migrate},
+                'sqlfldtexto': True
+            }
+
+            return parm
+
+        except Exception as e:
+            print(f'Error - tablaTramitesGeneralesTitulares {e}')
 
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     # TABLA IMPUESTOSELLOS
@@ -2043,6 +2581,13 @@ class AtributosSucerp():
                 # 
                 # Indica que fue procesado a la Db de la Matanza
                 Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
+                #
+                # Indica que el registro pertenece al Informacion Vehiculo
+                Field('infvehiculoid', type='reference INFORMACIONVEHICULO', ondelete='CASCADE', comment='Id Fk INFORMACIONVEHICULO'),
+                #
+                # Relación de TRAMITESGENERALES
+                Field('tramitesgeneralesid', type='reference TRAMITESGENERALES', ondelete='CASCADE', comment='Id FK Tramite Grales Tramites'),
+
             ]
 
 
@@ -2161,6 +2706,13 @@ class AtributosSucerp():
                 # 
                 # Indica que fue procesado a la Db de la Matanza
                 Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
+                #
+                # Referencia a la INFORMACIONVEHICULOTITULAR
+                Field('infvehiculotitularid', type='reference INFORMACIONVEHICULOTITULAR', ondelete='CASCADE', comment='Id FK INFORMACIONVEHICULOTITULAR'),
+                #
+                # Relación de TRAMITESGENERALES
+                Field('tramitesgeneralesid', type='reference TRAMITESGENERALES', ondelete='CASCADE', comment='Id FK Tramite Grales Tramites'),
+
             ]
 
             # We get the migrate parameter
@@ -2265,6 +2817,13 @@ class AtributosSucerp():
                 # 
                 # Indica que fue procesado a la Db de la Matanza
                 Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
+                #
+                # Relación de IMPUESTOSELLOSPARTES
+                Field('taxsellospartesid', type='reference IMPUESTOSELLOSPARTES', ondelete='CASCADE', comment='Id FK IMPUESTOSELLOSPARTES'),
+                #
+                # Relación de TRAMITESGENERALES
+                Field('tramitesgeneralesid', type='reference TRAMITESGENERALES', ondelete='CASCADE', comment='Id FK Tramite Grales Tramites'),
+
             ]
 
 
@@ -2400,6 +2959,10 @@ class AtributosSucerp():
                 # 
                 # Indica que fue procesado a la Db de la Matanza
                 Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
+                #
+                # Indica que el registro pertenece al Informacion Vehiculo
+                Field('infvehiculoid', type='reference INFORMACIONVEHICULO', ondelete='CASCADE', comment='Id Fk INFORMACIONVEHICULO'),
+
             ]
 
             # We get the migrate parameter
@@ -2416,268 +2979,6 @@ class AtributosSucerp():
             return parm
         except Exception as e:
             print(f'Error - tablaImpuestoAutomotor {e}')
-
-    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    # TABLA INFORMACIONVEHICULO
-    def tablaInformacionVehiculo(self):
-
-        """
-        DEFINITION OF THE VEHICLE INFORMATION TABLE \n
-        WE RETURN: \n
-        TABLE NAME \n
-        STRUCTURE FIELDS \n
-        CONSTRUCTION ARGUMENTS \n
-
-        """
-
-        try:
-            lista, primary, parm = list(), list(), dict()
-
-
-            # fields list
-            lista = [
-                #
-                # Id identificador del registro
-                Field('infvehiculoid', type='id', comment='Id'),
-                #
-                # Constante “C5 ”
-                Field("tiporegistroid", type='reference TIPOREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Registro'),
-                #
-                # Constante “C”
-                Field('tiposubregistroid', type='reference TIPOSUBREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Sub Registro'),
-                #
-                # Código del organismo Municipal o Provincial al cual corresponde la información
-                Field('codigoorganismo', type='integer', required=True, comment='Codigo Organismo'),
-                #
-                # Patente del Vehículo (Reempadronado)
-                Field('dominionuevo', type='string', length=8,    required=True, comment='Dominio Nuevo'),
-                #
-                # Patente del Vehículo (Dominio Anterior)
-                Field('dominioviejo', type='string', length=8,    required=True, comment='Dominio Viejo'),
-                #
-                # Código del vehículo según la DNRPA. MTM (Marca – Tipo – Modelo) y FMM (Fabrica – Marca – Modelo).
-                Field('codigomtmfmm', type='string', length=8, required=True, comment='Codigo Sucerp'),
-                #
-                # Tipo de origen del vehículo (N – Nacional, I – Importado).
-                Field('origenid', type='reference TIPOORIGEN', ondelete='CASCADE', comment='Id FK Origen'),
-                # CAMPO OPCIONAL
-                # Categoría del vehículo
-                Field('categoría', type='string', length=3,    required=True, comment='Categoria'),
-                #
-                # Descripción de la marca del Vehículo
-                Field('marca', type='string', length=60,   required=True, comment='Marca'),
-                #
-                # Descripción del tipo de Vehículo
-                Field('tipovehiculo', type='string', length=60,   required=True, comment='Tipo Vehiculo'),
-                #
-                # Descripción del modelo del vehículo
-                Field('modelo', type='string', length=100,  required=True, comment='Modelo'),
-                #
-                # Año/Modelo del Vehículo
-                Field('yyyymodelo', type='integer', required=True, comment='Año Modelo'),
-                # CAMPO OPCIONAL
-                # Peso del Vehículo
-                Field('peso', type='integer', required=True, comment='Peso'),
-                # CAMPO OPCIONAL
-                # Carga del Vehículo
-                Field('carga', type='integer', required=True, comment='Carga'),
-                # CAMPO OPCIONAL
-                # Cilindrada (sólo motovehículos)
-                Field('cilindrada', type='integer', required=True, comment='Cilindrada'),
-                #
-                # Valuación del Vehículo
-                Field('valuacion', type='integer', required=True, comment='Valuacion'),
-                #
-                # Código de tipo de uso del vehículo
-                Field('codigotipouso', type='string', length=2,    required=True, comment='Codigo Tipo Uso'),
-                #
-                # Descripción del tipo de uso del vehículo
-                Field('descrtipouso', type='string', length=100,  required=True, comment='Descr Tipo Uso'),
-                #
-                # Fecha de la inscripción inicial del vehículo
-                Field('fechainscripcioninicial', type='date', required=True, comment='Fecha Inscripcion Inicial'),
-                # CAMPO OPCIONAL
-                # Fecha de la última transferencia del vehículo
-                Field('fechaultimatransferencia', type='date', required=True, comment='Fecha Ult Transferencia'),
-                # CAMPO OPCIONAL
-                # Fecha del último movimiento en SU jurisdicción
-                Field('fechaultimomovimiento', type='date', required=True, comment='Fecha Ult Movimiento'),
-                #
-                # Estado dominial. Según tabla anexa VIII
-                Field('estadodominial', type='string', length=1,    required=True, comment='Estado Dominial'),
-                # CAMPO OPCIONAL
-                # Fecha en que se produjo el último cambio dominial
-                Field('fechacambioestadodominal', type='date', required=True, comment='Fecha Camb Estado Dominial'),
-                #
-                # Determina si dispone de una guarda habitual
-                Field('guardahabitual', type='string', length=1,    required=True, comment='Guarda Habitual'),
-                # CAMPO OPCIONAL
-                # Calle del domicilio de guarda
-                Field('calle', type='string', length=40, required=True, comment='Calle'),
-                # CAMPO OPCIONAL
-                # Número de puerta del domicilio de guarda
-                Field('numero', type='string', length=10, required=True, comment='Nro Puerta'),
-                # CAMPO OPCIONAL
-                # Piso del departamento del domicilio de guarda
-                Field('piso', type='string', length=10, required=True, comment='Piso'),
-                # CAMPO OPCIONAL
-                # Departamento del domicilio de guarda
-                Field('departamento', type='string', length=10, required=True, comment='Depto'),
-                # CAMPO OPCIONAL - EN LA DESCRIPCION ACTUAL EL CAMPO NO EXISTE 
-                # Localidad del domicilio de guarda 
-                Field('barrio', type='string', length=40, required=True, comment='Barrio'),
-                # CAMPO OPCIONAL
-                # Localidad del domicilio de guarda
-                Field('localidad', type='string', length=40, required=True, comment='Localidad'),
-                # CAMPO OPCIONAL
-                # Código Postal de guarda
-                Field('codigopostal', type='string', length=8, required=True, comment='Codigo Postal'),
-                # CAMPO OPCIONAL
-                # Provincia de guarda. Según tabla Anexo VI
-                Field('provinciaid', type='reference PROVINCIAS', ondelete='CASCADE', comment='Id FK Provincia'),
-                #
-                # Cantidad de titulares del vehículo
-                Field('cantidadtitulares', type='integer', required=True, comment='Cantidad Titulares'),
-                #
-                # Código de Registro Seccional
-                Field('codigoregistroseccional', type='integer', required=True, comment='Codigo Registro Seccional'),
-                #
-                # Nombre del Registro Seccional
-                Field('razonsocial',  type='string', length=40,   required=True, comment='Razon Social'),
-                #
-                # Fecha de la operación. Formato aaaa-mm-dd hh:mm:ss
-                Field('fechaoperacion', type='datetime', required=True, comment='fecha Operacion'),
-                # CAMPO OPCIONAL
-                # Reservado para uso futuro
-                Field('reservado', type='string', length=256,  required=True, comment='Reservado'),
-                # EN LA DESCRIPCION ACTUAL EL CAMPO NO EXISTE 
-                # 
-                Field('controlsucerp', type='string', length=3,    required=True, comment='Control Sucerp'),
-                #
-                # Indica que el registro pertenece al archivo recibido de Sucerp
-                Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
-                #
-                # Fecha del ingreso del registro 
-                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp'),
-                # 
-                # Indica que fue procesado a la Db de la Matanza
-                Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
-            ]
-
-            # We get the migrate parameter
-            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_INFORMACIONVEHICULO']['migrate']
-
-            # table construction parameters Nombre en el sistema INFOR00001
-            parm = {
-                'name': 'INFORMACIONVEHICULO',
-                'fields': tuple(lista),
-                'arg': {'migrate': migrate},
-                'sqlfldtexto': True
-            }
-
-            return parm
-
-        except Exception as e:
-            print(f'Error - tablaInformacionVehiculo {e}')
-
-    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    # TABLA INFORMACIONVEHICULOTITULAR
-    def tablaInformacionVehiculoTitular(self):
-
-        """
-            DEFINITION OF THE HOLDER'S VEHICLE INFORMATION TABLE \n
-            WE RETURN: \n
-            TABLE NAME \n
-            STRUCTURE FIELDS \n
-            CONSTRUCTION ARGUMENTS \n
-
-        """
-        try:
-
-            lista, primary, parm = list(), list(), dict()
-
-            # fields list
-            lista = [
-                #
-                # Id identificador del registro
-                Field('infvehiculotitularid', type='id', comment='Id'),
-                #
-                # Constante “C5 ” 
-                Field('tipocuerpoid', type='reference TIPOCUERPO', ondelete='CASCADE', comment='Id FK Tipo Cuerpo'),
-                #
-                # Constante “T ”
-                Field('tiposubregistroid', type='reference TIPOSUBREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Sub Registro'),
-                #
-                # Tipo de documento del titular. Según tabla anexa V
-                Field('tipodocumentoid', type='reference TIPODOCUMENTO', ondelete='CASCADE', comment='Id FK Tipo Documento'),
-                #
-                # Número de documento correspondiente al titular
-                Field('numerodocumento', type='bigint', required=True, comment='Nro Documento'),
-                #
-                # Número de CUIT / CUIL correspondiente al titular
-                Field('cuitcuil', type='bigint', required=True, comment='Cuit/Cuil'),
-                #
-                # Nombre y Apellido o Razón Social del titular del vehículo
-                Field('apellidonombre', type='string', length=150, required=True, comment='Apellido y Nombre'),
-                #
-                # Porcentaje de posesión del vehiculo
-                Field('porcentajetitularidad', type='integer', required=True, comment='Porcentaje Titular'),
-                #
-                # Calle del domicilio del titular
-                Field('calle', type='string', length=40, required=True, comment='Calle'),
-                #
-                # Número de puerta del domicilio del titular
-                Field('numero', type='string', length=10, required=True, comment='Nro Puerta'),
-                #
-                # Piso del departamento del domicilio del titular
-                Field('piso', type='string', length=10, required=True, comment='Piso'),
-                #
-                # Departamento del domicilio del titular
-                Field('departamento', type='string', length=10, required=True, comment='Depto'),
-                # CAMPO OPCIONAL
-                # Barrio del domicilio del titular
-                Field('barrio', type='string', length=40, required=True, comment='Barrio'),
-                #
-                # Localidad del domicilio del titular
-                Field('localidad', type='string', length=40, required=True, comment='Localidad'),
-                #
-                # Código Postal del titular
-                Field('codigopostal', type='string', length=8, required=True, comment='Codigo Postal'),
-                #
-                # Provincia del Titular. Según tabla Anexo VI
-                Field('provinciaid', type='reference PROVINCIAS', ondelete='CASCADE', comment='Id FK Provincia'),
-                # CAMPO OPCIONAL
-                # Reservado para uso futuro
-                Field('reservado', type='string', length=256, required=True, comment='Reservado'),
-                #
-                # 
-                Field('infvehiculoid', type='reference INFORMACIONVEHICULO', ondelete='CASCADE', notnull=False, comment='Id FK Inf Vehiculo'),
-                #
-                # Indica que el registro pertenece al archivo recibido de Sucerp
-                Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
-                #
-                # Fecha del ingreso del registro 
-                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp'),
-                # 
-                # Indica que fue procesado a la Db de la Matanza
-                Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
-            ]
-
-            # We get the migrate parameter
-            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_INFORMACIONVEHICULOTITULAR']['migrate']
-
-            # table construction parameters
-            parm = {
-                'name': 'INFORMACIONVEHICULOTITULAR',
-                'fields': tuple(lista),
-                'arg': {'migrate': migrate},
-                'sqlfldtexto': True
-            }
-
-            return parm
-
-        except Exception as e:
-            print(f'Error - tablaInformacionVehiculoTitular {e}')
 
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     # TABLA TMPINFORMACIONVEHICULO
@@ -3107,9 +3408,6 @@ class AtributosSucerp():
                 # Observaciones
                 Field('observaciones', type='string', length=256, required=True, comment='Observaciones'),
                 #
-                #
-                Field('cambiotitularidadtitid', type='reference CAMBIOTITULARIDADTITULAR', ondelete='CASCADE', comment='Id FK Camb Titularidad Titu'),
-                #
                 # Indica que el registro pertenece al archivo recibido de Sucerp
                 Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
                 #
@@ -3118,6 +3416,10 @@ class AtributosSucerp():
                 # 
                 # Indica que fue procesado a la Db de la Matanza
                 Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
+                #
+                # Indica que el registro pertenece al Informacion Vehiculo
+                Field('infvehiculoid', type='reference INFORMACIONVEHICULO', ondelete='CASCADE', comment='Id Fk INFORMACIONVEHICULO'),
+
             ]
 
             # We get the migrate parameter
@@ -3217,6 +3519,10 @@ class AtributosSucerp():
                 # 
                 # Indica que fue procesado a la Db de la Matanza
                 Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
+                #
+                # Referencia a la INFORMACIONVEHICULOTITULAR
+                Field('infvehiculotitularid', type='reference INFORMACIONVEHICULOTITULAR', ondelete='CASCADE', comment='Id FK INFORMACIONVEHICULOTITULAR'),
+
             ]
 
             # We get the migrate parameter
@@ -3475,6 +3781,13 @@ class AtributosSucerp():
                 # 
                 # Indica que fue procesado a la Db de la Matanza
                 Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
+                #
+                # Indica que el registro pertenece al Informacion Vehiculo
+                Field('infvehiculoid', type='reference INFORMACIONVEHICULO', ondelete='CASCADE', comment='Id Fk INFORMACIONVEHICULO'),
+                #
+                # Relación de TRAMITESGENERALESTITULARES
+                Field('tramitesgeneralesid', type='reference TRAMITESGENERALES', ondelete='CASCADE', comment='Id FK Tramite Grales Tramites'),
+
             ]
 
 
@@ -3553,9 +3866,6 @@ class AtributosSucerp():
                 # Observaciones
                 Field('observaciones',            type='string', length=256,  required=True, comment='Observaciones'),
                 #
-                # Relación de ANULACIONTRAMITESSELLOS
-                Field('anultramitesellosid', type='reference ANULACIONTRAMITESSELLOS', ondelete='CASCADE', comment='Id FK Anulacion Tramites Sellos'),
-                #
                 # Indica que el registro pertenece al archivo recibido de Sucerp
                 Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
                 #
@@ -3582,262 +3892,6 @@ class AtributosSucerp():
 
         except Exception as e:
             print(f'Error - tablaAnulacionTramitesSellosDetalle {e}')
-
-    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    # TABLA TRAMITESGENERALES
-    def tablaTramitesGenerales(self):
-
-        """
-        DEFINITION OF THE TABLE OF GENERAL PROCEDURES \n
-        WE RETURN: \n
-        TABLE NAME \n
-        STRUCTURE FIELDS \n
-        CONSTRUCTION ARGUMENTS \n
-
-        """
-        try:
-
-            lista, primary, parm = list(), list(), dict()
-
-            # fields  list
-            lista = [
-                #
-                # Id identificador del registro
-                Field('tramitesgeneralesid', type='id', comment='Id'),
-                #
-                # Constante “C9 ”
-                Field("tiporegistroid", type='reference TIPOREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Registro'),
-                #
-                # Constante “C”
-                Field('tiposubregistroid', type='reference TIPOSUBREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Sub Registro'),
-                #
-                # Código del organismo Municipal o Provincial al cual corresponde la información
-                Field('codigoorganismo', type='integer', required=True, comment='Codigo Organismo'),
-                #
-                # Número de trámite interno de la aplicación
-                Field('numerotramite', type='bigint',              required=True, comment='Nro Tramite'),
-                #
-                # Código de trámite registral realizado
-                Field('codigotipotramite', type='integer', required=True, comment='Codigo Tipo Tramite'),
-                #
-                # Descripción del tipo de trámite registral realizado
-                Field('descrtipotramite',         type='string', length=60,   required=True, comment='Descr Tipo Tramite'),
-                #
-                # Código del tipo de acción realizada por el contribuyente
-                Field('codigotipoaccion', type='integer', required=True, comment='Codigo Tipo Accion'),
-                #
-                # Descripción del tipo de acción realizada por el contribuyente
-                Field('descrtipoaccion', type='string', length=60,   required=True, comment='Descr Tipo Accion'),
-                #
-                # Identificador de tipo de formulario exigible para el trámite
-                Field('tipoformulario', type='integer', required=True, comment='Tipo Formulario'),
-                #
-                # Número de formulario en el que se realizó el trámite
-                Field('numeroformulario', type='integer', required=True, comment='Nro Formulario'),
-                #
-                # Patente del Vehículo (Reempadronado)
-                Field('dominionuevo', type='string', length=8,    required=True, comment='Dominio Nuevo'),
-                #
-                # Patente del Vehículo (Dominio Anterior)
-                Field('dominioviejo', type='string', length=8,    required=True, comment='Dominio Viejo'),
-                #
-                # Código del vehículo según la DNRPA. 
-                # MTM (Marca – Tipo – Modelo) y FMM (Fabrica – Marca – Modelo).
-                Field('codigomtmfmm', type='string', length=8,    required=True, comment='Codigo Sucerp'),
-                #
-                # Tipo de origen del vehículo (N – Nacional, I – Importado).
-                Field('origenid', type='reference TIPOORIGEN', ondelete='CASCADE', comment='Id FK Origen'),
-                # CAMPO OPCIONAL
-                # Categoría del vehículo
-                Field('categoría', type='string', length=3,    required=True, comment='Categoria'),
-                #
-                # Descripción de la marca del Vehículo
-                Field('marca', type='string', length=60,   required=True, comment='Marca'),
-                #
-                # Descripción del tipo de Vehículo
-                Field('tipovehiculo', type='string', length=60,   required=True, comment='Tipo Vehiculo'),
-                #
-                # Descripción del modelo del vehículo
-                Field('modelo', type='string', length=100,  required=True, comment='Modelo'),
-                #
-                # Año/Modelo del Vehículo
-                Field('yyyymodelo', type='integer', required=True, comment='Año Modelo'),
-                # CAMPO OPCIONAL
-                # Peso del Vehículo
-                Field('peso', type='integer', required=True, comment='Peso'),
-                # CAMPO OPCIONAL
-                # Carga del Vehículo
-                Field('carga', type='integer', required=True, comment='Carga'),
-                # CAMPO OPCIONAL
-                # Cilindrada (sólo motovehículos)
-                Field('cilindrada', type='integer', required=True, comment='Cilindrada'),
-                #
-                # Valuación del Vehículo
-                Field('valuacion', type='integer', required=True, comment='Valuacion'),
-                #
-                # Código de tipo de uso del vehículo
-                Field('codigotipouso', type='string', length=2,    required=True, comment='Codigo Tipo Uso'),
-                #
-                # Descripción del tipo de uso del vehículo
-                Field('descrtipouso', type='string', length=100,  required=True, comment='Descr Tipo Uso'),
-                #
-                # Fecha de Transferencia. Formato aaaa-mm-dd
-                Field('fechavigencia', type='date', required=True, comment='Fecha Vigencia'),
-                #
-                # Tipo de documento del titular principal. Según tabla anexa V
-                Field('tipodocumentoid', type='reference TIPODOCUMENTO', ondelete='CASCADE', comment='Id FK Tipo Documento'),
-                #
-                # Número de documento correspondiente al titular principal
-                Field('numerodocumento', type='bigint', required=True, comment='Nro Documento'),
-                #
-                # Número de CUIT o CUIL del titular principal
-                Field('cuitcuil', type='bigint', required=True, comment='Cuit/Cuil'),
-                #
-                # Nombre y Apellido o Razón Social del titular principal
-                Field('apenomrazonsocial', type='string', length=150,  required=True, comment='ApeNom Razon Social'),
-                #
-                # Calle donde recibirá el impuesto
-                Field('calle', type='string', length=40,   required=True, comment='Calle'),
-                #
-                # Número donde recibirá el impuesto
-                Field('numero', type='string', length=10, required=True, comment='Nro Puerta'),
-                # CAMPO OPCIONAL
-                # Piso donde recibirá el impuesto
-                Field('piso', type='string', length=10,   required=True, comment='Piso'),
-                # CAMPO OPCIONAL
-                # Departamento donde recibirá el impuesto
-                Field('departamento', type='string', length=10,   required=True, comment='Depto'),
-                # CAMPO OPCIONAL
-                # Barrio donde recibirá el impuesto
-                Field('barrio', type='string', length=40,   required=True, comment='Barrio'),
-                #
-                # Relación de TRAMITESGENERALESTITULARES
-                Field('tramitesgeneralestitid', type='reference TRAMITESGENERALESTITULARES', ondelete='CASCADE', comment='Id FK Tramite Grales Tramites'),
-                #
-                # Indica que el registro pertenece al archivo recibido de Sucerp
-                Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
-                #
-                # Fecha del ingreso del registro 
-                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp'),
-                # 
-                # Indica que fue procesado a la Db de la Matanza
-                Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
-            ]
-
-            # We get the migrate parameter
-            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TRAMITESGENERALES']['migrate']
-
-            # table construction parameters Nombre en el sistema TRAMI00002
-            parm = {
-                'name': 'TRAMITESGENERALES',
-                'fields': tuple(lista),
-                'arg': {'migrate': migrate},
-                'sqlfldtexto': True
-            }
-
-            return parm
-
-        except Exception as e:
-            print(f'Error - tablaTramitesGenerales {e}')
-
-    # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    # TABLA TRAMITESGENERALESTITULARES
-    def tablaTramitesGeneralesTitulares(self):
-
-        """
-        DEFINITION OF THE TABLE OF GENERAL PROCEDURES FOR HOLDERS \n
-        WE RETURN: \n
-        TABLE NAME \n
-        STRUCTURE FIELDS \n
-        CONSTRUCTION ARGUMENTS \n
-
-        """
-        try:
-
-            lista, primary, parm = list(), list(), dict()
-
-            # fields list
-            lista = [
-                #
-                # Id identificador del registro
-                Field('tramitesgeneralestitid', type='id', comment='Id'),
-                #
-                # Constante “C9 ”
-                Field("tiporegistroid", type='reference TIPOREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Registro'),
-                #
-                # Constante “T ”
-                Field('tiposubregistroid', type='reference TIPOSUBREGISTRO', ondelete='CASCADE', comment='Id FK Tipo Sub Registro'),
-                #
-                # Determina el tipo de titular transferido. (N=Titular Nuevo – A=Titular Anterior)
-                Field('tipotitularid', type='reference TIPOTITULAR', ondelete='CASCADE', comment='Id FK Tipo Titular'),
-                #
-                # Tipo de documento del titular. Según tabla anexa V
-                Field('tipodocumentoid', type='reference TIPODOCUMENTO', ondelete='CASCADE', comment='Id FK Tipo Documento'),
-                #
-                # Número de documento correspondiente al titular
-                Field('numerodocumento', type='bigint', required=True, comment='Nro Documento'),
-                #
-                # Número de CUIT / CUIL correspondiente al titular
-                Field('cuitcuil', type='bigint', required=True, comment='Cuit/Cuil'),
-                #
-                # Nombre y Apellido o Razón Social del titular del vehículo
-                Field('apellidonombre', type='string', length=150, required=True, comment='Apellido y Nombre'),
-                #
-                # Porcentaje de posesión del vehiculo
-                Field('porcentajetitularidad', type='integer', required=True, comment='Procentaje Titular'),
-                #
-                # Calle del domicilio del titular
-                Field('calle', type='string', length=40,   required=True, comment='Calle'),
-                #
-                # Número de puerta del domicilio del titular
-                Field('numero', type='string', length=10,   required=True, comment='Nro Puerta'),
-                # CAMPO OPCIONAL
-                # Piso del departamento del domicilio del titular
-                Field('piso', type='string', length=10,   required=True, comment='Piso'),
-                # CAMPO OPCIONAL
-                # Departamento del domicilio del titular
-                Field('departamento', type='string', length=10,   required=True, comment='Depto'),
-                # CAMPO OPCIONAL
-                # Barrio del domicilio del titular
-                Field('barrio', type='string', length=40,   required=True, comment='Barrio'),
-                #
-                # Localidad del domicilio del titular
-                Field('localidad', type='string', length=40,   required=True, comment='Localidad'),
-                #
-                # Código Postal del titular
-                Field('codigopostal', type='string', length=8,    required=True, comment='Codigo Postal'),
-                #
-                # Provincia del Titular. Según tabla Anexo VI
-                Field('provinciaid', type='reference PROVINCIAS', ondelete='CASCADE', comment='Id FK Provincia'),
-                # CAMPO OPCIONAL
-                # Reservado para uso futuro
-                Field('reservado', type='string', length=256,  required=True, comment='Reservado'),
-                #
-                # Indica que el registro pertenece al archivo recibido de Sucerp
-                Field('archivorecibidoid', type='reference RECEPCIONARCHIVOS', ondelete='CASCADE', comment='Id Fk RECEPCIONARCHIVOS'),
-                #
-                # Fecha del ingreso del registro 
-                Field('ktimestamp', type='datetime', required=True, comment='Key Time Stamp'),
-                # 
-                # Indica que fue procesado a la Db de la Matanza
-                Field('procesadoDbMatanza', type='integer', required=True, comment='ProcesadoDbMatanza'),
-            ]
-
-            # We get the migrate parameter
-            migrate = ConfigurarAplicacion.LISTA_TABLAS['TABLA_TRAMITESGENERALESTITULARES']['migrate']
-
-            # table construction parameters Nombre en el sistema TRAMI00001
-            parm = {
-                'name': 'TRAMITESGENERALESTITULARES',
-                'fields': tuple(lista),
-                'arg': {'migrate': migrate},
-                'sqlfldtexto': True
-            }
-
-            return parm
-
-        except Exception as e:
-            print(f'Error - tablaTramitesGeneralesTitulares {e}')
 
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     # TABLA PIE

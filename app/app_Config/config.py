@@ -133,24 +133,24 @@ class ConfigurarAplicacion(object):
     'TABLA_API_TOKEN_USER',                     # --------------------- 
     'TABLA_API_TOKEN',                          # --------------------- 
     'TABLA_ENCABEZADO',                         # --------------------- 
+    'TABLA_INFORMACIONVEHICULO',                # --------------------- 
+    'TABLA_INFORMACIONVEHICULOTITULAR',         # ---------------------     
     'TABLA_PIE',                                # ---------------------
-    'TABLA_ALTAIMPOSITIVATITULAR',              # ---------------------
+    'TABLA_TRAMITESGENERALES',                  # --------------------- 
+    'TABLA_TRAMITESGENERALESTITULARES',         # --------------------- 
     'TABLA_ALTAIMPOSITIVA',                     # ---------------------
+    'TABLA_ALTAIMPOSITIVATITULAR',              # ---------------------
     'TABLA_BAJAIMPOSITIVATITULAR',              # --------------------- 
     'TABLA_BAJAIMPOSITIVA',                     # --------------------- 
     'TABLA_ANULACIONTRAMITESSELLOS',            # --------------------- 
     'TABLA_ANULACIONTRAMITESSELLOSDETALLE',     # --------------------- 
     'TABLA_CAMBIOTITULARIDADTITULAR',           # --------------------- 
     'TABLA_CAMBIOTITULARIDAD',                  # --------------------- 
-    'TABLA_INFORMACIONVEHICULO',                # --------------------- 
-    'TABLA_INFORMACIONVEHICULOTITULAR',         # --------------------- 
     'TABLA_IMPUESTOAUTOMOTOR',                  # --------------------- 
     'TABLA_INFORMACIORADICACION',               # --------------------- 
     'TABLA_IMPUESTOSELLOS',                     # --------------------- 
     'TABLA_IMPUESTOSELLOSPARTES',               # --------------------- 
     'TABLA_IMPUESTOSELLOSPARTESTIPOTRAMITE',    # --------------------- 
-    'TABLA_TRAMITESGENERALESTITULARES',         # --------------------- 
-    'TABLA_TRAMITESGENERALES',                  # --------------------- 
     'TABLA_API_AUMOSO',                         # --------------------- 
     'TABLA_RELACION_ARBA_SUCERP_MARCA',         # --------------------- 
     ]

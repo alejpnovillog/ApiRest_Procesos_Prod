@@ -1104,6 +1104,19 @@ class GxAbstractDb():
                 if self.provincias is None:
                     self.provincias = self.provincias_Dal
 
+                # Tabla de Recepcion de Archivos
+                if self.recepcionArchivos is None:
+                    self.recepcionArchivos = self.recepcionArchivos_Dal
+
+                # Referencias a altasimpositiva
+                if self.altaImpositiva is None:
+                    self.altaImpositiva = self.altaImpositiva_Dal
+
+                # Tabla informacion Vehiculo Titular
+                if self.informacionVehiculoTitular is None:
+                    self.informacionVehiculoTitular = self.informacionVehiculoTitular_Dal
+
+
                 # realizamos la construccion de la tabla
                 self.altaImpositivaTitular = self.__buildTable(
                               self.formatosSucerp.tablaAltaImpositivaTitular())
@@ -1111,7 +1124,10 @@ class GxAbstractDb():
                 # Tablas de referencias
                 self.altaImpositivaTitular._referenced_by_list = [
                     self.tipoCuerpo, self.tipoSubRegistro, 
-                    self.tipoDocumento, self.provincias
+                    self.tipoDocumento, self.provincias,
+                    self.recepcionArchivos, self.altaImpositiva,
+                    self.informacionVehiculoTitular,
+
                 ]
 
             return self.altaImpositivaTitular
@@ -1151,9 +1167,13 @@ class GxAbstractDb():
                 if self.provincias is None:
                     self.provincias = self.provincias_Dal
 
-                # Referencias a altasimpositivatitular
-                if self.altaImpositivaTitular is None:
-                    self.altaImpositivaTitular = self.altaImpositivaTitular_Dal
+                # Tabla de Recepcion de Archivos
+                if self.recepcionArchivos is None:
+                    self.recepcionArchivos = self.recepcionArchivos_Dal
+
+                # Tabla de Informacion del Vehiculo
+                if self.informacionVehiculo is None:
+                    self.informacionVehiculo = self.informacionVehiculo_Dal
 
                 # realizamos la construccion de la tabla
                 self.altaImpositiva = self.__buildTable(self.formatosSucerp.tablaAltaImpositiva())
@@ -1162,7 +1182,7 @@ class GxAbstractDb():
                 self.altaImpositiva._referenced_by_list = [
                     self.tipoRegistro, self.tipoSubRegistro,
                     self.tipoOrigen, self.tipoDocumento, self.provincias,
-                    self.altaImpositivaTitular
+                    self.recepcionArchivos, self.informacionVehiculo, 
                 ]
 
             return self.altaImpositiva
@@ -1202,6 +1222,18 @@ class GxAbstractDb():
                 if self.tipoMoneda is None:
                     self.tipoMoneda = self.tipoMoneda_Dal
 
+                # Tabla de recepcion de archivos
+                if self.recepcionArchivos is None:
+                    self.recepcionArchivos = self.recepcionArchivos_Dal
+
+                # Tabla informacion Vehiculo
+                if self.informacionVehiculo is None:
+                    self.informacionVehiculo = self.informacionVehiculo_Dal
+
+                # Tabla de tramites generales
+                if self.tramitesGenerales is None:
+                    self.tramitesGenerales = self.tramitesGenerales_Dal
+
                 # realizamos la construccion de la tabla
                 self.anulacionTramitesSellos = self.__buildTable(
                               self.formatosSucerp.tablaAnulacionTramitesSellos())
@@ -1210,7 +1242,8 @@ class GxAbstractDb():
                 self.anulacionTramitesSellos._referenced_by_list = [
                     self.tipoRegistro, self.tipoSubRegistro, 
                     self.tipoOrigen, self.tipoPago, 
-                    self.tipoMoneda
+                    self.tipoMoneda, self.recepcionArchivos,
+                    self.informacionVehiculo, self.tramitesGenerales,
                 ]
 
             return self.anulacionTramitesSellos
@@ -1242,9 +1275,9 @@ class GxAbstractDb():
                 if self.tipoCuota is None:
                     self.tipoCuota = self.tipoCuota_Dal
 
-                # Referencia a anulaciontramitesellos
-                if self.anulacionTramitesSellos is None:
-                    self.anulacionTramitesSellos = self.anulacionTramitesSellos_Dal
+                # Tabla de recepcion de archivos
+                if self.recepcionArchivos is None:
+                    self.recepcionArchivos = self.recepcionArchivos_Dal
 
                 # realizamos la construccion de la tabla
                 self.anulacionTramitesSellosDetalle = self.__buildTable(
@@ -1253,7 +1286,7 @@ class GxAbstractDb():
                 # Tablas de referencias
                 self.anulacionTramitesSellosDetalle._referenced_by_list = [
                     self.tipoRegistro, self.tipoSubRegistro, 
-                    self.tipoCuota, self.anulacionTramitesSellos
+                    self.tipoCuota, self.recepcionArchivos,
                 ]
 
             return self.anulacionTramitesSellosDetalle
@@ -1476,9 +1509,14 @@ class GxAbstractDb():
                 if self.tipoOrigen is None:
                     self.tipoOrigen = self.tipoOrigen_Dal
 
-                # Tabla bajaimpositivatitular
-                if self.bajaImpositivaTitular is None:
-                    self.bajaImpositivaTitular = self.bajaImpositivaTitular_Dal
+                # Tabla recepcion de Archivos
+                if self.recepcionArchivos is None:
+                    self.recepcionArchivos = self.recepcionArchivos_Dal
+
+                # Tabla de Informacion de Vehiculo
+                if self.informacionVehiculo is None:
+                    self.informacionVehiculo = self.self.informacionVehiculo_Dal
+
 
                 # realizamos la construccion de la tabla
                 self.bajaImpositiva = self.__buildTable(
@@ -1487,7 +1525,8 @@ class GxAbstractDb():
                 # Tablas de referencias
                 self.bajaImpositiva._referenced_by_list = [
                     self.tipoRegistro, self.tipoSubRegistro, 
-                    self.tipoOrigen, self.bajaImpositivaTitular
+                    self.tipoOrigen, self.recepcionArchivos,
+                    self.informacionVehiculo,
                 ]
 
             return self.bajaImpositiva
@@ -1523,6 +1562,14 @@ class GxAbstractDb():
                 if self.provincias is None:
                     self.provincias = self.provincias_Dal
 
+                # Tabla de recepcion de Archivos
+                if self.recepcionArchivos is None:
+                    self.recepcionArchivos = self.recepcionArchivos_Dal
+
+                # Tabla de informacion Vehiculo Titular
+                if self.informacionVehiculoTitular is None:
+                    self.informacionVehiculoTitular = self.informacionVehiculoTitular_Dal
+
                 # realizamos la construccion de la tabla
                 self.bajaImpositivaTitular = self.__buildTable(
                                 self.formatosSucerp.tablaBajaImpositivaTitular())
@@ -1530,7 +1577,8 @@ class GxAbstractDb():
                 # Tablas de referencias
                 self.bajaImpositivaTitular._referenced_by_list = [
                     self.tipoCuerpo, self.tipoSubRegistro, 
-                    self.tipoDocumento, self.provincias
+                    self.tipoDocumento, self.provincias,
+                    self.recepcionArchivos, self.informacionVehiculoTitular,
                 ]
             return self.bajaImpositivaTitular
 
@@ -1557,9 +1605,9 @@ class GxAbstractDb():
                 if self.tipoSubRegistro is None:
                     self.tipoSubRegistro = self.tipoSubRegistro_Dal
 
-                # Tabla tipo de Cuerpo
-                if self.tipoCuerpo is None:
-                    self.tipoCuerpo = self.tipoCuerpo_Dal
+                # Tabla tipo de Origen
+                if self.tipoOrigen is None:
+                    self.tipoOrigen = self.tipoOrigen_Dal
 
                 # Referencias a tipos de documento
                 if self.tipoDocumento is None:
@@ -1569,11 +1617,14 @@ class GxAbstractDb():
                 if self.provincias is None:
                     self.provincias = self.provincias_Dal
 
-                # Referencias a cambiotitularidadtitular
-                if self.cambioTitularidadTitular is None:
-                    self.cambioTitularidadTitular = self.cambioTitularidadTitular_Dal
-
-
+                # Tabla de recepcion de archivos
+                if self.recepcionArchivos is None:
+                    self.recepcionArchivos = self.recepcionArchivos_Dal
+                    
+                # Tabla informacion de vehiculo
+                if self.informacionVehiculo is None:
+                    self.informacionVehiculo = self.informacionVehiculo_Dal
+                    
                 # realizamos la construccion de la tabla
                 self.cambioTitularidad = self.__buildTable(
                                 self.formatosSucerp.tablaCambioTitularidad())
@@ -1582,7 +1633,8 @@ class GxAbstractDb():
                 self.cambioTitularidad._referenced_by_list = [
                     self.tipoRegistro, self.tipoCuerpo, 
                     self.tipoSubRegistro, self.tipoDocumento, 
-                    self.provincias, self.cambioTitularidadTitular
+                    self.provincias, self.recepcionArchivos,
+                    self.informacionVehiculo,
                 ]
 
             return self.cambioTitularidad
@@ -1622,6 +1674,14 @@ class GxAbstractDb():
                 if self.provincias is None:
                     self.provincias = self.provincias_Dal
 
+                # Tabla de recepcion de archivos
+                if self.recepcionArchivos is None:
+                    self.recepcionArchivos = self.recepcionArchivos_Dal
+
+                # Tabla de informacion del vehiculo titular
+                if self.informacionVehiculoTitular is None:
+                    self.informacionVehiculoTitular = self.self.informacionVehiculoTitular_Dal
+
                 # realizamos la construccion de la tabla
                 self.cambioTitularidadTitular = self.__buildTable(
                                 self.formatosSucerp.tablaCambioTitularidadTitular())
@@ -1630,7 +1690,8 @@ class GxAbstractDb():
                 self.cambioTitularidadTitular._referenced_by_list = [
                     self.tipoCuerpo, self.tipoSubRegistro, 
                     self.tipoTitular, self.tipoDocumento, 
-                    self.provincias
+                    self.provincias, self.recepcionArchivos,
+                    self.informacionVehiculoTitular,
                 ]
 
             return self.cambioTitularidadTitular
@@ -1670,6 +1731,14 @@ class GxAbstractDb():
                 if self.tipoMoneda is None:
                     self.tipoMoneda = self.tipoMoneda_Dal
 
+                # Tabla de recepcion de archivos
+                if self.recepcionArchivos is None:
+                    self.recepcionArchivos = self.recepcionArchivos_Dal    
+
+                # Tabla de informacion de vehiculo
+                if self.informacionVehiculo is None:
+                    self.informacionVehiculo = self.informacionVehiculo_Dal
+
                 # realizamos la construccion de la tabla
                 self.impuestoAutomotor = self.__buildTable(
                             self.formatosSucerp.tablaImpuestoAutomotor())
@@ -1678,7 +1747,8 @@ class GxAbstractDb():
                 self.impuestoAutomotor._referenced_by_list = [
                     self.tipoCuerpo, self.tipoMovimiento, 
                     self.tipoRegistro, self.tipoPago, 
-                    self.tipoMoneda
+                    self.tipoMoneda, self.informacionVehiculo,
+                    self.impuestoAutomotor,
                 ]
 
             return self.impuestoAutomotor
@@ -1718,6 +1788,18 @@ class GxAbstractDb():
                 if self.tipoMoneda is None:
                     self.tipoMoneda = self.tipoMoneda_Dal
 
+                # Tabla de recepcion de archivos
+                if self.recepcionArchivos is None:
+                    self.recepcionArchivos = self.recepcionArchivos_Dal    
+
+                # Tabla de informacion de vehiculo
+                if self.informacionVehiculo is None:
+                    self.informacionVehiculo = self.informacionVehiculo_Dal
+
+                # Tabla de tramites generales
+                if self.tramitesGenerales is None:
+                    self.tramitesGenerales = self.tramitesGenerales_Dal
+
                 # realizamos la construccion de la tabla
                 self.impuestoSellos = self.__buildTable(
                             self.formatosSucerp.tablaImpuestosSellos())
@@ -1726,7 +1808,8 @@ class GxAbstractDb():
                 self.impuestoSellos._referenced_by_list = [
                     self.tipoRegistro, self.tipoSubRegistro, 
                     self.tipoOrigen, self.tipoPago, 
-                    self.tipoMoneda
+                    self.tipoMoneda, self.recepcionArchivos, 
+                    self.informacionVehiculo, self.tramitesGenerales, 
                 ]
 
             return self.impuestoSellos
@@ -1762,6 +1845,19 @@ class GxAbstractDb():
                 if self.provincias is None:
                     self.provincias = self.provincias_Dal
 
+                # Tabla de recepcion de archivos
+                if self.recepcionArchivos is None:
+                    self.recepcionArchivos = self.recepcionArchivos_Dal    
+
+                # Tabla de informacion de vehiculo titular
+                if self.informacionVehiculoTitular is None:
+                    self.informacionVehiculoTitular = self.informacionVehiculoTitular_Dal
+
+                # Tabla de tramites generales
+                if self.tramitesGenerales is None:
+                    self.tramitesGenerales = self.tramitesGenerales_Dal
+
+
                 # realizamos la construccion de la tabla
                 self.impuestoSellosPartes = self.__buildTable(
                             self.formatosSucerp.tablaImpuestosSellosPartes())
@@ -1769,7 +1865,9 @@ class GxAbstractDb():
                 # Tablas de referencias
                 self.impuestoSellosPartes._referenced_by_list = [
                     self.tipoCuerpo, self.tipoSubRegistro, 
-                    self.tipoDocumento, self.provincias
+                    self.tipoDocumento, self.provincias,
+                    self.recepcionArchivos, self.informacionVehiculoTitular,
+                    self.tramitesGenerales
                 ]
 
             return self.impuestoSellosPartes
@@ -1797,13 +1895,26 @@ class GxAbstractDb():
                 if self.tipoSubRegistro is None:
                     self.tipoSubRegistro = self.tipoSubRegistro_Dal
 
+                # Tabla de recepcion de archivos
+                if self.recepcionArchivos is None:
+                    self.recepcionArchivos = self.recepcionArchivos_Dal    
+
+                # Tabla de impuestos sellos partes
+                if self.impuestoSellosPartes is None:
+                    self.impuestoSellosPartes = self.impuestoSellosPartes_Dal
+
+                # Tabla de tramites generales
+                if self.tramitesGenerales is None:
+                    self.tramitesGenerales = self.tramitesGenerales_Dal
+
                 # realizamos la construccion de la tabla
                 self.impuestoSellosPartesTipoTramite = self.__buildTable(
                                 self.formatosSucerp.tablaImpuestosSellosPartesTipoTramite())
 
                 # Tablas de referencias
                 self.impuestoSellosPartesTipoTramite._referenced_by_list = [
-                    self.tipoCuerpo, self.tipoSubRegistro
+                    self.tipoCuerpo, self.tipoSubRegistro,
+                    self.recepcionArchivos, self.tramitesGenerales, 
                 ]
 
             return self.impuestoSellosPartesTipoTramite
@@ -1839,6 +1950,10 @@ class GxAbstractDb():
                 if self.provincias is None:
                     self.provincias = self.provincias_Dal
 
+                # Tabla Recepcion de Archivos
+                if self.recepcionArchivos is None:
+                    self.recepcionArchivos = self.recepcionArchivos_Dal        
+
                 # realizamos la construccion de la tabla
                 self.informacionVehiculo = self.__buildTable(
                             self.formatosSucerp.tablaInformacionVehiculo())
@@ -1846,7 +1961,8 @@ class GxAbstractDb():
                 # Tablas de referencias
                 self.informacionVehiculo._referenced_by_list = [
                     self.tipoRegistro, self.tipoSubRegistro, 
-                    self.tipoOrigen, self.provincias
+                    self.tipoOrigen, self.provincias,
+                    self.recepcionArchivos,
                 ]
 
             return self.informacionVehiculo
@@ -1919,9 +2035,9 @@ class GxAbstractDb():
                 if self.provincias is None:
                     self.provincias = self.provincias_Dal
 
-                # Tabla de informacion de Vehiculo
-                if self.informacionVehiculo is None:
-                    self.informacionVehiculo = self.informacionVehiculo_Dal
+                # Tabla de Recepcion de archivos
+                if self.recepcionArchivos is None:
+                    self.self.recepcionArchivos = self.self.recepcionArchivos_Dal
 
                 # realizamos la construccion de la tabla
                 self.informacionVehiculoTitular = self.__buildTable(
@@ -1931,7 +2047,7 @@ class GxAbstractDb():
                 self.informacionVehiculoTitular._referenced_by_list = [
                     self.tipoCuerpo, self.tipoSubRegistro, 
                     self.tipoDocumento, self.provincias,
-                    self.informacionVehiculo
+                    self.recepcionArchivos,
                 ]
 
             return self.informacionVehiculoTitular
@@ -2000,16 +2116,23 @@ class GxAbstractDb():
                 if self.estado is None:
                     self.estado = self.estado_Dal
 
+                # Tabla de Recepcion de archivos
+                if self.recepcionArchivos is None:
+                    self.self.recepcionArchivos = self.self.recepcionArchivos_Dal
+
+
                 # realizamos la construccion de la tabla
                 self.informacionRadicacion = self.__buildTable(
                             self.formatosSucerp.tablaInformacionRadicacion())
 
                 # Tablas de referencias
                 self.informacionRadicacion._referenced_by_list = [
-                    self.tipoRegistro, self.estado
+                    self.tipoRegistro, self.estado,
+                    self.recepcionArchivos,
                 ]
 
             return self.informacionRadicacion
+
 
         except Exception as inst:
             print(f'Error - informacionRadicacion_Dal {e}')
@@ -2042,10 +2165,17 @@ class GxAbstractDb():
                 if self.tipoDocumento is None:
                     self.tipoDocumento = self.tipoDocumento_Dal
 
-                # Tabla tramitesgeneralestitular
-                if self.tramitesGeneralesTitular is None:
-                    self.tramitesGeneralesTitular = self.tramitesGeneralesTitular_Dal
+                # Tabla de Recepcion de archivos
+                if self.recepcionArchivos is None:
+                    self.recepcionArchivos = self.recepcionArchivos_Dal
 
+                # Tabla de Informacion de Vehiculos Titular
+                if self.informacionVehiculoTitular is None:
+                    self.informacionVehiculoTitular = self.informacionVehiculoTitular_Dal    
+
+                # Tabla de Informacion de Vehiculos
+                if self.informacionVehiculo is None:
+                    self.informacionVehiculo = self.informacionVehiculo_Dal    
 
                 # realizamos la construccion de la tabla
                 self.tramitesGenerales = self.__buildTable(
@@ -2055,7 +2185,9 @@ class GxAbstractDb():
                 self.tramitesGenerales._referenced_by_list = [
                     self.tipoRegistro, self.tipoSubRegistro, 
                     self.tipoOrigen, self.tipoDocumento,
-                    self.tramitesGeneralesTitular
+                    self.recepcionArchivos, self.informacionVehiculoTitular,
+                    self.informacionVehiculo,
+
                 ]
 
             return self.tramitesGenerales
@@ -2083,17 +2215,25 @@ class GxAbstractDb():
                 if self.tipoSubRegistro is None:
                     self.tipoSubRegistro = self.tipoSubRegistro_Dal
 
-                # Tabla tipo de Titular
-                if self.tipoTitular is None:
-                    self.tipoTitular = self.tipoTitular_Dal
+                # Tabla tipo de Origen
+                if self.tipoOrigen is None:
+                    self.tipoOrigen = self.tipoOrigen_Dal    
 
                 # Tabla tipo de Documento
                 if self.tipoDocumento is None:
                     self.tipoDocumento = self.tipoDocumento_Dal
 
-                # Tabla de provincias
-                if self.provincias is None:
-                    self.provincias = self.provincias_Dal
+                # Tabla de Recepcion de archivos
+                if self.recepcionArchivos is None:
+                    self.recepcionArchivos = self.recepcionArchivos_Dal
+
+                # Tabla de Informacion de Vehiculos Titular
+                if self.informacionVehiculoTitular is None:
+                    self.informacionVehiculoTitular = self.informacionVehiculoTitular_Dal    
+
+                # Tabla de Informacion de Vehiculos
+                if self.informacionVehiculo is None:
+                    self.informacionVehiculo = self.informacionVehiculo_Dal    
 
                 # realizamos la construccion de la tabla
                 self.tramitesGeneralesTitular = self.__buildTable(
@@ -2102,8 +2242,9 @@ class GxAbstractDb():
                 # Tablas de referencias
                 self.tramitesGeneralesTitular._referenced_by_list = [
                     self.tipoRegistro, self.tipoSubRegistro, 
-                    self.tipoTitular, self.tipoDocumento,
-                    self.provincias
+                    self.tipoOrigen, self.tipoDocumento,
+                    self.recepcionArchivos, self.informacionVehiculoTitular,
+                    self.informacionVehiculo,
                 ]
 
             return self.tramitesGeneralesTitular
@@ -2127,12 +2268,17 @@ class GxAbstractDb():
                 if self.tipoRegistro is None:
                     self.tipoRegistro = self.tipoRegistro_Dal
 
+                # Tabla de Recepcion de archivos
+                if self.recepcionArchivos is None:
+                    self.recepcionArchivos = self.recepcionArchivos_Dal
+
                 # realizamos la construccion de la tabla
                 self.pie = self.__buildTable(self.formatosSucerp.tablaPie())
 
                 # Tablas de referencias
                 self.pie._referenced_by_list = [
-                    self.tipoRegistro
+                    self.tipoRegistro,
+                    self.recepcionArchivos,
                 ]
 
             return self.pie

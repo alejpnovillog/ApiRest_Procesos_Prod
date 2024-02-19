@@ -87,6 +87,10 @@ def creacionTablas():
         # recorremos la lista de las tablas
         for elemento in lista_tablas:
 
+            if elemento == 'TABLA_TRAMITESGENERALES':
+                print('hola')
+                
+
             # activamos para la creacion de la tabla
             ConfigurarAplicacion.LISTA_TABLAS[elemento]['migrate'] = True
 
@@ -104,12 +108,9 @@ def creacionTablas():
             parm = list()
             strsql = f"SELECT SYSTEM_TABLE_NAME FROM QSYS2.SYSTABLES WHERE TABLE_SCHEMA = '{lib.upper()}' AND TABLE_NAME = '{file}'"
             ConfigurarAplicacion.LISTA_TABLAS[elemento]['shortname'] = data_Input.run_comando(strsql, *parm)[0][0]
-            #file = file[0][0]
 
             print('-------------------------------------------------------------------- ')
             print(f'Nombre de la Tabla ({valor})')
-
-
 
             # averiguamos si tiene shortname
             if not ConfigurarAplicacion.LISTA_TABLAS[elemento]['shortname'] == None:
@@ -172,7 +173,6 @@ lib = con['schema']
 
 # realizamos la creacion de las tablas
 creacionTablas()
-
 # realizamos la eliminacion de las tablas
 #eliminarTablas()
 

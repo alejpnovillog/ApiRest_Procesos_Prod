@@ -317,6 +317,46 @@ async def procesar_archivos():
                         api.logdict[f'{elemento} - paso({ciclo})'] = f"Error al mover el archivo: {e}"
 
 
+        # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        # Actualizamos la vinculacion de ALTAIMPOSITIVATITULAR y ALTAIMPOSITIVA
+        #try:
+        #    parm = list()
+        #    strsql = (
+        #        f'UPDATE ALTAIMPOSITIVATITULAR x '
+        #        f'SET ALTAT00002 = ( '
+        #        f'SELECT b."altataxid" ' 
+        #        f'FROM ALTAIMPOSITIVA b '
+        #        f'WHERE (b."archivorecibidoid" = X."archivorecibidoid" ) AND '
+        #        f'((b."tipodocumentoid" = x."tipodocumentoid") and (b."numerodocumento" = x."numerodocumento") OR '
+        #        f'(b."cuitcuil" = x."cuitcuil")) '
+        #        f') '
+        #        f'WHERE ALTAT00002 IS NULL '
+        #    )
+        #    retorno = api.db.run_comando(strsql, *parm)
+        #except Exception as e:
+        #    print(f'Error en el SQL ALTAIMPOSITIVATITULAR  {e}')
+
+        # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        # Actualizamos la vinculacion de ALTAIMPOSITIVATITULAR y ALTAIMPOSITIVA
+        #try:
+        #    parm = list()
+        #    strsql = (
+        #        f'UPDATE BAJAIMPOSITIVATITULAR x '
+        #        f'SET ALTAT00002 = ( '
+        #        f'SELECT b."altataxid" ' 
+        #        f'FROM BAJAIMPOSITIVA b '
+        #        f'WHERE (b."archivorecibidoid" = X."archivorecibidoid" ) AND '
+        #        f'((b."tipodocumentoid" = x."tipodocumentoid") and (b."numerodocumento" = x."numerodocumento") OR '
+        #        f'(b."cuitcuil" = x."cuitcuil")) '
+        #        f') '
+        #        f'WHERE ALTAT00002 IS NULL '
+        #    )
+        #    retorno = api.db.run_comando(strsql, *parm)
+        #except Exception as e:
+        #    print(f'Error en el SQL  {e}')
+
+
+
         # Llama a la función para enviar el correo
         elemento = 'Recepcion SUCERP'                
         ciclo += 1
