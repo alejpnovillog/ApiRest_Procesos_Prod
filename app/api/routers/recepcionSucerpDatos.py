@@ -383,7 +383,7 @@ async def procesar_archivos():
         # ------------------------------------------------------------------------
         # Configuración del remitente y destinatario
         remitente_email = 'alejpnovillog@gmail.com'
-        destinatario_email = 'kuvasz102@gmail.com'
+        destinatario_email = ['kuvasz102@gmail.com', 'jltatta@gmail.com', 'Jorge.philippini@hotmail.com']
 
         # Configuración del servidor SMTP de Gmail
         smtp_server = 'smtp.gmail.com'
@@ -397,7 +397,7 @@ async def procesar_archivos():
 
         mensaje = MIMEMultipart()
         mensaje['From'] = remitente_email
-        mensaje['To'] = destinatario_email
+        mensaje['To'] = ', '.join(destinatario_email)
         mensaje['Subject'] = asunto
 
         # Agrega el cuerpo del mensaje
