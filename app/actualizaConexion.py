@@ -72,6 +72,10 @@ db = GestionRegistros(ambiente = api.ENV_GX)
 
 print(db)
 
+con.host = '*all'
+con.accion = 'list'
+con.list_host()
+
 
 #con.host = 'Pub400'
 #con.accion = 'del'
