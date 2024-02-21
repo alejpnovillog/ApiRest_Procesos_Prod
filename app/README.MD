@@ -396,7 +396,7 @@ conda env export --no-builds > environment.yml
 4. Generación para un entorno windows
 
 ``` 
-conda env export --from-history --platform win-64 --no-build -c conda-forge > environment.yml  
+conda env export --name ReflexKuvasz --no-build -c conda-forge > environmentWindows.yml
 
 ```
 
