@@ -90,9 +90,29 @@ def creacionTablas():
             if elemento == 'TABLA_TRAMITESGENERALES':
                 print('hola')
                 
+            remueve = True
 
-            # activamos para la creacion de la tabla
-            ConfigurarAplicacion.LISTA_TABLAS[elemento]['migrate'] = True
+            if ((elemento == 'TABLA_ESTADO') or 
+                (elemento == 'TABLA_PROVINCIA') or 
+                (elemento == 'TABLA_TIPO_CUERPO') or 
+                (elemento == 'TABLA_TIPO_CUOTA') or 
+                (elemento == 'TABLA_TIPO_DOCUMENTO') or 
+                (elemento == 'TABLA_TIPO_MONEDA') or 
+                (elemento == 'TABLA_TIPO_MOVIMIENTO') or 
+                (elemento == 'TABLA_TIPO_ORIGEN') or  
+                (elemento == 'TABLA_TIPO_PAGO') or  
+                (elemento == 'TABLA_TIPO_REGISTRO') or 
+                (elemento == 'TABLA_TIPO_SUB_REGISTRO') or 
+                (elemento == 'TABLA_TIPO_TITULAR')):
+
+                remueve = False
+                # activamos para la creacion de la tabla
+                ConfigurarAplicacion.LISTA_TABLAS[elemento]['migrate'] = False
+
+            else:
+
+                # activamos para la creacion de la tabla
+                ConfigurarAplicacion.LISTA_TABLAS[elemento]['migrate'] = True
 
             # generamos la estructura de la tabla en la base de datos
             valor  = data_Input.__getattribute__(ConfigurarAplicacion.LISTA_TABLAS[elemento]['objeto'])
@@ -101,7 +121,8 @@ def creacionTablas():
             ConfigurarAplicacion.LISTA_TABLAS[elemento]['migrate'] = False
 
             # eliminamos el archivo que indica la creacion de la tabla
-            os.remove(valor._dbt)
+            if remueve:
+                os.remove(valor._dbt)
 
             # obtenemos el nombre del objeto tabla para journalizar
             file = valor._dalname
@@ -113,9 +134,7 @@ def creacionTablas():
             print(f'Nombre de la Tabla ({valor})')
 
             # averiguamos si tiene shortname
-            if not ConfigurarAplicacion.LISTA_TABLAS[elemento]['shortname'] == None:
-                file = ConfigurarAplicacion.LISTA_TABLAS[elemento]['shortname']
-
+            file = ConfigurarAplicacion.LISTA_TABLAS[elemento]['shortname']
 
             print(f'Registramos por Journal la tabla {lib}/{file} ...................... ')
             str = f'STRJRNPF FILE({lib}/{file}) JRN({lib}/QSQJRN) IMAGES(*BOTH)'

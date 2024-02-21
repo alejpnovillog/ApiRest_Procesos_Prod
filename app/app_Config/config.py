@@ -110,28 +110,28 @@ class ConfigurarAplicacion(object):
 
 
     TABLAS_CREACION = [
-    #'TABLA_ESTADO',                             # Tabla de referencia
-    #'TABLA_PROVINCIA',                          # Tabla de referencia
-    #'TABLA_TIPO_CUERPO',                        # Tabla de referencia
-    #'TABLA_TIPO_CUOTA',                         # Tabla de referencia
-    #'TABLA_TIPO_DOCUMENTO',                     # Tabla de referencia
-    #'TABLA_TIPO_MONEDA',                        # Tabla de referencia
-    #'TABLA_TIPO_MOVIMIENTO',                    # Tabla de referencia
-    #'TABLA_TIPO_ORIGEN',                        # Tabla de referencia
-    #'TABLA_TIPO_PAGO',                          # Tabla de referencia
-    #'TABLA_TIPO_REGISTRO',                      # Tabla de referencia
-    #'TABLA_TIPO_SUB_REGISTRO',                  # Tabla de referencia
-    #'TABLA_TIPO_TITULAR',                       # Tabla de referencia
-    #'TABLA_API_ESTADOS',                        # Tabla de referencia
-    #'TABLA_API_TAREAS',                         # Tabla de referencia
-    #'TABLA_API_LOG',                            # Tabla de referencia
+    'TABLA_ESTADO',                             # Tabla de referencia
+    'TABLA_PROVINCIA',                          # Tabla de referencia
+    'TABLA_TIPO_CUERPO',                        # Tabla de referencia
+    'TABLA_TIPO_CUOTA',                         # Tabla de referencia
+    'TABLA_TIPO_DOCUMENTO',                     # Tabla de referencia
+    'TABLA_TIPO_MONEDA',                        # Tabla de referencia
+    'TABLA_TIPO_MOVIMIENTO',                    # Tabla de referencia
+    'TABLA_TIPO_ORIGEN',                        # Tabla de referencia
+    'TABLA_TIPO_PAGO',                          # Tabla de referencia
+    'TABLA_TIPO_REGISTRO',                      # Tabla de referencia
+    'TABLA_TIPO_SUB_REGISTRO',                  # Tabla de referencia
+    'TABLA_TIPO_TITULAR',                       # Tabla de referencia
+    ##'TABLA_API_ESTADOS',                        # Tabla de referencia
+    ##'TABLA_API_TAREAS',                         # Tabla de referencia
+    ##'TABLA_API_LOG',                            # Tabla de referencia
     'TABLA_PROCESOIMPORTACIONEXPORTACION',      # --------------------
     'TABLA_RECEPCIONARCHIVOS',                  # ---------------------
     'TABLA_RECEPLOG',                           # ---------------------
-    #'TABLA_API_ESTADOS_TAREAS',                 # --------------------- 
-    #'TABLA_API_REGISTROS',                      # --------------------- 
-    #'TABLA_API_TOKEN_USER',                     # --------------------- 
-    #'TABLA_API_TOKEN',                          # --------------------- 
+    ##'TABLA_API_ESTADOS_TAREAS',                 # --------------------- 
+    ##'TABLA_API_REGISTROS',                      # --------------------- 
+    ##'TABLA_API_TOKEN_USER',                     # --------------------- 
+    ##'TABLA_API_TOKEN',                          # --------------------- 
     'TABLA_ENCABEZADO',                         # --------------------- 
     'TABLA_INFORMACIONVEHICULO',                # --------------------- 
     'TABLA_INFORMACIONVEHICULOTITULAR',         # ---------------------     
@@ -151,7 +151,7 @@ class ConfigurarAplicacion(object):
     'TABLA_IMPUESTOSELLOS',                     # --------------------- 
     'TABLA_IMPUESTOSELLOSPARTES',               # --------------------- 
     'TABLA_IMPUESTOSELLOSPARTESTIPOTRAMITE',    # --------------------- 
-    #'TABLA_API_AUMOSO',                         # --------------------- 
+    ##'TABLA_API_AUMOSO',                         # --------------------- 
     'TABLA_RELACION_ARBA_SUCERP_MARCA',         # --------------------- 
     ]
 
@@ -656,7 +656,7 @@ class ConfigurarAplicacion(object):
 
     # Directorio del Proyecto
     DIR_PROYECTO_LINUX = '/home/anovillo/Escritorio/ApiRest_Procesos_Prod/ApiRest_Procesos_Prod/app'
-    DIR_PROYECTO_WINDOWS = 'C:\\Users\\anovillo\\Desktop\\ApiRest_Procesos_Prod\\ApiRest_Procesos_Prod\\app'
+    DIR_PROYECTO_WINDOWS = 'C:\\Users\\anovillo\\Desktop\\ApiRest_Procesos_Prod\\app'
 
     DIR_PATH_IMAGENES_WINDOWS = f'{DIR_PROYECTO_WINDOWS}\\archivos_Estaticos\\Imagenes\\'
     DIR_PATH_ERRORES_WINDOWS = f'{DIR_PROYECTO_WINDOWS}\\archivos_Estaticos\\Errores\\'
