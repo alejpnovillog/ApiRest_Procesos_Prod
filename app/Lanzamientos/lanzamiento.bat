@@ -1,29 +1,39 @@
 @echo off
 
+REM C:\Users\anovillo\Desktop\ApiRest_Procesos_Prod\ApiRest_Procesos_Prod\app\Lanzamientos\lanzamiento.bat
 set SERVER_URL=http://127.0.0.1:8000
-set SCRIPT_PATH=C:\Ruta\Al\Script
+set SCRIPT_PATH=C:\Users\anovillo\Desktop\ApiRest_Procesos_Prod\ApiRest_Procesos_Prod\app\
 set CONDA_ENV=ReflexKuvasz
+set PGM=C:\ProgramData\anaconda3\Scripts\activate.bat
 
 set MAX_ATTEMPTS=5
 set ATTEMPTS=0
 
-:activate_conda
-call C:\Ruta\A\Tu\Anaconda3\Scripts\activate.bat %CONDA_ENV%
+REM activate_conda
+call %PGM% %CONDA_ENV%
+
 if errorlevel 1 (
     echo Error: No se pudo activar el entorno Conda.
     exit /b 1
 )
+REM NOS COLOCAMOS EN EL DIRECTORIO DEL SERCIVIO DE API
+cd %SCRIPT_PATH%
 
-:run_server
-curl -s --head --connect-timeout 5 --max-time 5 %SERVER_URL% | find "200 OK" > nul
-if %errorlevel% neq 0 (
-    set /a ATTEMPTS+=1
-    echo Intento %ATTEMPTS%: El servidor aún no está en funcionamiento. Iniciando el servidor...
-    cd %SCRIPT_PATH%
-    start "" python main.py
-    timeout /nobreak /t 5 > nul
-    goto run_server
-) else (
-    echo El servidor está en funcionamiento.
-    exit /b 0
-)
+REM LEVANTAMOS EL SERVIDOR
+start "Servidor Api Procesos" python main.py
+
+REM SALIMOS DE LA VENTANA DEL CMD
+exit
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -83,8 +83,8 @@ con.list_host()
 #
 #
 #
-#con.host = 'Pub400'
-#con.serverhost = 'iseriesLinux'
+#con.host = 'Pub400Windows'
+#con.serverhost = 'iseries'
 #con.iphost = 'PUB400.COM'
 #con.usuariohost = 'anovillo'
 #con.passhost = 'macs6259'
