@@ -277,7 +277,6 @@ class AtributosSucerp():
 
     # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     #   tablaApiLog(self)
-    #   tablaRecepcionTexto(self)
     #   tablaTipoRegistro(self)
     #   tablaTipoSubRegistro(self)
     #   tablaTipoCuerpo(self)
@@ -294,7 +293,7 @@ class AtributosSucerp():
     #   tablaAltaImpositiva(self)
     #   tablaAltaImpositivaTitular(self)
     #   tablaRelArbaSucerpMarca(self)
-    #   PROCESOIMPORTACIONEXPORTACION
+    #   tablaProcesoImportacionExportacion(self)
     #   tablaRecepLog(self)
     #   tablaMensajeError(self)
     #   tablaMensajeNivelGravedad(self)
