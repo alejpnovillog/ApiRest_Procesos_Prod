@@ -395,10 +395,20 @@ conda env export --no-builds > environment.yml
 
 4. Generación para un entorno windows
 
+- Abrimos una terminal Anaconda Prompt
+
+- Nos ubicamos en el directorio del proyecto y ejecutamos el siguiente comando
+
 ``` 
-conda env export --name ReflexKuvasz --no-build -c conda-forge > environmentWindows.yml
+conda env export > environmentWindows.yml
 
 ```
+
+- Abrimos el archivo environmentWindows.yml y reemplazamos el nombre - name base por - name (el nombre del ambiente que deseamos )
+
+
+- Abrimos la aplicacion Anaconda y verificamos si el ambiente se creo correctamente
+
 
 5. Una vez generado el archivo environment.yml modificar el name con 
 
